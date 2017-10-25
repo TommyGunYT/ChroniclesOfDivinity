@@ -1,0 +1,14 @@
+Projects/*
+#Story files that can be compiled by the user (only raw files needed).
+Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/meta.lsx
+Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Story/log.txt
+Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Story/goals.div
+Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Story/goals.raw
+Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Story/story.div
+Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Story/story.div.osi
+Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Story/story_ac.dat
+Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Story/RawFiles/story_definitions.div
+Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Story/RawFiles/story_header.div
+
+#Assets
+Public/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Assets/*
