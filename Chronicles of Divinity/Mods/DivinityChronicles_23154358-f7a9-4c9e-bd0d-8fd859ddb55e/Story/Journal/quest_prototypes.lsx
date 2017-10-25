@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1508890695" />
+    <header version="2" time="1508974451" />
     <version major="3" minor="1" revision="3" build="5" />
     <region id="Quests">
         <node id="root">
@@ -228,16 +228,38 @@
                 <node id="Quest">
                     <attribute id="CategoryID" value="DC_Side_Quests" type="22" />
                     <attribute id="MainQuest" value="0" type="19" />
-                    <attribute id="QuestBroadcastLevel" value="0" type="1" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
                     <attribute id="QuestID" value="FatherAndDaughter" type="22" />
                     <attribute id="QuestTitle" value="Father And Daughter" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
-                    <attribute id="Shareable" value="0" type="19" />
+                    <attribute id="Shareable" value="1" type="19" />
                     <attribute id="SortingPriority" value="0" type="4" />
                     <children>
                         <node id="QuestState">
                             <attribute id="Achievement" value="" type="22" />
                             <attribute id="Act" value="0" type="4" />
                             <attribute id="Description" value="A man named Brandon was being helt captive in Fort Joy&apos;s prisons. We helped him out of the cage so he could return to his daughter at the refugee camp." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Start" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="DC_Side_Quests" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="MotherAndDaughter" type="22" />
+                    <attribute id="QuestTitle" value="Mother and Daughter" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                             <attribute id="Gain" value="0" type="4" />
                             <attribute id="Marker" value="" type="22" />
                             <attribute id="QuestRewardCount" value="0" type="4" />

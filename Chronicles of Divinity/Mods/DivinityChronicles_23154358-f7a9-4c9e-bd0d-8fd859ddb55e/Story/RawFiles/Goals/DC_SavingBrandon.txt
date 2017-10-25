@@ -25,7 +25,15 @@ THEN
 ItemTemplateAddTo("DC_BrandonCageKey_f424e330-2c1b-4eb0-a2b5-5fcbd4faaf9f",CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e,1);
 
 IF
+CharacterDying(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110)
+THEN
+GlobalSetFlag("FTJ_BrandonDied");
+ItemTemplateAddTo("DC_BrandonLetterHome_a48b3447-e1b4-4976-bc0d-a487f745c8f7",CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e,1);
+
+IF
 ItemOpened(ITEMGUID_S_DC_BrandonCageDoor_4ea72f92-e6be-48da-acae-da1d9ac87847)
+AND
+GlobalGetFlag("FTJ_BrandonDied",0)
 AND
 DB_IsPlayer(_Player)
 THEN
@@ -37,7 +45,13 @@ AND
 DB_IsPlayer(_Player)
 THEN
 ObjectSetFlag(_Player,"QuestUpdate_FatherAndDaughter_Start");
-CharacterMoveTo(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_S_FTJ_OlgoHatchDown_Point_a86e9457-e9ed-4fa9-840e-db4b20c67f2b,1,"",0);
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_BrandonLeavesCage_ee738f04-ee98-45ed-a82e-c8db392e01b7)
+AND
+ItemIsOpened(ITEMGUID_S_DC_BrandonCageDoor_4ea72f92-e6be-48da-acae-da1d9ac87847,1)
+THEN
+CharacterMoveTo(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonRunToPrisons_43da2dd2-674c-4a00-9e30-bc52596a773c,1,"",0);
 
 IF
 CharacterEnteredTrigger(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonLeavesPrison_514dbf58-9423-433b-8c2b-2f9ec170abf7)
