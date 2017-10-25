@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1498731527" />
+    <version major="3" minor="1" revision="2" build="18" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="faf12a5d-83b6-15b0-13da-e9ea04886a4c" type="31" />
+            <attribute id="Name" value="401 AlchemistHouse 2ndFloor" type="23" />
+        </node>
+    </region>
+</save>

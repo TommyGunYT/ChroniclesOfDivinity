@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1497389244" />
+    <version major="3" minor="1" revision="2" build="11" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="dcd378e7-6f40-0c8a-a6a1-1a04dedf484c" type="31" />
+            <attribute id="Name" value="0904 Lizard Dreamwold SunsetZone Scripting" type="23" />
+        </node>
+    </region>
+</save>

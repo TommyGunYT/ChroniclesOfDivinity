@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1502479074" />
+    <version major="3" minor="1" revision="2" build="21" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="9ae22935-1bae-60fb-fe79-47f8753bc3d3" type="31" />
+            <attribute id="Name" value="402 Roof" type="23" />
+        </node>
+    </region>
+</save>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495570982" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="d0661c9e-1ac1-4c73-ac67-173c69c120c8" type="31" />
+            <attribute id="Name" value="1001 ThePrisonWendigo Scripting" type="23" />
+        </node>
+    </region>
+</save>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1496391328" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="5762f7b7-a2b8-8437-7130-33debb2864c0" type="31" />
+            <attribute id="Name" value="0402 TheFence" type="23" />
+        </node>
+    </region>
+</save>

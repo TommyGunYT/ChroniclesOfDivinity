@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495572234" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="621e312f-378b-a58e-3140-4b4fc57180b7" type="31" />
+            <attribute id="Name" value="0101 PilgrimVillage Scripting" type="23" />
+        </node>
+    </region>
+</save>

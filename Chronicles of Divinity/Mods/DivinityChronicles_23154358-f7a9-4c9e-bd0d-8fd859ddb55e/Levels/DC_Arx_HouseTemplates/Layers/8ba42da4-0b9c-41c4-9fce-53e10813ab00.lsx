@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1497909535" />
+    <version major="3" minor="1" revision="2" build="15" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="8ba42da4-0b9c-41c4-9fce-53e10813ab00" type="31" />
+            <attribute id="Name" value="0306 BarrackArchive_NEW_Structure" type="23" />
+        </node>
+    </region>
+</save>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1497471795" />
+    <version major="3" minor="1" revision="2" build="11" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="361e1cc5-659f-abd3-6356-48e4c2ede687" type="31" />
+            <attribute id="Name" value="0903 Lizard Dreamworld Warzone Structure" type="23" />
+        </node>
+    </region>
+</save>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1497909430" />
+    <version major="3" minor="1" revision="2" build="15" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="e2ee7a88-3e3f-bb60-3384-544b163f96e6" type="31" />
+            <attribute id="Name" value="0305 BarrackCellar_NEW_Structure" type="23" />
+        </node>
+    </region>
+</save>

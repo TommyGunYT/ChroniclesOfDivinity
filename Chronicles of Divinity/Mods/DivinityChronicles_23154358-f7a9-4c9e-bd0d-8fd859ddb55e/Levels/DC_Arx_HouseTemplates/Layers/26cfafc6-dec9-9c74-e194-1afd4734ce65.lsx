@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495569885" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="26cfafc6-dec9-9c74-e194-1afd4734ce65" type="31" />
+            <attribute id="Name" value="1100 LightBeam" type="23" />
+        </node>
+    </region>
+</save>

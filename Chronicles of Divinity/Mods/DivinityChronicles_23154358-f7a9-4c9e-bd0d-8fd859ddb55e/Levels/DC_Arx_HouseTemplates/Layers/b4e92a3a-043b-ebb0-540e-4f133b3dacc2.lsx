@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495562303" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="b4e92a3a-043b-ebb0-540e-4f133b3dacc2" type="31" />
+            <attribute id="Name" value="0302 ToyMaker" type="23" />
+        </node>
+    </region>
+</save>

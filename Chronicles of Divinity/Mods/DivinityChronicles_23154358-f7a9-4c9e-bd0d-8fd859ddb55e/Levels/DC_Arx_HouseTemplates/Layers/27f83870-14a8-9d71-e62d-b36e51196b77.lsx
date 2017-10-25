@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1497019978" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="27f83870-14a8-9d71-e62d-b36e51196b77" type="31" />
+            <attribute id="Name" value="ShipWreck_UpperPart" type="23" />
+        </node>
+    </region>
+</save>

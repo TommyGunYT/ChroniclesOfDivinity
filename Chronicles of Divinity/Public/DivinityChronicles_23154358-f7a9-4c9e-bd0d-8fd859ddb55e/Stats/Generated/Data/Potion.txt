@@ -1,0 +1,17 @@
+new entry "Stats_Drowning"
+type "Potion"
+data "Act" "1"
+data "Act part" "0"
+data "Duration" "2"
+data "StatusIcon" "statIcons_Bleeding"
+
+new entry "Freezing Cold"
+type "Potion"
+data "Act" "1"
+data "Act part" "0"
+data "FireResistance" "10"
+data "WaterResistance" "-20"
+data "AirResistance" "-10"
+data "Duration" "2"
+data "StatusIcon" "statIcons_Chill"
+

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495565339" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="472c6146-a77e-85e2-a236-f1cb971f3bc2" type="31" />
+            <attribute id="Name" value="0602 KemmsVaultAltarRoom Scripting" type="23" />
+        </node>
+    </region>
+</save>

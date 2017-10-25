@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1496759102" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="0cb5378e-c4d5-5f61-9ac5-b04be7d66bb3" type="31" />
+            <attribute id="Name" value="0701 TheBlackHouse Cellar Structure" type="23" />
+        </node>
+    </region>
+</save>

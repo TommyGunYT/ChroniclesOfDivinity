@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495563476" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="961e0181-cd30-872f-15b6-0d6ec8ea7e79" type="31" />
+            <attribute id="Name" value="0405 TraderHouseCellar Scripting" type="23" />
+        </node>
+    </region>
+</save>

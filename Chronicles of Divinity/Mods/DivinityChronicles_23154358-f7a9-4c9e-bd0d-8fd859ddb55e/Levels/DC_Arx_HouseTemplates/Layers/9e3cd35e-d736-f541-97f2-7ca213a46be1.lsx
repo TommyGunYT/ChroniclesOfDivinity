@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495562828" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="9e3cd35e-d736-f541-97f2-7ca213a46be1" type="31" />
+            <attribute id="Name" value="0801 CathedralEmptyCatacombs" type="23" />
+        </node>
+    </region>
+</save>

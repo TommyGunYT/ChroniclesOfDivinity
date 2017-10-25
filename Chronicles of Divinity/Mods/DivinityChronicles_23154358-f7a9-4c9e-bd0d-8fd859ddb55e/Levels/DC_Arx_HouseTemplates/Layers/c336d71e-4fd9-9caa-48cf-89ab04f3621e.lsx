@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495821075" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="c336d71e-4fd9-9caa-48cf-89ab04f3621e" type="31" />
+            <attribute id="Name" value="0601 KemmsVault Structure" type="23" />
+        </node>
+    </region>
+</save>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1508714916" />
+    <version major="3" minor="1" revision="3" build="5" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="7f3e674d-7750-1c07-9c3e-e252bdfcf847" type="31" />
+            <attribute id="Name" value="Winterland" type="23" />
+        </node>
+    </region>
+</save>

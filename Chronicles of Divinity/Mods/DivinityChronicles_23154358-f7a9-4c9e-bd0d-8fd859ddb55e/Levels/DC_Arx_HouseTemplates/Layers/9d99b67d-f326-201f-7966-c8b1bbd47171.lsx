@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1496340552" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="9d99b67d-f326-201f-7966-c8b1bbd47171" type="31" />
+            <attribute id="Name" value="0902 Lizard Dreamworld Arena Structure" type="23" />
+        </node>
+    </region>
+</save>

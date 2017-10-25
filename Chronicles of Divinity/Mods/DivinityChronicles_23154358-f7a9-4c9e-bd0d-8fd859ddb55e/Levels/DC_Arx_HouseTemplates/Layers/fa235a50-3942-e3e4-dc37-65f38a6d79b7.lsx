@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1500047906" />
+    <version major="3" minor="1" revision="2" build="19" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="fa235a50-3942-e3e4-dc37-65f38a6d79b7" type="31" />
+            <attribute id="Name" value="KemmsGarden_MailPost_House" type="23" />
+        </node>
+    </region>
+</save>

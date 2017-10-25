@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1508712982" />
+    <version major="3" minor="1" revision="3" build="5" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="109dcf7a-88de-9edc-d300-3a441dccabd9" type="31" />
+            <attribute id="Name" value="Librarians House" type="23" />
+        </node>
+    </region>
+</save>

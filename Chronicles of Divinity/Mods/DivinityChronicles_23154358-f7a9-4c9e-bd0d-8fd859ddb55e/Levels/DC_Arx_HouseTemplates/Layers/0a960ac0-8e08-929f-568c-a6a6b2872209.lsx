@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495562828" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="0a960ac0-8e08-929f-568c-a6a6b2872209" type="31" />
+            <attribute id="Name" value="0408 School2ndFloor" type="23" />
+        </node>
+    </region>
+</save>

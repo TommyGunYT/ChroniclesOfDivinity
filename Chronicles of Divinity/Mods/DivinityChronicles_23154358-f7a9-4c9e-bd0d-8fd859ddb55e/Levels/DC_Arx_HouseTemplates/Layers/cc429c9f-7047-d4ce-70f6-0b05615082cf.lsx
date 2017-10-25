@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1499283196" />
+    <version major="3" minor="1" revision="2" build="18" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="cc429c9f-7047-d4ce-70f6-0b05615082cf" type="31" />
+            <attribute id="Name" value="0404 Loremaster" type="23" />
+        </node>
+    </region>
+</save>

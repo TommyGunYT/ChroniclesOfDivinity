@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1498138527" />
+    <version major="3" minor="1" revision="2" build="16" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="7e2226c4-fafa-6639-a4f1-bfb151913d16" type="31" />
+            <attribute id="Name" value="0701 Secret Cellar Room" type="23" />
+        </node>
+    </region>
+</save>

@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1497274798" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="d0c531d9-d077-9b03-6d2d-d09f5ad222c1" type="31" />
+            <attribute id="Name" value="0702 TheWeakening" type="23" />
+        </node>
+    </region>
+</save>

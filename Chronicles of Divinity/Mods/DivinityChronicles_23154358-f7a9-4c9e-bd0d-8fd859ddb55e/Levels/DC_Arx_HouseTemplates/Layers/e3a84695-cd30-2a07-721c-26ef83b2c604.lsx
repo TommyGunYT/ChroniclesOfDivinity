@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1501838738" />
+    <version major="3" minor="1" revision="2" build="20" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="e3a84695-cd30-2a07-721c-26ef83b2c604" type="31" />
+            <attribute id="Name" value="0701 Kickstarter Paintings" type="23" />
+        </node>
+    </region>
+</save>

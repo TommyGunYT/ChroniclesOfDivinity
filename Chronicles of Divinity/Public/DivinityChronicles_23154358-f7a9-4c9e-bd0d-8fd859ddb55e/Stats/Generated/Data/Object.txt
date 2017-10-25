@@ -1,0 +1,7 @@
+new entry "DC_FTJ_DanielDiary"
+type "Object"
+data "RootTemplate" "671f9c6c-badc-425f-8087-293c959e2120"
+data "InventoryTab" "Misc"
+data "AddToBottomBar" "No"
+data "ObjectCategory" "DC_Daniel"
+

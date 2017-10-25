@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495565339" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="7c9c40ed-d30a-e330-080c-5019d86277c7" type="31" />
+            <attribute id="Name" value="0603 KemmsVaultArhuPrison Scripting" type="23" />
+        </node>
+    </region>
+</save>

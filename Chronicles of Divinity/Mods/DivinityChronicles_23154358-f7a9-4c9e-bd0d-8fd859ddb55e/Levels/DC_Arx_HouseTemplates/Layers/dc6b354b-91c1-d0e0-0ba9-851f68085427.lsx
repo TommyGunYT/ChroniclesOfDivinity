@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495562565" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="dc6b354b-91c1-d0e0-0ba9-851f68085427" type="31" />
+            <attribute id="Name" value="604 KemmsMansionAttic Scripting" type="23" />
+        </node>
+    </region>
+</save>

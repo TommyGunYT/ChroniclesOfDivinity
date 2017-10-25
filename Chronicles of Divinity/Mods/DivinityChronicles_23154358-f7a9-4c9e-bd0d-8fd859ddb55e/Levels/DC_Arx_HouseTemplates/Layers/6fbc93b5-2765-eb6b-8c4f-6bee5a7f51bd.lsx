@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1495562828" />
+    <version major="3" minor="1" revision="2" build="7" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="6fbc93b5-2765-eb6b-8c4f-6bee5a7f51bd" type="31" />
+            <attribute id="Name" value="0804 CathedralCryptofDivine" type="23" />
+        </node>
+    </region>
+</save>

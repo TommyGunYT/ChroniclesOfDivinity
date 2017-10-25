@@ -1,0 +1,172 @@
+[Vertex shader]
+
+
+#include "Shaders/DX11/CommonHelpers.shdh"
+#include "Shaders/GlobalConstants_DX11.shdh"
+
+struct VertexInput
+{
+	float3 Position : POSITION0;
+	float3 LocalNormal : NORMAL0;
+	float2 TexCoords0 : TEXCOORD0;
+};
+
+struct VertexOutput
+{
+	float4 ProjectedPosition : SV_Position0;
+	float3 ViewNormal : TEXCOORD0;
+	float2 TexCoords0 : TEXCOORD1;
+};
+
+cbuffer CB_PerInstance
+{
+	row_major float4x4 WorldMatrix;
+}
+
+VertexOutput main(VertexInput In)
+{
+	VertexOutput Out;
+
+	//World space position
+	float4 worldPosition = mul(WorldMatrix, float4(In.Position, 1.0f));
+
+	//Projected position
+	float4 projectedPosition = mul(global_ViewProjection, worldPosition);
+
+	//Pass projected position to pixel shader
+	Out.ProjectedPosition = projectedPosition;
+
+	//Normalize Local Normal
+	float3 localNormalNormalized = normalize(In.LocalNormal);
+
+	//World space Normal
+	float3 worldNormal = mul((float3x3)(WorldMatrix), localNormalNormalized);
+
+	//Normalize World Normal
+	float3 worldNormalNormalized = normalize(worldNormal);
+
+	float3 viewSpaceNormal = mul((float3x3)(global_View), worldNormalNormalized);
+
+	Out.ViewNormal = viewSpaceNormal;
+
+	Out.TexCoords0 = In.TexCoords0;
+
+	return Out;
+}
+
+
+[Fragment shader]
+
+
+#include "Shaders/DX11/CommonHelpers.shdh"
+#include "Shaders/DX11/PBR.shdh"
+
+struct PixelInput
+{
+	float4 ProjectedPosition : SV_Position0;
+	float3 ViewNormal : TEXCOORD0;
+	float2 TexCoords0 : TEXCOORD1;
+};
+
+struct PixelOutput
+{
+	float4 Color0 : SV_Target0;
+	float4 Color1 : SV_Target1;
+	float4 Color2 : SV_Target2;
+	float4 Color3 : SV_Target3;
+	float4 Color4 : SV_Target4;
+};
+
+uniform SamplerState _DefaultWrapSampler;
+uniform Texture2D Texture2DParameter_9c88aac8c88f4a1ba92f7443e937d554_DefaultWrapSampler;
+uniform Texture2D Texture2DParameter_ffe0339a5bf94e769beac7db1fabb0b9_DefaultWrapSampler;
+uniform Texture2D Texture2DParameter_17910e3c2c3c4df0b016bc5cfe9b069e_DefaultWrapSampler;
+uniform float _OpacityFade;
+
+void CalculateMatBaseColor(float2 in_0,
+	out float3 out_0)
+{
+	float4 Local0 = Texture2DParameter_9c88aac8c88f4a1ba92f7443e937d554_DefaultWrapSampler.Sample(_DefaultWrapSampler, in_0);
+	//[Local0] Get needed components
+	float Local1 = Local0.x;
+	float Local2 = Local0.y;
+	out_0 = float3(Local1, Local1, Local1);
+}
+
+void CalculateMatMetalMask(float2 in_0,
+	out float out_0)
+{
+	float4 Local0 = Texture2DParameter_9c88aac8c88f4a1ba92f7443e937d554_DefaultWrapSampler.Sample(_DefaultWrapSampler, in_0);
+	//[Local0] Get needed components
+	float Local1 = Local0.x;
+	float Local2 = Local0.y;
+	out_0 = Local2;
+}
+
+void CalculateMatReflectance(float2 in_0,
+	out float out_0)
+{
+	float4 Local0 = Texture2DParameter_ffe0339a5bf94e769beac7db1fabb0b9_DefaultWrapSampler.Sample(_DefaultWrapSampler, in_0);
+	//[Local0] Get needed components
+	float Local1 = Local0.x;
+	float Local2 = Local0.z;
+	float4 Local3 = Texture2DParameter_17910e3c2c3c4df0b016bc5cfe9b069e_DefaultWrapSampler.Sample(_DefaultWrapSampler, float2(Local2, Local2));
+	//[Local3] Convert normalmaps to tangent space vectors
+	Local3.xyzw = Local3.wzyx;
+	Local3.xyz = ((Local3.xyz * 2.0f) - 1.0f);
+	Local3.z = -(Local3.z);
+	Local3.xyz = normalize(Local3.xyz);
+	//[Local3] Get needed components
+	float3 Local4 = Local3.xyz;
+	float Local5 = Local3.y;
+	out_0 = Local4.x;
+}
+
+void CalculateMatRoughness(float2 in_0,
+	out float out_0)
+{
+	float4 Local0 = Texture2DParameter_ffe0339a5bf94e769beac7db1fabb0b9_DefaultWrapSampler.Sample(_DefaultWrapSampler, in_0);
+	//[Local0] Get needed components
+	float Local1 = Local0.x;
+	float Local2 = Local0.z;
+	float4 Local3 = Texture2DParameter_17910e3c2c3c4df0b016bc5cfe9b069e_DefaultWrapSampler.Sample(_DefaultWrapSampler, float2(Local2, Local2));
+	//[Local3] Convert normalmaps to tangent space vectors
+	Local3.xyzw = Local3.wzyx;
+	Local3.xyz = ((Local3.xyz * 2.0f) - 1.0f);
+	Local3.z = -(Local3.z);
+	Local3.xyz = normalize(Local3.xyz);
+	//[Local3] Get needed components
+	float3 Local4 = Local3.xyz;
+	float Local5 = Local3.y;
+	out_0 = Local5;
+}
+
+PixelOutput main(PixelInput In)
+{
+	PixelOutput Out;
+
+	float3 viewNormalNormalized = normalize(In.ViewNormal);
+
+	float3 matBaseColor;
+	CalculateMatBaseColor(In.TexCoords0, matBaseColor);
+	float matMetalMask;
+	CalculateMatMetalMask(In.TexCoords0, matMetalMask);
+	float matReflectance;
+	CalculateMatReflectance(In.TexCoords0, matReflectance);
+	float matRoughness;
+	CalculateMatRoughness(In.TexCoords0, matRoughness);
+	GBufferData gBufferData;
+	gBufferData.Emissive = float3(0.0f, 0.0f, 0.0f);
+	gBufferData.ViewSpaceNormal = viewNormalNormalized;
+	gBufferData.BaseColor = matBaseColor;
+	gBufferData.FadeOpacity = _OpacityFade;
+	gBufferData.Roughness = matRoughness;
+	gBufferData.Reflectance = matReflectance;
+	gBufferData.MetalMask = matMetalMask;
+	gBufferData.FXEmissive = true;
+	gBufferData.ShadingModel = 0;
+	gBufferData.Custom = float4(0.0f, 0.0f, 0.0f, 0.0f);
+	EncodeGBufferData(gBufferData, Out.Color0, Out.Color1, Out.Color2, Out.Color3, Out.Color4);
+
+	return Out;
+}
