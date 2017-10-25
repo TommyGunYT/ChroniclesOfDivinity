@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1508669229" />
+    <version major="3" minor="1" revision="3" build="5" />
+    <region id="DialogVariables">
+        <node id="root">
+            <children>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="84695d94-91cd-40b2-85a2-495829621aea" type="31" />
+                    <attribute id="name" value="DC_CheckIntelligence" type="22" />
+                    <attribute id="type" value="Int" type="23" />
+                </node>
+                <node id="DialogVariable">
+                    <attribute id="DefaultValue" value="" type="23" />
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="UUID" value="abf7b032-1cc1-4341-a79c-649635affb10" type="31" />
+                    <attribute id="name" value="DC_GetName" type="22" />
+                    <attribute id="type" value="String" type="23" />
+                </node>
+            </children>
+        </node>
+    </region>
+</save>
