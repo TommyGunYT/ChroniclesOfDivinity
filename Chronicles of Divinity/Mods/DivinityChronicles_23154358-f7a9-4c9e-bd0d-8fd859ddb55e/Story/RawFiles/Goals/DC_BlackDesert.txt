@@ -1,0 +1,61 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_Testevent005_ec6f8a99-30d3-4917-b421-03b081cd3737)
+THEN
+ShowNotification("some text");
+
+IF
+CharacterUsedItem(_Player,ITEMGUID_DC_CanyonBridge_In_2f2946fb-633f-40a5-a10c-422f5a6985bd)
+THEN
+StartCameraSpline(SPLINEGUID_DC_CanyonBridgeSpline_In_d5d2d154-ce0d-41e2-ab99-7684b4cdc71d,_Player,2.0,1,1,0);
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_BlackDesert_Music_Entrance_b5c873bd-907d-4059-84c0-09d782de8159)
+THEN
+PlaySound(_Player,"Soundvol_Wind_Gen_Strong3_loop");
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_SandStormAuraNorth_7e885615-a2a2-408c-b5c5-cba4bedfb02f)
+THEN
+ApplyStatus(_Player,"SLOWED",-1.0,1);
+PlaySound(_Player,"Soundvol_Wind_Gen_Strong3_loop");
+
+IF
+CharacterLeftTrigger(_Player,TRIGGERGUID_DC_SandStormAuraNorth_7e885615-a2a2-408c-b5c5-cba4bedfb02f)
+THEN
+RemoveStatus(_Player,"SLOWED");
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_AllDesertAuraQuest_f74d0900-e3dd-4fa2-ac5e-28e2a20b1095)
+AND
+IsTagged(_Player,"DC_HasDesertGear",0)
+THEN
+ApplyStatus(_Player,"SLOWED",-1.0,1);
+ApplyStatus(_Player,"BLEEDING",-1.0,1);
+DisplayText(_Player,"Ouch! These winds are dreadful! The sand rips at my skin!");
+
+
+IF
+CharacterLeftTrigger(_Player,TRIGGERGUID_DC_AllDesertAuraQuest_f74d0900-e3dd-4fa2-ac5e-28e2a20b1095)
+THEN
+RemoveStatus(_Player,"SLOWED");
+RemoveStatus(_Player,"BLEEDING");
+
+IF
+CharacterUsedItem(_Player,ITEMGUID_DC_TagDesertTRIGGER_cb220dca-3990-4fe9-9bae-29f03e35dbb1)
+THEN
+SetTag(_Player,"DC_HasDesertGear");
+ShowNotification("Obtained Desert Wanderer Gear");
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_DesertToHighlandsTrigger_a3e94e17-dd3e-4249-b36d-92e055025ff6)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_FromDesertToHighlands_4d6c39fd-ebea-4e39-9698-a3a9d58096e6,"");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DC_BlackPitHighlands"

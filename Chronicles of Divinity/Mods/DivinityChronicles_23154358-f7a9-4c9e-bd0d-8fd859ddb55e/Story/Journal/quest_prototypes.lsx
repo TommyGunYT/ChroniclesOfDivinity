@@ -1,0 +1,253 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1508890695" />
+    <version major="3" minor="1" revision="3" build="5" />
+    <region id="Quests">
+        <node id="root">
+            <children>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="DC_Main_Story" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="TheTimeWeavers" type="22" />
+                    <attribute id="QuestTitle" value="The Time Weavers" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I climbed up a broken ledge in this... Mystical place. Ahead of me stood a majestic deer-shaped spirit. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="MetDeer" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The main path was broken off, and I had to try find a way around. It lead me to a portal. On the other side, I&apos;ve found someplace...Unnatural. Something is off. Other forces are at play here." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="HoEArrival" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="That wasn&apos;t very helpful. I didn&apos;t learn much from that deer, he mentioned something about a flightless bird... Wonder what that means. He did give me this rune though, suppose it is our way forwards." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="DeerTeleportedMe" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I found the way out, at last. At least we have some useful tools for our journey now. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="HoEMainExit" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="DC_Main_Story" type="22" />
+                    <attribute id="MainQuest" value="1" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="DCPyramids" type="22" />
+                    <attribute id="QuestTitle" value="The Pyramids" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I found a pyramid shaped object. It gives off a constant low humming buzz. I wonder what happens if I pick it up and use it..." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="RedLocated" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="After laying my hand on top of the Red Pyramid, it seemed to transport me to an entirely different location. It can teleport me! It brought me to another pyramid. Presumably, they&apos;re used to teleport to its counterpart. That opens a whole lot of opportunities! For now, I need to find a way out of here. Maybe my new tools can be of help." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="BlueLocated" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Once I get back to the ship, I should ask around on deck. Perhaps someone knows more about these pyramids, or where I can learn more about them." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="UsefulTools" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="DC_Side_Quests" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="CracksOfTime" type="22" />
+                    <attribute id="QuestTitle" value="Crack In The Wall" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="There was some form for light beaming out of the wall in one of the storage rooms in the ship. It was covered up by planks as if someone had tried to patch it up." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="BoatCrack" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="DC_Side_Quests" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="TheHungryBird" type="22" />
+                    <attribute id="QuestTitle" value="The Hungry Bird" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="I made friends with a bird on the way to Fort Joy. He really liked the dwarven chips. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="MetOriOnBoat" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="DC_Side_Quests" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="MagisterDaniel" type="22" />
+                    <attribute id="QuestTitle" value="First Day" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="We lied to the guard on the ship and framed him into getting in trouble with Siwan. Hope they&apos;re not &apos;too&apos; harsh with him..." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="LiedToDaniel" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Poor guy... According to this diary, Daniel was one of the guards on the same ship as I was on the way to Fort Joy. And it was even his first day! Talk about tough luck.  Now another daughter must grow up without her dad." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="NeverMetFoundDiary" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="Did we cause this? Is this guy... Daniel. Is he dead because of... According to his diary, he&apos;s got a family near Driftwood. " handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="FoundDiary" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="DidntFindDiary" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="QCA_Companions" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="1" type="1" />
+                    <attribute id="QuestID" value="DC_COM_Kara" type="22" />
+                    <attribute id="QuestTitle" value="Kara" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="0" type="19" />
+                    <attribute id="SortingPriority" value="1" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Start" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="DC_Side_Quests" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="0" type="1" />
+                    <attribute id="QuestID" value="FatherAndDaughter" type="22" />
+                    <attribute id="QuestTitle" value="Father And Daughter" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="0" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="A man named Brandon was being helt captive in Fort Joy&apos;s prisons. We helped him out of the cage so he could return to his daughter at the refugee camp." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Start" type="22" />
+                        </node>
+                    </children>
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

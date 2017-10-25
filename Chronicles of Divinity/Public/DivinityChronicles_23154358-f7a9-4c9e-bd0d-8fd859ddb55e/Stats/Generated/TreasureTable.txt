@@ -1,0 +1,7 @@
+treasure itemtypes "Common","Uncommon","Rare","Epic","Legendary","Divine","Unique"
+new treasuretable "DC_Daniel"
+IgnoreLevelDiff 1
+new subtable "1"
+StartLevel "1"
+EndLevel "30"
+object category "DC_Daniel",1,0,0,0,0,0,0,0

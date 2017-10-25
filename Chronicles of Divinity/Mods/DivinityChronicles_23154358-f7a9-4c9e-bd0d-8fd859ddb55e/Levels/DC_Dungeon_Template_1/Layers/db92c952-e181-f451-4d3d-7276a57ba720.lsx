@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1508671821" />
+    <version major="3" minor="1" revision="3" build="5" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="db92c952-e181-f451-4d3d-7276a57ba720" type="31" />
+            <attribute id="Name" value="New Layer 1" type="23" />
+        </node>
+    </region>
+</save>

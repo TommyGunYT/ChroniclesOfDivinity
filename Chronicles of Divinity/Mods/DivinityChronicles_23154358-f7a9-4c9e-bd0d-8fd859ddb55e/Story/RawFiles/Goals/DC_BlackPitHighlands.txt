@@ -1,0 +1,34 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CheckLevelStart("Cave_1");
+DB_CheckLevelStart("BlackpitDesert");
+KBSECTION
+IF
+RegionStarted("Cave_1")
+THEN
+GoalCompleted;
+
+IF
+DB_CheckLevelStart("Cave_1")
+AND
+DB_CurrentLevel("Cave_1")
+THEN
+GoalCompleted;
+
+IF
+RegionStarted("BlackpitDesert")
+THEN
+GoalCompleted;
+
+IF
+DB_CheckLevelStart("BlackpitDesert")
+AND
+DB_CurrentLevel("BlackpitDesert")
+THEN
+GoalCompleted;
+EXITSECTION
+NOT DB_CheckLevelStart("Cave_1");
+NOT DB_CheckLevelStart("BlackpitDesert");
+ENDEXITSECTION
+ParentTargetEdge "__Start"

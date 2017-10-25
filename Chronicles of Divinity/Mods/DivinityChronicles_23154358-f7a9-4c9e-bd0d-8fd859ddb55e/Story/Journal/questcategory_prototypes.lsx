@@ -1,0 +1,31 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1508099822" />
+    <version major="3" minor="1" revision="3" build="5" />
+    <region id="QuestCategories">
+        <node id="root">
+            <children>
+                <node id="QuestCategory">
+                    <attribute id="CategoryID" value="DC_Main_Story" type="22" />
+                    <attribute id="Description" value="Divinity Chronicles" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="SortingPriority" value="3" type="4" />
+                </node>
+                <node id="QuestCategory">
+                    <attribute id="CategoryID" value="QCA_Companions" type="22" />
+                    <attribute id="Description" value="My Companions" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="SortingPriority" value="2" type="4" />
+                </node>
+                <node id="QuestCategory">
+                    <attribute id="CategoryID" value="QCA_MyStory" type="22" />
+                    <attribute id="Description" value="My Story So Far..." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="SortingPriority" value="1" type="4" />
+                </node>
+                <node id="QuestCategory">
+                    <attribute id="CategoryID" value="DC_Side_Quests" type="22" />
+                    <attribute id="Description" value="Things to be done..." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="SortingPriority" value="4" type="4" />
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

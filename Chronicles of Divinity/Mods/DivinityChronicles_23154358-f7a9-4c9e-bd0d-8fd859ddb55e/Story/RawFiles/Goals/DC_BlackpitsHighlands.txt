@@ -1,0 +1,43 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_BPH_Petpal_35b8a01d-0ca2-4cec-840c-b576a5f05218)
+AND
+UserGetFlag(_Player,"DC_BPH_FirstVisit",0)
+THEN
+StartCameraSpline(SPLINEGUID_DC_CamBlackpits_2a08d781-2d05-4d72-93c9-46f2047de56a,_Player,2.0,1,1,0);
+UserSetFlag(_Player,"DC_BPH_FirstVisit");
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_Testevent005_ec6f8a99-30d3-4917-b421-03b081cd3737)
+THEN
+ShowNotification("Test text");
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_EnterDesert1_b849e3b9-351f-400d-9e3c-ea0d1b620366)
+THEN
+DisplayText(_Player,"These winds are strong. It's probably dangerous to proceed unless I have the right gear.");
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_EnterDesert2_b1e573f8-251c-4ffe-91aa-bfde95139ea9)
+AND
+IsTagged(_Player,"DC_HasDesertGear",0)
+THEN
+ApplyStatus(_Player,"SLOWED",-1.0,1);
+
+IF
+CharacterLeftTrigger(_Player,TRIGGERGUID_DC_EnterDesert2_b1e573f8-251c-4ffe-91aa-bfde95139ea9)
+THEN
+RemoveStatus(_Player,"SLOWED");
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_EnterDesert3_eb206724-6b9d-497b-a509-0c37e91c77ec)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_HighlandsToDesert_TP_38aa8b3e-4ddc-4f45-a11d-0b40b16362db,"");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DC_BlackPitHighlands"
