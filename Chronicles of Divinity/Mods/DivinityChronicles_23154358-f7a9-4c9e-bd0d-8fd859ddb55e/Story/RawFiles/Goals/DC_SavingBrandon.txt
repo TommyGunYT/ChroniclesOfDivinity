@@ -1,0 +1,49 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_QuestDef_State("FatherAndDaughter","Start",1);
+KBSECTION
+// Brandon in the prisons
+
+IF
+CombatStarted(_Id)
+AND
+CombatGetIDForCharacter(CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e,_Id)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,"Cower_03_Loop");
+
+IF
+CombatEnded(_ID)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e,1)
+THEN
+DisplayText(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,"Hey! Over here! Let me out, please!");
+
+IF
+CharacterDying(CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e)
+THEN
+ItemTemplateAddTo("DC_BrandonCageKey_f424e330-2c1b-4eb0-a2b5-5fcbd4faaf9f",CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e,1);
+
+IF
+ItemOpened(ITEMGUID_S_DC_BrandonCageDoor_4ea72f92-e6be-48da-acae-da1d9ac87847)
+AND
+DB_IsPlayer(_Player)
+THEN
+Proc_StartDialog(0,"FTJ_Brandon",CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,_Player);
+
+IF
+DialogEnded("FTJ_Brandon",_)
+AND
+DB_IsPlayer(_Player)
+THEN
+ObjectSetFlag(_Player,"QuestUpdate_FatherAndDaughter_Start");
+CharacterMoveTo(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_S_FTJ_OlgoHatchDown_Point_a86e9457-e9ed-4fa9-840e-db4b20c67f2b,1,"",0);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonLeavesPrison_514dbf58-9423-433b-8c2b-2f9ec170abf7)
+THEN
+SetOnStage(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,0);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "FortJoy"

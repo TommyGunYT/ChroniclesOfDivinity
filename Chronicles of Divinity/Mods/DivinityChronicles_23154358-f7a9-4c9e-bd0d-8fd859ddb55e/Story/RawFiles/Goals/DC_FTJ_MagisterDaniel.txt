@@ -1,0 +1,42 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_QuestDef_State("MagisterDaniel","NeverMetFoundDiary",1);
+DB_QuestDef_State("MagisterDaniel","FoundDiary");
+KBSECTION
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_FTJ_DanielLoot_a908762b-b527-44bf-b69a-617f65223050)
+AND
+UserGetFlag(_Player,"FTJ_Daniel_LootGen",0)
+AND
+PartyGetFlag(_Player,"LiedToDaniel",1)
+THEN
+ItemTemplateAddTo("ITEMGUID_S_DC_FTJ_DanielDiary_671f9c6c-badc-425f-8087-293c959e2120",CHARACTERGUID_S_FTJ_DrownedPrisoner_d8fa04b9-135a-4e25-9087-773dc3cadb72,1);
+UserSetFlag(_Player,"FTJ_Daniel_LootGen");
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_FTJ_DanielLoot_a908762b-b527-44bf-b69a-617f65223050)
+AND
+UserGetFlag(_Player,"FTJ_Daniel_LootGen",0)
+AND
+PartyGetFlag(_Player,"LiedToDaniel",0)
+THEN
+ItemTemplateAddTo("ITEMGUID_S_DC_FTJ_DanielDiary_NotLiedTo_bc780bfc-360f-437e-a0c3-e8e8f75d8bfa",CHARACTERGUID_S_FTJ_DrownedPrisoner_d8fa04b9-135a-4e25-9087-773dc3cadb72,1);
+UserSetFlag(_Player,"FTJ_Daniel_LootGen");
+
+
+IF
+CharacterUsedItemTemplate(_Player,"S_DC_FTJ_DanielDiary_NotLiedTo_e6bec491-4633-4479-b7ac-61ec2e313358",_)
+THEN
+ObjectSetFlag(_Player,"QuestUpdate_MagisterDaniel_NeverMetFoundDiary");
+
+IF
+CharacterUsedItemTemplate(_Player,"S_DC_FTJ_DanielDiary_671f9c6c-badc-425f-8087-293c959e2120",_)
+THEN
+ObjectSetFlag(_Player,"QuestUpdate_MagisterDaniel_FoundDiary");
+
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

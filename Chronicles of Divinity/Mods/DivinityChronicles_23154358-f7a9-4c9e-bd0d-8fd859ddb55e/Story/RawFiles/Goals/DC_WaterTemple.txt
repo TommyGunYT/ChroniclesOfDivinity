@@ -1,0 +1,13 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_WaterTempleMusic_Entrance_9475e72c-15eb-4a06-a8de-28c7a07c8344)
+THEN
+CameraActivate(_Player,"DC_WaterTemple_StartCam",5.0,1,1,1);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

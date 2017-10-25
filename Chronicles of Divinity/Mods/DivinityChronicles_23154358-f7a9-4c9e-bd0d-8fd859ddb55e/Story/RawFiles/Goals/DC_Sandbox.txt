@@ -1,0 +1,21 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+
+IF
+CharacterEnteredTrigger(_Character,TRIGGERGUID_DC_DimaTest_25603aa3-0ea4-4818-a6e4-0fbd6455fc3b)
+AND
+CharacterIsPlayer((CHARACTERGUID)_Character,1)
+AND
+UserGetFlag(_Character,"StoppedByMalady",0)
+THEN
+DisplayText(_Character,"Hello, Malady. Wanna have ze funky time?");
+CharacterMoveToAndTalk(CHARACTERGUID_S_DC_Malady_f6dbf047-e77d-4b05-b038-30d17b4b667f,(CHARACTERGUID)_Character,"MaladyTesting",0,"",0,10.0);
+UserSetFlag(_Character,"StoppedByMalady");
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

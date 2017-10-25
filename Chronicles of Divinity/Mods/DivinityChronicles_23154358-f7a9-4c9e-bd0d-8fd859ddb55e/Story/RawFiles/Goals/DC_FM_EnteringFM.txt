@@ -1,0 +1,188 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+ItemSetCanInteract(ITEMGUID_S_DC_ClimbingLedgeWall_67b21977-c323-46dd-b5ca-8e798a58e972,0);
+SetOnStage(CHARACTERGUID_DC_AtheryonsAssistant_b69369cf-8008-48d8-b0e1-3133b3d24849,0);
+SetOnStage(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler1_0cd449c2-d31b-4ef3-bca3-32d8c184a4c0,0);
+SetOnStage(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler2_fb3832af-514b-4652-a4ef-d94ad76515aa,0);
+SetOnStage(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler3_34958fff-2b71-4603-9193-a1f0d813d01a,0);
+SetOnStage(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler4_9f33e4bd-6f75-49b2-b0fd-9e93cb48fbba,0);
+SetOnStage(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler6_4caedcde-75d5-4c20-ac20-6413900dd8c8,0);
+SetOnStage(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler7_ee587e79-b960-45fa-af91-220fa46e3604,0);
+
+DB_AutoSaveTrigger(TRIGGERGUID_DC_AtheryonDialogueOne_671c51b3-1a19-40b8-b949-aca113fa2205);
+KBSECTION
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_FM_EnteringFM_d0c73cb5-cd6e-454c-85e8-be93698f3f4e)
+AND
+CharacterIsPlayer((CHARACTERGUID)_Player,1)
+AND
+PartyGetFlag(_Player,"AtheryonFMINIT",0)
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_S_DC_FM_Jeth_e7a4b3b2-52aa-8f42-5a24-9a7afe53f2c9,"Lie_Wounded_03_Loop");
+Proc_StartDialog(1,"JethVB",CHARACTERGUID_S_DC_FM_Jeth_e7a4b3b2-52aa-8f42-5a24-9a7afe53f2c9);
+GlobalSetFlag("FMAtheryonFirstMeeting");
+AutoSave();
+TimerLaunch("Atheryon_WalkStairs",10000);
+
+IF
+TimerFinished("Atheryon_WalkStairs")
+THEN
+CharacterMoveTo(CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c,CHARACTERGUID_S_DC_FM_Jeth_e7a4b3b2-52aa-8f42-5a24-9a7afe53f2c9,0,"",0);
+TimerLaunch("Atheryon_WalkToJeth",10000);
+
+IF
+TimerFinished("Atheryon_WalkToJeth")
+AND
+GetPosition(CHARACTERGUID_S_DC_FM_Jeth_e7a4b3b2-52aa-8f42-5a24-9a7afe53f2c9,_X,_Y,_Z)
+THEN
+CharacterUseSkillAtPosition(CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c,"Target_EnemyFireWhip",_X,_Y,_Z,1,1);
+TimerLaunch("KilledJeth",3000);
+
+IF
+TimerFinished("KilledJeth")
+THEN
+DisplayText(CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c,"Heh... Heh... ");
+GlobalSetFlag("AtheryonFMINIT");
+TimerLaunch("MoveToWaitingPointAtheryon",4000);
+
+IF
+TimerFinished("MoveToWaitingPointAtheryon")
+AND
+DB_IsPlayer(_Player)
+THEN
+CharacterMoveTo(CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c,TRIGGERGUID_DC_AtheryonWaitPoint1_28131580-0643-41fd-93d3-2c9863b3c438,0,"",0);
+PartySetFlag(_Player,"AtheryonFMINIT");
+
+
+
+
+
+
+
+
+//Barrel 1
+
+IF
+CharacterDestroyedItem(_Player,ITEMGUID_DC_BarrelDestruction1_d8c97bb0-5f55-4083-b22a-fe49ec286d6b)
+AND
+GetDistanceTo(ITEMGUID_S_Destructible_PileofPlanks_1644e0b2-ee62-40b9-8c87-50d484595bb1,ITEMGUID_DC_BarrelDestruction1_d8c97bb0-5f55-4083-b22a-fe49ec286d6b,_Dist)
+AND
+_Dist <= 13.0
+THEN
+ItemDestroy(ITEMGUID_S_Destructible_PileofPlanks_1644e0b2-ee62-40b9-8c87-50d484595bb1);
+ItemSetCanInteract(ITEMGUID_S_DC_ClimbingLedgeWall_67b21977-c323-46dd-b5ca-8e798a58e972,1);
+
+//Barrel 2
+
+IF
+CharacterDestroyedItem(_Player,ITEMGUID_DC_BarrelDestruction2_16417e21-ec66-4c9a-a401-d9af1da4b5dc)
+AND
+GetDistanceTo(ITEMGUID_S_Destructible_PileofPlanks_1644e0b2-ee62-40b9-8c87-50d484595bb1,ITEMGUID_DC_BarrelDestruction2_16417e21-ec66-4c9a-a401-d9af1da4b5dc,_Dist)
+AND
+_Dist <= 13.0
+THEN
+ItemDestroy(ITEMGUID_S_Destructible_PileofPlanks_1644e0b2-ee62-40b9-8c87-50d484595bb1);
+ItemSetCanInteract(ITEMGUID_S_DC_ClimbingLedgeWall_67b21977-c323-46dd-b5ca-8e798a58e972,1);
+
+//Barrel 3
+
+IF
+CharacterDestroyedItem(_Player,ITEMGUID_DC_BarrelDestruction3_e8ed1c7e-1545-4521-a59a-1c42bbcd8c7e)
+AND
+GetDistanceTo(ITEMGUID_S_Destructible_PileofPlanks_1644e0b2-ee62-40b9-8c87-50d484595bb1,ITEMGUID_DC_BarrelDestruction3_e8ed1c7e-1545-4521-a59a-1c42bbcd8c7e,_Dist)
+AND
+_Dist <= 13.0
+THEN
+ItemDestroy(ITEMGUID_S_Destructible_PileofPlanks_1644e0b2-ee62-40b9-8c87-50d484595bb1);
+ItemSetCanInteract(ITEMGUID_S_DC_ClimbingLedgeWall_67b21977-c323-46dd-b5ca-8e798a58e972,1);
+
+IF
+CharacterDestroyedItem(_Player,ITEMGUID_S_Destructible_PileofPlanks_1644e0b2-ee62-40b9-8c87-50d484595bb1)
+THEN
+ItemSetCanInteract(ITEMGUID_S_DC_ClimbingLedgeWall_67b21977-c323-46dd-b5ca-8e798a58e972,1);
+
+IF
+CharacterEnteredTrigger((CHARACTERGUID)_Player,TRIGGERGUID_DC_AtheryonDialogueOne_671c51b3-1a19-40b8-b949-aca113fa2205)
+AND
+DB_IsPlayer(_Player)
+AND
+PartyGetFlag(_Player,"MetAtheryon",0)
+THEN
+CharacterMoveToAndTalk(CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c,_Player,"FM_Atheryon",0,"",0,10.0);
+
+
+IF
+DialogEnded("FM_Atheryon",_)
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(_Player,_X,_Y,_Z)
+THEN
+PartySetFlag(_Player,"MetAtheryon");
+CharacterUseSkillAtPosition(CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c,"Storm_EnemyBlood",_X,_Y,_Z,1,1);
+TimerLaunch("AtheryonSummonsMinions",4000);
+
+
+IF
+TimerFinished("AtheryonSummonsMinions")
+THEN
+CharacterAppear(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler1_0cd449c2-d31b-4ef3-bca3-32d8c184a4c0,1,"");
+CharacterAppear(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler2_fb3832af-514b-4652-a4ef-d94ad76515aa,1,"");
+CharacterAppear(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler3_34958fff-2b71-4603-9193-a1f0d813d01a,1,"");
+CharacterAppear(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler4_9f33e4bd-6f75-49b2-b0fd-9e93cb48fbba,1,"");
+CharacterAppear(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler6_4caedcde-75d5-4c20-ac20-6413900dd8c8,1,"");
+CharacterAppear(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler7_ee587e79-b960-45fa-af91-220fa46e3604,1,"");
+TimerLaunch("AtheryonCastBloodRain",600);
+
+IF
+TimerFinished("AtheryonCastBloodRain")
+AND
+DB_IsPlayer(_Player)
+THEN
+Proc_StartDialog(1,"FM_Atheryon2",CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c,(CHARACTERGUID)_Player);
+
+
+IF
+DialogEnded("FM_Atheryon2",_)
+THEN
+TimerLaunch("FMAtheryonTPOutOfBattle",600);
+
+IF
+TimerFinished("FMAtheryonTPOutOfBattle")
+AND
+DB_IsPlayer(_Player)
+THEN
+CharacterAddSkill(CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c,"Jump_EnemyCurseDive_Braccus");
+CharacterUseSkill(CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c, "Jump_EnemyCurseDive_Braccus", CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c, 1);
+PlayEffect(_Player,"RS3_FX_GP_Combat_CameraShake_A");
+TimerLaunch("TestTimerPew",1000);
+
+IF
+TimerFinished("TestTimerPew")
+THEN
+PlayEffect(CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_02");
+TimerLaunch("AtheryonTP2",700);
+
+IF
+TimerFinished("AtheryonTP2")
+THEN
+TeleportTo(CHARACTERGUID_S_DC_Boss_Atheryon_97c65097-ba5f-4343-93f7-3498762f2f3c,TRIGGERGUID_DC_FM_AtheryonPoint2_372491d0-47ee-498c-8840-aeeb12da076f);
+TimerLaunch("FMAtheryonBattleStart",700);
+
+IF
+TimerFinished("FMAtheryonBattleStart")
+THEN
+CharacterAppear(CHARACTERGUID_DC_AtheryonsAssistant_b69369cf-8008-48d8-b0e1-3133b3d24849,1,"");
+SetFaction(CHARACTERGUID_DC_AtheryonsAssistant_b69369cf-8008-48d8-b0e1-3133b3d24849,"Evil NPC");
+SetFaction(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler6_4caedcde-75d5-4c20-ac20-6413900dd8c8,"Evil NPC");
+SetFaction(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler3_34958fff-2b71-4603-9193-a1f0d813d01a,"Evil NPC");
+SetFaction(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler1_0cd449c2-d31b-4ef3-bca3-32d8c184a4c0,"Evil NPC");
+SetFaction(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler2_fb3832af-514b-4652-a4ef-d94ad76515aa,"Evil NPC");
+SetFaction(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler4_9f33e4bd-6f75-49b2-b0fd-9e93cb48fbba,"Evil NPC");
+SetFaction(CHARACTERGUID_S_FM_DC_Battle_UndeadCrawler7_ee587e79-b960-45fa-af91-220fa46e3604,"Evil NPC");
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DC_FortMisery"

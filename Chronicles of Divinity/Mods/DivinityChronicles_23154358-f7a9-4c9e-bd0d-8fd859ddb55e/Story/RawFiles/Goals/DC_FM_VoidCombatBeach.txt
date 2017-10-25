@@ -1,0 +1,131 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+SetOnStage(CHARACTERGUID_DC_VoidWoken_3_a9d29e3e-dacf-4920-a0a5-a823b18e893d,0);
+SetOnStage(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054,0);
+SetOnStage(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,0);
+KBSECTION
+IF
+CombatStarted(_Id)
+AND
+CharacterIsInCombat(CHARACTERGUID_S_DC_VoidFlayer_601075f7-ec05-4b24-b1d3-bcfb60ed36e0,1)
+AND
+DB_IsPlayer(_Player)
+THEN
+CharacterAppear(CHARACTERGUID_DC_VoidWoken_3_a9d29e3e-dacf-4920-a0a5-a823b18e893d,1,"");
+CharacterAppear(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054,1,"");
+CharacterAppear(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,1,"");
+GlobalSetFlag("DC_FM_VoidBeachFight");
+
+// Grunt #1
+IF
+CharacterDying(CHARACTERGUID_DC_VoidWoken_3_a9d29e3e-dacf-4920-a0a5-a823b18e893d)
+AND
+GlobalGetFlag("DC_FM_VoidBeachFight",1)
+THEN
+TimerLaunch("Disappearvoid1",4000);
+
+IF
+TimerFinished("Disappearvoid1")
+AND
+GetPosition(CHARACTERGUID_DC_VoidWoken_3_a9d29e3e-dacf-4920-a0a5-a823b18e893d,_X, _Y, _Z)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Ambushers_Smoke_01",_X, _Y, _Z);
+SetOnStage(CHARACTERGUID_DC_VoidWoken_3_a9d29e3e-dacf-4920-a0a5-a823b18e893d,0);
+TimerLaunch("SpawnVoid1",2000);
+
+IF
+TimerFinished("SpawnVoid1")
+THEN
+TeleportTo(CHARACTERGUID_DC_VoidWoken_3_a9d29e3e-dacf-4920-a0a5-a823b18e893d,ITEMGUID_S_DC_VoidSpawnHole_f5eb4eb9-5e1e-4110-b255-90db120b8155);
+CharacterResurrect(CHARACTERGUID_DC_VoidWoken_3_a9d29e3e-dacf-4920-a0a5-a823b18e893d);
+CharacterAppearAt(CHARACTERGUID_DC_VoidWoken_3_a9d29e3e-dacf-4920-a0a5-a823b18e893d,ITEMGUID_S_DC_VoidSpawnHole_f5eb4eb9-5e1e-4110-b255-90db120b8155,1,"");
+SetFaction(CHARACTERGUID_DC_VoidWoken_3_a9d29e3e-dacf-4920-a0a5-a823b18e893d,"Evil NPC");
+DisplayText(CHARACTERGUID_DC_VoidWoken_3_a9d29e3e-dacf-4920-a0a5-a823b18e893d,"Rhhzzz! Godwoken! Now Deadwoken.");
+
+// Grunt #2
+IF
+CharacterDying(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054)
+AND
+GlobalGetFlag("DC_FM_VoidBeachFight",1)
+THEN
+TimerLaunch("Disappearvoid2",4000);
+
+IF
+TimerFinished("Disappearvoid2")
+AND
+GetPosition(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054,_X, _Y, _Z)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Ambushers_Smoke_01",_X, _Y, _Z);
+SetOnStage(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054,0);
+TimerLaunch("SpawnVoid2",2000);
+
+IF
+TimerFinished("SpawnVoid2")
+THEN
+TeleportTo(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054,ITEMGUID_S_DC_VoidSpawnHole_f5eb4eb9-5e1e-4110-b255-90db120b8155);
+CharacterResurrect(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054);
+CharacterAppearAt(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054,ITEMGUID_S_DC_VoidSpawnHole_f5eb4eb9-5e1e-4110-b255-90db120b8155,1,"");
+SetFaction(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054,"Evil NPC");
+DisplayText(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,"Trzz! I'm back!");
+
+// Grunt #3
+IF
+CharacterDying(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336)
+AND
+GlobalGetFlag("DC_FM_VoidBeachFight",1)
+THEN
+TimerLaunch("Disappearvoid3",4000);
+
+IF
+TimerFinished("Disappearvoid3")
+AND
+GetPosition(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,_X, _Y, _Z)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Ambushers_Smoke_01",_X, _Y, _Z);
+SetOnStage(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,0);
+TimerLaunch("SpawnVoid3",2000);
+
+IF
+TimerFinished("SpawnVoid3")
+THEN
+TeleportTo(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,ITEMGUID_S_DC_VoidSpawnHole_f5eb4eb9-5e1e-4110-b255-90db120b8155);
+CharacterResurrect(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336);
+CharacterAppearAt(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,ITEMGUID_S_DC_VoidSpawnHole_f5eb4eb9-5e1e-4110-b255-90db120b8155,1,"");
+SetFaction(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,"Evil NPC");
+DisplayText(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,"Shhzzz! You can't win!");
+
+
+IF
+ItemDestroyed(ITEMGUID_S_DC_VoidSpawnHole_f5eb4eb9-5e1e-4110-b255-90db120b8155)
+THEN
+GlobalClearFlag("DC_FM_VoidBeachFight");
+GlobalSetFlag("DestroyedFMVoidNest");
+
+IF
+GlobalFlagSet("DestroyedFMVoidNest")
+AND
+CharacterIsDead(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,0)
+THEN
+TimerLaunch("VoidNo2",1000);
+
+IF
+TimerFinished("VoidNo2")
+THEN
+DisplayText(CHARACTERGUID_DC_VoidWoken_2_e4726094-ce37-4b98-ab9e-86749a6e8336,"Shhhrzzzz... Nooo!");
+
+IF
+GlobalFlagSet("DestroyedFMVoidNest")
+AND
+CharacterIsDead(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054,0)
+THEN
+TimerLaunch("VoidNo1",3400);
+
+IF
+TimerFinished("VoidNo1")
+THEN
+DisplayText(CHARACTERGUID_DC_VoidWoken_1_07205593-3fd8-4d0e-8f8a-da1bded62054,"Shhhrzzzzeh... You stole our hole too!");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DC_FortMisery"

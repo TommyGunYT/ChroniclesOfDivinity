@@ -1,0 +1,18 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_FM_SecretArea1_Enter_e2c7de6e-25a9-4fbb-b335-62c995337896)
+AND
+UserGetFlag(_Player,"EnteredSecretFM1",0)
+AND
+GetPosition(TRIGGERGUID_DC_FortMisery_FireIgnitionOil_bfe05186-233e-4138-bad5-8f8c56ec8a3d,_X,_Y,_Z)
+THEN
+CreateSurfaceAtPosition(_X,_Y,_Z,"SurfaceFire",3.0,-1.0);
+UserSetFlag(_Player,"EnteredSecretFM1");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DC_FortMisery"

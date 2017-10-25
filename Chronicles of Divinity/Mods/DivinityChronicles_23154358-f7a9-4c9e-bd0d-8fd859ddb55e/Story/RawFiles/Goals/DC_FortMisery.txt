@@ -1,0 +1,22 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CheckLevelStart("DC_FJMisery");
+KBSECTION
+IF
+RegionStarted("DC_FJMisery")
+THEN
+GoalCompleted;
+
+IF
+DB_CheckLevelStart("DC_FJMisery")
+AND
+DB_CurrentLevel("DC_FJMisery")
+THEN
+GoalCompleted;
+
+
+EXITSECTION
+NOT DB_CheckLevelStart("DC_FJMisery");
+ENDEXITSECTION
+ParentTargetEdge "__Start"

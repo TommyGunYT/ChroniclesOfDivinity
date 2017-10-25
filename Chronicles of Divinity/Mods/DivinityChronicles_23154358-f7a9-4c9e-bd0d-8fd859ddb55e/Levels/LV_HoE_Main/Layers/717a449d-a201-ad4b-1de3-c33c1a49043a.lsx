@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1506771929" />
+    <version major="3" minor="1" revision="3" build="1" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="717a449d-a201-ad4b-1de3-c33c1a49043a" type="31" />
+            <attribute id="Name" value="Custom Door" type="23" />
+        </node>
+    </region>
+</save>

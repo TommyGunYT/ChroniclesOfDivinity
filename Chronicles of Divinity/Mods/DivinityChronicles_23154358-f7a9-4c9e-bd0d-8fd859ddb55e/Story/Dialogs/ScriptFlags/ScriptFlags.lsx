@@ -1,0 +1,21 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1508670173" />
+    <version major="3" minor="1" revision="3" build="5" />
+    <region id="ScriptFlags">
+        <node id="root">
+            <children>
+                <node id="ScriptFlag">
+                    <children>
+                        <node id="ScriptFlag">
+                            <attribute id="Description" value="" type="23" />
+                            <attribute id="Script" value="" type="23" />
+                            <attribute id="UUID" value="9938dceb-f081-4dd8-8f63-812878bed7e4" type="31" />
+                            <attribute id="name" value="DC_IntelligenceCheck20" type="22" />
+                        </node>
+                    </children>
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

@@ -1,0 +1,70 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+ItemSetCanInteract(ITEMGUID_S_SecretDoor1_3aaa685f-4177-43fd-845e-f520a5832c26,0);
+ItemSetCanInteract(ITEMGUID_S_TalkingDoor1_df7597b4-84a3-49be-a388-0a408080d4c8,0);
+KBSECTION
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_TestTrigger_e79ddae6-b576-4d21-b990-6ffd40149e44)
+AND
+DB_IsPlayer(_Player)
+AND
+UserGetFlag(_Player,"FoundSecretPrisonDoor",0)
+AND
+QRY_CheckPlayerStat(_Player,"Wits",45)
+THEN
+ItemSetCanInteract(ITEMGUID_S_SecretDoor1_3aaa685f-4177-43fd-845e-f520a5832c26,1);
+UserSetFlag(_Player,"FoundSecretPrisonDoor");
+PlayEffect(ITEMGUID_S_SecretDoor1_3aaa685f-4177-43fd-845e-f520a5832c26,"RS3_FX_UI_PerceptionReveal_01");
+ItemSetCanInteract(ITEMGUID_S_TalkingDoor1_df7597b4-84a3-49be-a388-0a408080d4c8,1);
+
+IF
+CharacterUsedItem(_Player,ITEMGUID_S_SecretDoor1_3aaa685f-4177-43fd-845e-f520a5832c26)
+THEN
+ItemSetCanInteract(ITEMGUID_S_SecretDoor1_3aaa685f-4177-43fd-845e-f520a5832c26,0);
+UserSetFlag(_Player,"OpenedSecretWall");
+
+IF
+CharacterUsedItem(_Player,ITEMGUID_S_TalkingDoor1_df7597b4-84a3-49be-a388-0a408080d4c8)
+AND
+UserGetFlag(_Player,"FoundSecretPrisonDoor",1)
+AND
+UserGetFlag(_Player,"StrongEnoughToOpenTalkingDoor",0)
+THEN
+DisplayText(_Player,"This door seems too heavy for me to open.");
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_TestTrigger_e79ddae6-b576-4d21-b990-6ffd40149e44)
+AND
+UserGetFlag(_Player,"FoundSecretPrisonDoor",1)
+AND
+UserGetFlag(_Player,"StrongEnoughToOpenTalkingDoor",0)
+AND
+QRY_CheckPlayerStat(_Player,"Strength",20)
+THEN
+PlayEffect(ITEMGUID_S_TalkingDoor1_df7597b4-84a3-49be-a388-0a408080d4c8,"RS3_FX_UI_PerceptionReveal_01");
+UserSetFlag(_Player,"StrongEnoughToOpenTalkingDoor");
+ItemUnLock(ITEMGUID_S_TalkingDoor1_df7597b4-84a3-49be-a388-0a408080d4c8);
+DisplayText(_Player,"I should be able to push this door open.");
+
+IF
+CharacterLeftTrigger(_Player,TRIGGERGUID_DC_TestTrigger_e79ddae6-b576-4d21-b990-6ffd40149e44)
+AND
+UserGetFlag(_Player,"FoundSecretPrisonDoor",1)
+AND
+UserGetFlag(_Player,"StrongEnoughToOpenTalkingDoor",0)
+AND
+QRY_CheckPlayerStat(_Player,"Strength",20)
+THEN
+PlayEffect(ITEMGUID_S_TalkingDoor1_df7597b4-84a3-49be-a388-0a408080d4c8,"RS3_FX_UI_PerceptionReveal_01");
+DisplayText(_Player,"I should be able to push this door open.");
+UserSetFlag(_Player,"StrongEnoughToOpenTalkingDoor");
+ItemUnLock(ITEMGUID_S_TalkingDoor1_df7597b4-84a3-49be-a388-0a408080d4c8);
+DisplayText(_Player,"I should be able to push this door open.");
+
+
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

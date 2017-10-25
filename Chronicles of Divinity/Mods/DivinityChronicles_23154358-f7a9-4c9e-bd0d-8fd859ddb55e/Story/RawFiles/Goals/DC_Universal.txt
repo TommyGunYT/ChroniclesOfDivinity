@@ -1,0 +1,56 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Player, "DC_CON_Potion_Source_a5fdf6a5-a170-4598-9652-850977dc362d", (ITEMGUID)_Item)
+AND
+CharacterGetMaxSourcePoints(_Player, (INTEGER)_CurrentSP)
+AND
+IntegerSum(_CurrentSP, 1, (INTEGER)_MaxSP)
+THEN
+CharacterOverrideMaxSourcePoints(_Player, _MaxSP);
+
+// Increase Source Point by 1
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Player, "DC_Quest_SourcePointScroll_000_56e7c888-7929-47c7-aa95-8a1838256783", (ITEMGUID)_Item)
+AND
+CharacterGetMaxSourcePoints(_Player, (INTEGER)_CurrentSP)
+AND
+IntegerSum(_CurrentSP, 1, (INTEGER)_MaxSP)
+THEN
+CharacterAddSourcePoints((CHARACTERGUID)_Player,1);
+
+
+// DEBUG TOOL
+
+IF
+DialogStarted("DC_Rat_Test", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+CharacterGetDisplayName(_Player, _Handle, _Ref)
+THEN
+DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_ColdArea_9b16e846-be2b-4fa5-a14c-14f9b006d26e)
+THEN
+ApplyStatus(_Player,"DCCOLD",-1.0,1);
+
+
+IF
+CharacterLeftTrigger(_Player,TRIGGERGUID_DC_ColdArea_9b16e846-be2b-4fa5-a14c-14f9b006d26e)
+THEN
+RemoveStatus(_Player,"DCCOLD");
+
+CameraActivate(_Player, "DC_WinterVillage_StartCam_5e8bd746-a388-4b6b-a1b7-ada63f29f876", 0.0, 1, 0, 1);
+
+
+
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

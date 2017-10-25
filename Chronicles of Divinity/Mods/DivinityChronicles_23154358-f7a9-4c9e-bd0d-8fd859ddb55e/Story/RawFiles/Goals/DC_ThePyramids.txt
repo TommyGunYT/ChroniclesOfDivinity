@@ -1,0 +1,30 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_Dialogs(CHARACTERGUID_Mysterious_Deer_0068ade8-3b2e-42bb-b8d2-23e1caf5d1c8,"Mysterious_Deer");
+
+DB_QuestDef_State("DCPyramids","RedLocated",1);
+DB_QuestDef_State("DCPyramids","BlueLocated");
+DB_QuestDef_State("DCPyramids","UsefulTools");
+KBSECTION
+//Player located Red Pyramid Item
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_HoE_Main_RedPyramid_5117b06d-7a75-4cf6-adb5-b0df88d1fe32)
+THEN
+ObjectSetFlag(_player,"QuestUpdate_DCPyramids_RedLocated");
+
+//Player located Blue Pyramid Item
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_HoE_Main_BluePyramid_b7dfa0bd-9a78-4dfb-85db-138cbd5e70b2)
+THEN
+ObjectSetFlag(_player,"QuestUpdate_DCPyramids_BlueLocated");
+
+//Player near Exit
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_SanctuaryPath_Pyramid_Part3_831c5b11-1700-4f69-90ea-def71b12cc31)
+THEN
+ObjectSetFlag(_player,"QuestUpdate_DCPyramids_UsefulTools");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"
