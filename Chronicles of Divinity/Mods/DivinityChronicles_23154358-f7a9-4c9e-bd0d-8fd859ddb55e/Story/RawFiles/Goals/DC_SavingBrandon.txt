@@ -2,6 +2,8 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 DB_QuestDef_State("FatherAndDaughter","Start",1);
+
+DB_Dialogs(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,"DC_Brandon");
 KBSECTION
 // Brandon in the prisons
 
@@ -28,7 +30,7 @@ IF
 CharacterDying(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110)
 THEN
 GlobalSetFlag("FTJ_BrandonDied");
-ItemTemplateAddTo("DC_BrandonLetterHome_a48b3447-e1b4-4976-bc0d-a487f745c8f7",CHARACTERGUID_S_FTJ_OlgoCellarMagister_001_402470db-ad49-4de7-8a60-7f69c8e5d26e,1);
+ItemTemplateAddTo("DC_BrandonLetterHome_a48b3447-e1b4-4976-bc0d-a487f745c8f7",CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,1);
 
 IF
 ItemOpened(ITEMGUID_S_DC_BrandonCageDoor_4ea72f92-e6be-48da-acae-da1d9ac87847)
@@ -45,6 +47,7 @@ AND
 DB_IsPlayer(_Player)
 THEN
 ObjectSetFlag(_Player,"QuestUpdate_FatherAndDaughter_Start");
+PartySetFlag(_Player,"RescuedBrandon");
 
 IF
 CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_BrandonLeavesCage_ee738f04-ee98-45ed-a82e-c8db392e01b7)
@@ -56,7 +59,20 @@ CharacterMoveTo(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3
 IF
 CharacterEnteredTrigger(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonLeavesPrison_514dbf58-9423-433b-8c2b-2f9ec170abf7)
 THEN
-SetOnStage(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,0);
+TeleportTo(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonRescuedLandingPoint_d418e1b7-e2a5-4388-b0fe-2d18d0aa3e92);
+GlobalSetFlag("DC_DimaAndBrandonTalking");
+
+
+// BRANDON IS SAVED
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonNearDima_e756c089-149d-4d7e-9364-056cafadc4fc)
+AND
+CharacterCanSee(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,1)
+THEN
+Proc_StartDialog(0,"DC_BrandonAndDimaVB",CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110);
+
+
 EXITSECTION
 
 ENDEXITSECTION
