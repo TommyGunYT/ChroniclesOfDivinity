@@ -3,7 +3,12 @@ SubGoalCombiner SGC_AND
 INITSECTION
 DB_QuestDef_State("FatherAndDaughter","Start",1);
 
-DB_Dialogs(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,"DC_Brandon");
+DB_Dialogs(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,"DC_Brandon");
+
+
+SetOnStage(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,0);
+SetOnStage(ITEMGUID_DC_BrandonsBoat_Broken_f749bbe3-c284-4ce3-80d5-755905e0f339,1);
+SetOnStage(ITEMGUID_DC_BrandonsBoat_Repaired_8c97e42f-653c-4a45-b51a-dbd1ebafa2d3,0);
 KBSECTION
 // Brandon in the prisons
 
@@ -59,20 +64,24 @@ CharacterMoveTo(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3
 IF
 CharacterEnteredTrigger(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonLeavesPrison_514dbf58-9423-433b-8c2b-2f9ec170abf7)
 THEN
-TeleportTo(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonRescuedLandingPoint_d418e1b7-e2a5-4388-b0fe-2d18d0aa3e92);
-GlobalSetFlag("DC_DimaAndBrandonTalking");
+SetOnStage(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,0);
+SetOnStage(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,1);
+GlobalSetFlag("DC_BrandonBeachINIT");
 
 
 // BRANDON IS SAVED
 
 IF
-CharacterEnteredTrigger(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonNearDima_e756c089-149d-4d7e-9364-056cafadc4fc)
+GlobalFlagSet("DC_BrandonBeachINIT")
 AND
-CharacterCanSee(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,1)
+CharacterCanSee(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,1)
 THEN
-Proc_StartDialog(0,"DC_BrandonAndDimaVB",CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110);
+Proc_StartDialog(0,"DC_BrandonAndDimaVB",CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888);
 
-
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_Voicebark_Learning_86414746-e1a4-42e8-b506-0b587ae8066e)
+THEN
+Proc_StartDialog(0,"DC_BrandonAndDimaVB",CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888);
 EXITSECTION
 
 ENDEXITSECTION
