@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1508719151" />
+    <version major="3" minor="1" revision="3" build="5" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="c672bae3-d328-a191-6ce3-ec18812b23ab" type="31" />
+            <attribute id="Name" value="Shadow Smoothers" type="23" />
+        </node>
+    </region>
+</save>
