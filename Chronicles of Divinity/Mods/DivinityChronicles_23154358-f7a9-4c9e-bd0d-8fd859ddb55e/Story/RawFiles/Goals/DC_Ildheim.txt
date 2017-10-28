@@ -3,7 +3,9 @@ SubGoalCombiner SGC_AND
 INITSECTION
 DB_Dialogs((ITEMGUID)ITEMGUID_S_DC_Snowfall_Waypoint_ecaf9e05-3ad7-44b6-ab20-e3f4c49e5b65,"RC_BF_WaypointStatue");
 
-DB_WaypointInfo((ITEMGUID)ITEMGUID_S_DC_Snowfall_Waypoint_ecaf9e05-3ad7-44b6-ab20-e3f4c49e5b65,TRIGGERGUID_DC_Ildheim_Waypoint_508a2ed9-a741-482a-862a-62651a450eab,"WAYP_Ildheim");
+DB_WaypointInfo((ITEMGUID)ITEMGUID_DC_Ildheim_Waypoint_Town_ecaf9e05-3ad7-44b6-ab20-e3f4c49e5b65,TRIGGERGUID_DC_Ildheim_WaypointLanding_Town_7ff22d6b-2204-46dc-bb34-209e48d6fda5,"WAYP_Ildheim");
+DB_WaypointInfo((ITEMGUID)ITEMGUID_DC_Ildheim_Waypoint_TopMountain_8b7ee7b3-c7c8-4f4f-b748-74c440b0e7a0,TRIGGERGUID_DC_Ildheim_WaypointLanding_TopMountain_844e9c3d-34e8-4003-86a3-f9bb80cf72b8,"WAYP_IldheimMountain");
+
 KBSECTION
 
 EXITSECTION

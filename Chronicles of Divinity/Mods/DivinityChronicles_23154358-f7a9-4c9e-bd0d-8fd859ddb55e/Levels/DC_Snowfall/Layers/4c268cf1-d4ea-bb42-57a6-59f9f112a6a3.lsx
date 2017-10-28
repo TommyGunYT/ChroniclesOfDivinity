@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1509228504" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="4c268cf1-d4ea-bb42-57a6-59f9f112a6a3" type="31" />
+            <attribute id="Name" value="Battlements Ruins" type="23" />
+        </node>
+    </region>
+</save>

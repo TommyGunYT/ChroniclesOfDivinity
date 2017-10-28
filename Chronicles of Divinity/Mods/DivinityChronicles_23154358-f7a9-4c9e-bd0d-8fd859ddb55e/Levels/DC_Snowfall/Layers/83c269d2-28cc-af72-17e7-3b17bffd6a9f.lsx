@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1509229745" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="83c269d2-28cc-af72-17e7-3b17bffd6a9f" type="31" />
+            <attribute id="Name" value="VFX Blizzard" type="23" />
+        </node>
+    </region>
+</save>
