@@ -1,0 +1,11 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+SetOnStage(ITEMGUID_DC_WoodBridge_Over_Under_563c5355-564b-4b3a-be49-199835d5e467,1);
+SetOnStage(ITEMGUID_DC_WoodBridge_Over_bedccc11-9b49-4303-9ab3-7d9ef0b4b934,0);
+KBSECTION
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DC_Ildheim"
