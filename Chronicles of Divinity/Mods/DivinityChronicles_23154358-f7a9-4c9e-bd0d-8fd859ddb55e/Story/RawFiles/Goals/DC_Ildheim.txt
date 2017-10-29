@@ -7,7 +7,15 @@ DB_WaypointInfo((ITEMGUID)ITEMGUID_DC_Ildheim_Waypoint_Town_ecaf9e05-3ad7-44b6-a
 DB_WaypointInfo((ITEMGUID)ITEMGUID_DC_Ildheim_Waypoint_TopMountain_8b7ee7b3-c7c8-4f4f-b748-74c440b0e7a0,TRIGGERGUID_DC_Ildheim_WaypointLanding_TopMountain_844e9c3d-34e8-4003-86a3-f9bb80cf72b8,"WAYP_IldheimMountain");
 
 KBSECTION
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_TeleporterTrigger_MartBasement_7b85aa5d-11d5-4c0e-9c14-b4f7111cbee5)
+THEN
+TeleportTo(_Player,TRIGGERGUID_DC_TP_Point_MartBasement_4b73d457-c242-4fe8-ae49-c9a461ac53ed);
 
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_TeleportTrigger_Mart_GoingOut_774c4844-93c8-4ca8-932b-60363ec9c449)
+THEN
+TeleportTo(_Player,TRIGGERGUID_DC_TP_Point_OutsideMartBasement_2e98035a-0706-4ae7-a2c4-1831408d5ba0);
 EXITSECTION
 
 ENDEXITSECTION
