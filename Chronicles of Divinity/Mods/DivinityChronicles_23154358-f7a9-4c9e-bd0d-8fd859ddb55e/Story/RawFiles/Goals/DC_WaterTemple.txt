@@ -10,4 +10,4 @@ CameraActivate(_Player,"DC_WaterTemple_StartCam",5.0,1,1,1);
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "__Start"
+ParentTargetEdge "DC_BlackPitHighlands"

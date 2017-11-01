@@ -37,22 +37,6 @@ DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79
 
 
 
-
-IF
-CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_DrownTest_b81e60ef-5360-4d45-890c-e6a0c781d846)
-THEN
-ApplyStatus(_Player,"SLOWED",-1.0,1);
-ApplyStatus(_Player,"DROWNING",-1.0,1);
-
-
-IF
-CharacterLeftTrigger(_Player,TRIGGERGUID_DC_DrownTest_b81e60ef-5360-4d45-890c-e6a0c781d846)
-THEN
-RemoveStatus(_Player,"SLOWED");
-RemoveStatus(_Player,"DROWNING");
-
-CameraActivate(_Player, "DC_WinterVillage_StartCam_5e8bd746-a388-4b6b-a1b7-ada63f29f876", 0.0, 1, 0, 1);
-
 EXITSECTION
 
 ENDEXITSECTION

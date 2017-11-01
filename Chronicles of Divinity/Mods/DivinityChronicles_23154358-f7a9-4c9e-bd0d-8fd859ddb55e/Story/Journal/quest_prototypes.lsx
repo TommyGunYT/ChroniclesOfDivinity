@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1508974451" />
-    <version major="3" minor="1" revision="3" build="5" />
+    <header version="2" time="1509410079" />
+    <version major="3" minor="1" revision="4" build="0" />
     <region id="Quests">
         <node id="root">
             <children>
@@ -244,6 +244,17 @@
                             <attribute id="QuestRewardLevel" value="0" type="4" />
                             <attribute id="ReputationGain" value="0" type="4" />
                             <attribute id="Status" value="Start" type="22" />
+                        </node>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="The Magisters are holding a young girl&apos;s father as a prisoner. Perhaps there&apos;s a way to get him out." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="Poster" type="22" />
                         </node>
                     </children>
                 </node>

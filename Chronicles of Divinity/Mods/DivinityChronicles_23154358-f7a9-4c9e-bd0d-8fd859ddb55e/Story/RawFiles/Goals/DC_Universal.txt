@@ -51,8 +51,8 @@ CameraActivate(_Player, "DC_WinterVillage_StartCam_5e8bd746-a388-4b6b-a1b7-ada63
 IF
 ItemEquipped(ITEMGUID_DC_MastersSword_000_9a40fc8a-6e95-46af-8dc3-cce87e571b40,_Player)
 THEN
-ApplyStatus(_Player,"WET",-1.0,1);
-
+ApplyStatus(_Player,"WET",10.0,1);
+DisplayText(CHARACTERGUID_DC_DeerTest_dfb093a0-0348-441e-9c30-846781f472c5,"Hello!");
 
 
 

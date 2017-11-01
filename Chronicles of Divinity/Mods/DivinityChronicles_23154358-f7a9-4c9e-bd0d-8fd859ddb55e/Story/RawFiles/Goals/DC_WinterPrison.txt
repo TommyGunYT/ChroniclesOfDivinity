@@ -67,4 +67,4 @@ DisplayText(_Player,"I should be able to push this door open.");
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "__Start"
+ParentTargetEdge "DC_Ildheim"

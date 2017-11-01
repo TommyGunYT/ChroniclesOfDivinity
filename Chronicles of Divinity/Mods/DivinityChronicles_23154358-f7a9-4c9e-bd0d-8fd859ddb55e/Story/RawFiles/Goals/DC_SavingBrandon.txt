@@ -2,9 +2,11 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 DB_QuestDef_State("FatherAndDaughter","Start",1);
+DB_QuestDef_State("FatherAndDaughter","Poster",1);
 
-DB_Dialogs(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,"DC_Brandon");
+DB_Dialogs(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,"DC_BrandonSaved");
 DB_Dialogs(CHARACTERGUID_DC_Maya_dcb9edbe-3470-428b-8684-785e5648a04d,"DC_Maya");
+DB_Dialogs(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"DC_Dima");
 
 
 SetOnStage(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,0);
@@ -12,6 +14,15 @@ SetOnStage(ITEMGUID_DC_BrandonsBoat_Broken_f749bbe3-c284-4ce3-80d5-755905e0f339,
 SetOnStage(ITEMGUID_DC_BrandonsBoat_Repaired_8c97e42f-653c-4a45-b51a-dbd1ebafa2d3,0);
 KBSECTION
 //REGION PRISONS
+
+IF
+GameBookInterfaceClosed(ITEMGUID_DC_Poster_Brandon_6637a4da-a0b9-4857-88f2-d4bca543f2e3,_Player)
+AND
+GlobalGetFlag("FatherAndDaughterStarted",0)
+THEN
+ObjectSetFlag(_Player,"QuestUpdate_FatherAndDaughter_Poster");
+GlobalSetFlag("FatherAndDaughterStarted");
+
 IF
 CombatStarted(_Id)
 AND
@@ -52,12 +63,13 @@ AND
 DB_IsPlayer(_Player)
 THEN
 ObjectSetFlag(_Player,"QuestUpdate_FatherAndDaughter_Start");
-SetHasDialog(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,0);
+GlobalSetFlag("RescuedBrandon");
+DisplayText(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,"Thank you!");
+TimerLaunch("BrandonFleeFromCage",3000);
+
 
 IF
-CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_BrandonLeavesCage_ee738f04-ee98-45ed-a82e-c8db392e01b7)
-AND
-ItemIsOpened(ITEMGUID_S_DC_BrandonCageDoor_4ea72f92-e6be-48da-acae-da1d9ac87847,1)
+TimerFinished("BrandonFleeFromCage")
 THEN
 CharacterMoveTo(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonRunToPrisons_43da2dd2-674c-4a00-9e30-bc52596a773c,1,"",0);
 SetOnStage(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,1);
@@ -66,16 +78,150 @@ IF
 CharacterEnteredTrigger(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,TRIGGERGUID_DC_BrandonLeavesPrison_514dbf58-9423-433b-8c2b-2f9ec170abf7)
 THEN
 SetOnStage(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110,0);
-Proc_StartDialog(0,"DC_BrandonAndDimaVB",CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888);
 GlobalSetFlag("DC_RescuedBrandon");
+SetStoryEvent(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"DimaTakeDownPoster");
+
+IF
+StoryEvent(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"DimaTakeDownPoster")
+THEN
+ItemDestroy(ITEMGUID_DC_Poster_Brandon_6637a4da-a0b9-4857-88f2-d4bca543f2e3);
+GlobalClearFlag("FatherAndDaughterStarted");
 //END_REGION
 
-//REGION - MAYA
+//REGION - BRANDON DIMA AD
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_BrandonNearDima_e756c089-149d-4d7e-9364-056cafadc4fc)
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"It's good to have you back, buddy.");
+TimerLaunch("BDVB1",10000);
+
+IF
+TimerFinished("BDVB1")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,"It's good to be back, thanks to whomever saved me.");
+TimerLaunch("BDVB2",10000);
+
+IF
+TimerFinished("BDVB2")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"What will you do now?");
+TimerLaunch("BDVB3",10000);
+
+IF
+TimerFinished("BDVB3")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,"Enjoy my time with Maya, maybe repair that boat...");
+TimerLaunch("BDVB4",10000);
+
+IF
+TimerFinished("BDVB4")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"Finally get to explore those little lumps of land, eh?");
+TimerLaunch("DimaVB5",10000);
+
+IF
+TimerFinished("BDVB5")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,"That'd be something. First I need tools and materials.");
+TimerLaunch("BDVB6",10000);
+
+IF
+TimerFinished("BDVB6")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"I've got tons of nails left over from these... Posters.");
+TimerLaunch("BDVB7",10000);
+
+IF
+TimerFinished("BDVB7")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,"Thank you, Dima. Maybe that's why someone came and freed me.");
+TimerLaunch("BDVB8",10000);
+
+IF
+TimerFinished("BDVB8")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"I need to do the rounds and take down my posters.");
+TimerLaunch("BDVB9",10000);
+
+IF
+TimerFinished("BDVB9")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,"Is there a lot of them?");
+TimerLaunch("BDVB10",8000);
+
+IF
+TimerFinished("BDVB10")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"A few...");
+TimerLaunch("BDVB11",5000);
+
+IF
+TimerFinished("BDVB11")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,"Maybe I'll go hang out with Maya meanwhile.");
+TimerLaunch("BDVB12",10000);
+
+IF
+TimerFinished("BDVB12")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"I'll see you later then.");
+TimerLaunch("BDVB13",5000);
+
+IF
+TimerFinished("BDVB13")
+AND
+GlobalGetFlag("DimaBrandonVBstop",0)
+THEN
+DisplayText(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,"Yeah.");
+
 
 //END_REGION
 
-//REGION - SAVED BRANDON
+//REGION - MEETING BRANDON AT CAMP
+IF
+DialogStarted("DC_BrandonSaved",_)
+THEN
+GlobalSetFlag("DimaBrandonVBstop");
 
+IF
+DialogStarted("DC_BrandonSaved", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+CharacterGetDisplayName(_Player, _Handle, _Ref)
+THEN
+DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
+
+IF
+DialogEnded("DC_BrandonSaved",_)
+THEN
+CharacterMoveTo(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,TRIGGERGUID_DC_BrandonBeach_6f3fa649-022a-4b2a-8860-0d772156847d,0,"",0);
 //END_REGION
 EXITSECTION
 
