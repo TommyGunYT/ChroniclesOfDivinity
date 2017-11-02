@@ -54,8 +54,31 @@ THEN
 ApplyStatus(_Player,"WET",10.0,1);
 DisplayText(CHARACTERGUID_DC_DeerTest_dfb093a0-0348-441e-9c30-846781f472c5,"Hello!");
 
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_DimaTest_25603aa3-0ea4-4818-a6e4-0fbd6455fc3b)
+THEN
+DisplayText(_Player,"Working");
 
 
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae)
+AND
+CharacterGetRace(_Player,0,"elf")
+AND
+ItemIsClosed(ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae, 1)
+THEN
+ItemOpen(ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae);
+
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae)
+AND
+CharacterGetRace(_Player,0,"elf")
+AND
+ItemIsOpened(ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae, 1)
+THEN
+ItemClose(ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae);
 EXITSECTION
 
 ENDEXITSECTION

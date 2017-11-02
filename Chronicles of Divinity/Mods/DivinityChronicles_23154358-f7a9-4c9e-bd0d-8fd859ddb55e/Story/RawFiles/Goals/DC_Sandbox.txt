@@ -3,10 +3,7 @@ SubGoalCombiner SGC_AND
 INITSECTION
 
 KBSECTION
-IF
-CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_DimaTest_25603aa3-0ea4-4818-a6e4-0fbd6455fc3b)
-THEN
-ProcStartMovie("DOS Cutscene 1.bik");
+
 EXITSECTION
 
 ENDEXITSECTION
