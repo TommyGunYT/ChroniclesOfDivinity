@@ -2,6 +2,10 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 SetOnStage(CHARACTERGUID_DC_HoeStream_CustomBlue_5831c7a1-60c2-4ccc-87b2-6dc2b4a8cbf6,0);
+SetOnStage(CHARACTERGUID_DC_HoeStream_CustomRed_83d2820f-8fbf-475b-94a4-b6e611839c47,0);
+SetOnStage(CHARACTERGUID_DC_VoidCat_1_ba0d2c34-cd01-4d01-9469-1480b4c7ab48,0);
+SetOnStage(CHARACTERGUID_DC_VoidCat_2_eec7e0e5-b826-47ea-9a72-93b9786c89ec,0);
+SetOnStage(CHARACTERGUID_DC_VoidCat_3_a8d779f1-45ac-484a-9e39-065924288459,0);
 KBSECTION
 //REGION SETUP
 
@@ -17,8 +21,6 @@ DisplayText(_Player,"Hello");
 
 //REGION BATTLE WITH VOID CAT
 
-
-
 IF
 CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_BlackCat_Check_e2d6cf0d-f4fa-49db-9855-7fe5e2908f35)
 AND
@@ -33,9 +35,76 @@ CharacterIsInCombat(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae
 AND
 DB_IsPlayer(_Player)
 THEN
-Proc_CameraShakeAroundCharacter(_Player, 5, 4.0);
+Proc_CameraShakeAroundCharacter(_Player, 50, 4.0);
 PlaySound(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4,"Creatures_Kraken_Roar_ST_Pointsound_TEMP");
 SetOnStage(CHARACTERGUID_DC_HoeStream_CustomBlue_5831c7a1-60c2-4ccc-87b2-6dc2b4a8cbf6,1);
+
+IF
+CharacterReceivedDamage(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4)
+AND
+CharacterGetHitpointsPercentage(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4,_Percentage)
+AND
+_Percentage <= 50
+AND
+GlobalGetFlag("VoidCatEnrageMode",0)
+THEN
+CharacterFlushQueue(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4);
+JumpToTurn(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4);
+DisplayText(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4,"Meow! This is not over yet!");
+CharacterAddSkill(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4,"Shout_InvisibilitySelfRogue");
+CharacterUseSkill(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4, "Shout_InvisibilitySelfRogue",CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4, 1);
+EndTurn(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4);
+GlobalSetFlag("VoidCatEnrageMode");
+TimerLaunch("VoidCatSummons",3000);
+
+IF
+CharacterUsedSkill(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4,"Shout_InvisibilitySelfRogue",_)
+AND
+DB_IsPlayer(_Player)
+THEN
+SetStoryEvent(_Player,"VoidCatEnrageSummoning");
+
+IF
+StoryEvent(_Player,"VoidCatEnrageSummoning")
+AND
+GetPosition(CHARACTERGUID_DC_VoidCat_1_ba0d2c34-cd01-4d01-9469-1480b4c7ab48,_X,_Y,_Z)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_Status_Hypercharged_Apply_01", 1.0, _X, _Y, _Z);
+CharacterAppear(CHARACTERGUID_DC_VoidCat_1_ba0d2c34-cd01-4d01-9469-1480b4c7ab48,1,"");
+
+IF
+StoryEvent(_Player,"VoidCatEnrageSummoning")
+AND
+GetPosition(CHARACTERGUID_DC_VoidCat_2_eec7e0e5-b826-47ea-9a72-93b9786c89ec,_X,_Y,_Z)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_Status_Hypercharged_Apply_01", 1.0, _X, _Y, _Z);
+CharacterAppear(CHARACTERGUID_DC_VoidCat_2_eec7e0e5-b826-47ea-9a72-93b9786c89ec,1,"");
+
+IF
+StoryEvent(_Player,"VoidCatEnrageSummoning")
+AND
+GlobalGetFlag("VoidCatSummoning",0)
+AND
+GetPosition(CHARACTERGUID_DC_VoidCat_3_a8d779f1-45ac-484a-9e39-065924288459,_X,_Y,_Z)
+THEN
+PlayScaledEffectAtPosition("RS3_FX_GP_Status_Hypercharged_Apply_01", 1.0, _X, _Y, _Z);
+CharacterAppear(CHARACTERGUID_DC_VoidCat_3_a8d779f1-45ac-484a-9e39-065924288459,1,"");
+JumpToTurn((CHARACTERGUID)_Player);
+
+IF
+StoryEvent(_Player,"VoidCatEnrageSummoning")
+AND
+GlobalGetFlag("VoidCatSummoning",0)
+THEN
+Proc_CameraShakeAroundCharacter(_Player, 50, 4.0);
+PlaySound(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4,"Creatures_Kraken_Roar_ST_Pointsound_TEMP");
+SetOnStage(CHARACTERGUID_DC_HoeStream_CustomBlue_5831c7a1-60c2-4ccc-87b2-6dc2b4a8cbf6,0);
+SetOnStage(CHARACTERGUID_DC_HoeStream_CustomRed_83d2820f-8fbf-475b-94a4-b6e611839c47,1);
+
+IF
+TimerFinished("VoidCatSummons")
+THEN
+GlobalSetFlag("VoidCatSummoning");
 
 
 //END_REGION

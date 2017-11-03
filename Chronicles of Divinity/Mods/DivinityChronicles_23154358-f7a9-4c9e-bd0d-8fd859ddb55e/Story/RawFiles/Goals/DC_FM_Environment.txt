@@ -23,11 +23,7 @@ ApplyStatus(CHARACTERGUID_S_Magister_Andre_22cbc993-515a-4dcc-b5f7-55e04f0e630f,
 GlobalSetFlag("DC_FM_Intro");
 
 IF
-CharacterReceivedDamage(CHARACTERGUID_S_DC_Magister3_e25e6f18-f06b-4317-a8da-8ba2511c1fd7)
-AND
-CharacterGetHitpointsPercentage(CHARACTERGUID_S_DC_Magister3_e25e6f18-f06b-4317-a8da-8ba2511c1fd7,_Percentage)
-AND
-_Percentage <= 50
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_FJM_MagisterInfernoTrigger_0530a0ed-8662-4085-9c47-3dabaf80d733)
 AND
 GetPosition(TRIGGERGUID_DC_Infernaltrigger_a980ff17-7db7-49e7-be1f-79595e971e71,_X,_Y,_Z)
 THEN

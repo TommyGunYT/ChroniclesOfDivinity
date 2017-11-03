@@ -11,11 +11,7 @@ DB_QuestDef_State("MagisterDaniel","LiedToDaniel",1);
 SetOnStage(CHARACTERGUID_S_DC_TUT_Voidling1_03044145-67ad-4058-a750-bd43dfcf1e48,0);
 SetOnStage(CHARACTERGUID_S_DC_TUT_Voidling2_5a4ba643-ae27-4e36-9b88-96fc7561b13b,0);
 KBSECTION
-IF
-CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_CrackTrigger_35dfc19d-10b0-4cf8-aab9-f7b1ef2def3c)
-THEN
-DisplayText(_Player,"What's that behind...?");
-
+//REGION DIALOGS
 IF
 CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_StorageGuardParanoia_c87ebbd0-65fa-4e9e-a517-dbc517a34e54)
 AND
@@ -26,6 +22,55 @@ AND
 GlobalGetFlag("DC_MetWindego",0)
 THEN
 Proc_StartDialog(0,"FTJ_StorageGuardDaniel",CHARACTERGUID_S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,_Player);
+
+IF
+DialogEnded("FTJ_StorageGuardDaniel", _)
+AND
+DB_IsPlayer(_Player)
+AND
+PartyGetFlag(_Player,"LiedToDaniel",1)
+THEN
+CharacterMoveTo(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,TRIGGERGUID_DC_StorageGuardDaniel_WalkPoint_695d005f-2394-4ab8-a0eb-cb6719e76254,1,"LiedToDaniel",0);
+ObjectSetFlag(_Player,"QuestUpdate_MagisterDaniel_LiedToDaniel");
+PartySetFlag(_Player,"LiedToDaniel");
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_SiwanAndDaniel_facb99d5-3340-4f61-8198-8589f79db504)
+AND
+DB_IsPlayer(_Player)
+AND
+UserGetFlag(_Player,"LiedToDaniel",1)
+THEN
+Proc_StartDialog(0,"DanielAndSiwan_Siwan",S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df,S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,_Player);
+
+IF
+DialogEnded("DanielAndSiwan_Siwan",_Inst)
+THEN
+CharacterMoveTo(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,TRIGGERGUID_DC_StorageGuardDaniel_Siwan_Disappear_848b8e5c-39aa-465c-9863-08a1fd2ea4a7,0,"LiedToDaniel",0);
+CharacterMoveTo(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df,TRIGGERGUID_DC_StorageGuardDaniel_Siwan_Disappear_848b8e5c-39aa-465c-9863-08a1fd2ea4a7,0,"LiedToDaniel",0);
+DisplayText(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,"No, please! Don't take me to 'him'!");
+TimerLaunch("Daniel1",4000);
+
+IF
+TimerFinished("Daniel1")
+THEN
+DisplayText(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,"I have a family! A daugter!");
+TimerLaunch("Daniel2",3000);
+
+IF
+TimerFinished("Daniel2")
+THEN
+DisplayText(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,"You mustn't! They framed me! *Sobs*");
+
+//END_REGION
+
+
+
+//REGION PLANKS
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_CrackTrigger_35dfc19d-10b0-4cf8-aab9-f7b1ef2def3c)
+THEN
+DisplayText(_Player,"What's that behind...?");
 
 IF
 CharacterUsedItem(_Player,ITEMGUID_S_DCCrackPlank1_1eaf8edd-3636-4e50-a4f1-670d07c59772)
@@ -103,44 +148,12 @@ GlobalGetFlag("TouchedTimeWornPlanks",1)
 THEN
 DisplayText(_Player,"That burn was gruesome! Don't want to do that again.");
 
-IF
-DialogEnded("FTJ_StorageGuardDaniel", _)
-AND
-DB_IsPlayer(_Player)
-AND
-PartyGetFlag(_Player,"LiedToDaniel",1)
-THEN
-CharacterMoveTo(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,TRIGGERGUID_DC_StorageGuardDaniel_WalkPoint_695d005f-2394-4ab8-a0eb-cb6719e76254,1,"LiedToDaniel",0);
-ObjectSetFlag(_Player,"QuestUpdate_MagisterDaniel_LiedToDaniel");
-
-IF
-CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_SiwanAndDaniel_facb99d5-3340-4f61-8198-8589f79db504)
-AND
-DB_IsPlayer(_Player)
-AND
-UserGetFlag(_Player,"LiedToDaniel",1)
-THEN
-Proc_StartDialog(0,"DanielAndSiwan_Siwan",S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df,S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,_Player);
+//END_REGION
 
 
-IF
-DialogEnded("DanielAndSiwan_Siwan",_Inst)
-THEN
-CharacterMoveTo(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,TRIGGERGUID_DC_StorageGuardDaniel_Siwan_Disappear_848b8e5c-39aa-465c-9863-08a1fd2ea4a7,0,"LiedToDaniel",0);
-CharacterMoveTo(CHARACTERGUID_S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df,TRIGGERGUID_DC_StorageGuardDaniel_Siwan_Disappear_848b8e5c-39aa-465c-9863-08a1fd2ea4a7,0,"LiedToDaniel",0);
-DisplayText(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,"No, please! Don't take me to 'him'!");
-TimerLaunch("Daniel1",4000);
 
-IF
-TimerFinished("Daniel1")
-THEN
-DisplayText(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,"I have a family! A daugter!");
-TimerLaunch("Daniel2",3000);
 
-IF
-TimerFinished("Daniel2")
-THEN
-DisplayText(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,"You mustn't! They framed me! *Sobs*");
+
 
 IF
 CharacterEnteredTrigger(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6,TRIGGERGUID_DC_StairDisappear_8abce54c-2d98-4634-a695-393153d7498c)
@@ -153,7 +166,7 @@ THEN
 TeleportTo(S_DC_FTJ_StorageGuard_006a087c-8f01-4aba-85e9-2eb038e89be6, TRIGGERGUID_DC_WayOut_a552aeac-8a47-405f-a96d-db3431ab71f0);
 
 
-// ORI
+//REGION ORI
 
 IF
 DialogStarted("TUT_Ori",_Inst)
@@ -227,6 +240,8 @@ UserGetFlag(_Player,"GaveOriChips",1)
 THEN
 ItemToInventory(ITEMGUID_DC_BagOfChips_000_0bbeddd1-3efe-46fc-981b-ed134c0cc9d7,CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54,1);
 ObjectSetFlag(_Player,"QuestUpdate_TheHungryBird_MetOriOnBoat");
+
+//END_REGION
 
 IF
 CombatStarted(_CombatID)

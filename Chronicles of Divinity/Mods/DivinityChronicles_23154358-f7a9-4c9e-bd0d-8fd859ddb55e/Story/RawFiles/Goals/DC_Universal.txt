@@ -3,6 +3,7 @@ SubGoalCombiner SGC_AND
 INITSECTION
 
 KBSECTION
+//REGION Source Points Override
 IF
 CharacterUsedItemTemplate((CHARACTERGUID)_Player, "DC_CON_Potion_Source_a5fdf6a5-a170-4598-9652-850977dc362d", (ITEMGUID)_Item)
 AND
@@ -21,7 +22,7 @@ AND
 IntegerSum(_CurrentSP, 1, (INTEGER)_MaxSP)
 THEN
 CharacterAddSourcePoints((CHARACTERGUID)_Player,1);
-
+//END_REGION
 
 // DEBUG TOOL
 
@@ -34,51 +35,31 @@ CharacterGetDisplayName(_Player, _Handle, _Ref)
 THEN
 DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
 
-IF
-CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_ColdArea_9b16e846-be2b-4fa5-a14c-14f9b006d26e)
-THEN
-ApplyStatus(_Player,"DCCOLD",-1.0,1);
 
 
-IF
-CharacterLeftTrigger(_Player,TRIGGERGUID_DC_ColdArea_9b16e846-be2b-4fa5-a14c-14f9b006d26e)
-THEN
-RemoveStatus(_Player,"DCCOLD");
 
-CameraActivate(_Player, "DC_WinterVillage_StartCam_5e8bd746-a388-4b6b-a1b7-ada63f29f876", 0.0, 1, 0, 1);
-
-
-IF
-ItemEquipped(ITEMGUID_DC_MastersSword_000_9a40fc8a-6e95-46af-8dc3-cce87e571b40,_Player)
-THEN
-ApplyStatus(_Player,"WET",10.0,1);
-DisplayText(CHARACTERGUID_DC_DeerTest_dfb093a0-0348-441e-9c30-846781f472c5,"Hello!");
 
 IF
 CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_DimaTest_25603aa3-0ea4-4818-a6e4-0fbd6455fc3b)
 THEN
 DisplayText(_Player,"Working");
 
-
+IF
+CharacterLeveledUp(_Player)
+AND
+ItemTemplateIsInCharacterInventory(_Player,"DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657",0)
+THEN
+DisplayText(_Player,"Book Incoming!");
+ItemTemplateAddTo("DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657",_Player,1);
 
 IF
-CharacterUsedItem(_Player, ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae)
-AND
-CharacterGetRace(_Player,0,"elf")
-AND
-ItemIsClosed(ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae, 1)
+CharacterUsedItemTemplate(_Player, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _)
 THEN
-ItemOpen(ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae);
+DisplayText(_Player,"Running Debug Tool!");
 
 
-IF
-CharacterUsedItem(_Player, ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae)
-AND
-CharacterGetRace(_Player,0,"elf")
-AND
-ItemIsOpened(ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae, 1)
-THEN
-ItemClose(ITEMGUID_S_DC_ElfDoor_513e7a07-15e5-4d01-8ea8-8718ba01daae);
+
+
 EXITSECTION
 
 ENDEXITSECTION
