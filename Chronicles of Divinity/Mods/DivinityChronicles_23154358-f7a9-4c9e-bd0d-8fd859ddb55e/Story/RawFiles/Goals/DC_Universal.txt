@@ -56,6 +56,8 @@ IF
 CharacterUsedItemTemplate(_Player, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _)
 THEN
 DisplayText(_Player,"Running Debug Tool!");
+Proc_StartDialog(1,"IconIcara",CHARACTERGUID_Icon_DC_Icara_5e6f4d0d-3d29-84d7-4e65-27e1539a56a2,(CHARACTERGUID)_Player);
+
 
 
 

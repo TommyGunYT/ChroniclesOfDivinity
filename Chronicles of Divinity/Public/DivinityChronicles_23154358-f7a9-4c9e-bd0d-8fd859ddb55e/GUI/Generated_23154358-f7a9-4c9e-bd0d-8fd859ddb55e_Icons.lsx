@@ -1,142 +1,191 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1508889648" />
-    <version major="3" minor="1" revision="3" build="5" />
+    <header version="2" time="1509803561" />
+    <version major="3" minor="1" revision="4" build="0" />
     <region id="IconUVList">
         <node id="root">
             <children>
                 <node id="IconUV">
-                    <attribute id="MapKey" value="28a6ac47-6b2b-4412-91c7-4b6e3f69217c_9230243984662593637-FTJ_Magister_Melee_Sword_(Icon_Human_Male)" type="22" />
+                    <attribute id="MapKey" value="01e9466b-2309-419c-b3a1-64257b5ddcb5_14640395621927100961-FTJ_Brutes_Melee_Sword_(Icon_Lizard_Female)" type="22" />
                     <attribute id="U1" value="0.000976563" type="6" />
                     <attribute id="U2" value="0.155273" type="6" />
+                    <attribute id="V1" value="0.000976563" type="6" />
+                    <attribute id="V2" value="0.194336" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="28a6ac47-6b2b-4412-91c7-4b6e3f69217c_9230243984662593637-FTJ_Magister_Melee_Sword_(Icon_Human_Male)" type="22" />
+                    <attribute id="U1" value="0.157227" type="6" />
+                    <attribute id="U2" value="0.311523" type="6" />
                     <attribute id="V1" value="0.000976563" type="6" />
                     <attribute id="V2" value="0.194336" type="6" />
                 </node>
                 <node id="IconUV">
                     <attribute id="MapKey" value="34f9c1ad-9882-4720-9de0-0c2a978fd1a2_9230237387464900608-FTJ_Magister_Melee_Sword_2H_(Icon_Human_Male)" type="22" />
-                    <attribute id="U1" value="0.157227" type="6" />
-                    <attribute id="U2" value="0.311523" type="6" />
+                    <attribute id="U1" value="0.313477" type="6" />
+                    <attribute id="U2" value="0.467773" type="6" />
                     <attribute id="V1" value="0.000976563" type="6" />
                     <attribute id="V2" value="0.194336" type="6" />
                 </node>
                 <node id="IconUV">
                     <attribute id="MapKey" value="34f9c1ad-9882-4720-9de0-0c2a978fd1a2_9376649043014320289-RC_Humans_Melee_Sword_2H_(Icon_Human_Male)" type="22" />
-                    <attribute id="U1" value="0.313477" type="6" />
-                    <attribute id="U2" value="0.467773" type="6" />
+                    <attribute id="U1" value="0.469727" type="6" />
+                    <attribute id="U2" value="0.624023" type="6" />
                     <attribute id="V1" value="0.000976563" type="6" />
                     <attribute id="V2" value="0.194336" type="6" />
                 </node>
                 <node id="IconUV">
                     <attribute id="MapKey" value="34f9c1ad-9882-4720-9de0-0c2a978fd1a2_9662625420463308867-ARX_Humans_Melee_Sword_2H_(Icon_Human_Male)" type="22" />
-                    <attribute id="U1" value="0.469727" type="6" />
-                    <attribute id="U2" value="0.624023" type="6" />
+                    <attribute id="U1" value="0.625977" type="6" />
+                    <attribute id="U2" value="0.780273" type="6" />
                     <attribute id="V1" value="0.000976563" type="6" />
                     <attribute id="V2" value="0.194336" type="6" />
                 </node>
                 <node id="IconUV">
                     <attribute id="MapKey" value="4eff09f8-40a2-4fab-a107-6372856d86c8_9860741885088901699-MaleHero_(Icon_Human_Male)" type="22" />
-                    <attribute id="U1" value="0.625977" type="6" />
-                    <attribute id="U2" value="0.780273" type="6" />
-                    <attribute id="V1" value="0.000976563" type="6" />
-                    <attribute id="V2" value="0.194336" type="6" />
-                </node>
-                <node id="IconUV">
-                    <attribute id="MapKey" value="781ebb84-2aca-43e1-a14f-951b02df9ce5_9522942776556521567-_(Icon_Human_Male)" type="22" />
                     <attribute id="U1" value="0.782227" type="6" />
                     <attribute id="U2" value="0.936523" type="6" />
                     <attribute id="V1" value="0.000976563" type="6" />
                     <attribute id="V2" value="0.194336" type="6" />
                 </node>
                 <node id="IconUV">
-                    <attribute id="MapKey" value="80257608-8a4b-4153-a844-6ac89bd655be_9513926788677110404-FTJ_Seeker_Ranged_Bow_X_(Icon_Human_Female)" type="22" />
+                    <attribute id="MapKey" value="6bda8905-d9a1-4631-a276-55c04247527d_9394909070214876902-ARX_Humans_Melee_Unarmed_(Icon_Human_Male)" type="22" />
                     <attribute id="U1" value="0.000976563" type="6" />
                     <attribute id="U2" value="0.155273" type="6" />
+                    <attribute id="V1" value="0.196289" type="6" />
+                    <attribute id="V2" value="0.389648" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="6bda8905-d9a1-4631-a276-55c04247527d_9658369932208928705-MaleHero_(Icon_Human_Male)" type="22" />
+                    <attribute id="U1" value="0.157227" type="6" />
+                    <attribute id="U2" value="0.311523" type="6" />
+                    <attribute id="V1" value="0.196289" type="6" />
+                    <attribute id="V2" value="0.389648" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="746dd1b4-6bae-4bd3-8cf4-a475be893e3f_9511685976393777665-MaleHero_(Icon_Human_Child)" type="22" />
+                    <attribute id="U1" value="0.313477" type="6" />
+                    <attribute id="U2" value="0.467773" type="6" />
+                    <attribute id="V1" value="0.196289" type="6" />
+                    <attribute id="V2" value="0.389648" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="781ebb84-2aca-43e1-a14f-951b02df9ce5_9522942776556521567-_(Icon_Human_Male)" type="22" />
+                    <attribute id="U1" value="0.469727" type="6" />
+                    <attribute id="U2" value="0.624023" type="6" />
+                    <attribute id="V1" value="0.196289" type="6" />
+                    <attribute id="V2" value="0.389648" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="781ebb84-2aca-43e1-a14f-951b02df9ce5_9953140169333015075-MaleHero_(Icon_Human_Male)" type="22" />
+                    <attribute id="U1" value="0.625977" type="6" />
+                    <attribute id="U2" value="0.780273" type="6" />
+                    <attribute id="V1" value="0.196289" type="6" />
+                    <attribute id="V2" value="0.389648" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="80257608-8a4b-4153-a844-6ac89bd655be_9513926788677110404-FTJ_Seeker_Ranged_Bow_X_(Icon_Human_Female)" type="22" />
+                    <attribute id="U1" value="0.782227" type="6" />
+                    <attribute id="U2" value="0.936523" type="6" />
                     <attribute id="V1" value="0.196289" type="6" />
                     <attribute id="V2" value="0.389648" type="6" />
                 </node>
                 <node id="IconUV">
                     <attribute id="MapKey" value="812eb6f5-e963-45b3-b96e-effed75e081a_9225729389784727938-ARX_Magister_Melee_Club_Shield_(Icon_Human_Male)" type="22" />
-                    <attribute id="U1" value="0.157227" type="6" />
-                    <attribute id="U2" value="0.311523" type="6" />
-                    <attribute id="V1" value="0.196289" type="6" />
-                    <attribute id="V2" value="0.389648" type="6" />
+                    <attribute id="U1" value="0.000976563" type="6" />
+                    <attribute id="U2" value="0.155273" type="6" />
+                    <attribute id="V1" value="0.391602" type="6" />
+                    <attribute id="V2" value="0.584961" type="6" />
                 </node>
                 <node id="IconUV">
                     <attribute id="MapKey" value="812eb6f5-e963-45b3-b96e-effed75e081a_9225740934656819495-ARX_Magister_Melee_Club_Shield_(Icon_Human_Male)" type="22" />
+                    <attribute id="U1" value="0.157227" type="6" />
+                    <attribute id="U2" value="0.311523" type="6" />
+                    <attribute id="V1" value="0.391602" type="6" />
+                    <attribute id="V2" value="0.584961" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="8ca5e377-0a65-4be1-8f78-661d44d3d120_15072706276662346308-FTJ_Brutes_Melee_Sword_(Icon_Lizard_Female)" type="22" />
                     <attribute id="U1" value="0.313477" type="6" />
                     <attribute id="U2" value="0.467773" type="6" />
-                    <attribute id="V1" value="0.196289" type="6" />
-                    <attribute id="V2" value="0.389648" type="6" />
+                    <attribute id="V1" value="0.391602" type="6" />
+                    <attribute id="V2" value="0.584961" type="6" />
                 </node>
                 <node id="IconUV">
                     <attribute id="MapKey" value="b626a900-0e29-4af7-b1ef-97cb9eab5fc9_12146666004186323018-Undead_Skeleton_Unarmed_(Icon_Human_Female)" type="22" />
                     <attribute id="U1" value="0.469727" type="6" />
                     <attribute id="U2" value="0.624023" type="6" />
-                    <attribute id="V1" value="0.196289" type="6" />
-                    <attribute id="V2" value="0.389648" type="6" />
+                    <attribute id="V1" value="0.391602" type="6" />
+                    <attribute id="V2" value="0.584961" type="6" />
                 </node>
                 <node id="IconUV">
                     <attribute id="MapKey" value="b9631b63-72aa-4723-a871-d1c00c019010_9953454355277817921-FemaleHero_(Icon_Elf_Female)" type="22" />
                     <attribute id="U1" value="0.625977" type="6" />
                     <attribute id="U2" value="0.780273" type="6" />
-                    <attribute id="V1" value="0.196289" type="6" />
-                    <attribute id="V2" value="0.389648" type="6" />
+                    <attribute id="V1" value="0.391602" type="6" />
+                    <attribute id="V2" value="0.584961" type="6" />
                 </node>
                 <node id="IconUV">
                     <attribute id="MapKey" value="c80b85f8-d7e6-4967-ae7f-b2db399ddbfd_9662651525669710885-ARX_BlackRing_Melee_Staff_Air_(Icon_Human_Male)" type="22" />
                     <attribute id="U1" value="0.782227" type="6" />
                     <attribute id="U2" value="0.936523" type="6" />
-                    <attribute id="V1" value="0.196289" type="6" />
-                    <attribute id="V2" value="0.389648" type="6" />
-                </node>
-                <node id="IconUV">
-                    <attribute id="MapKey" value="cb7dac6d-b388-48de-b604-27c6f2310a6d_9374316429089701891-MaleHero_(Icon_Lizard_Male)" type="22" />
-                    <attribute id="U1" value="0.000976563" type="6" />
-                    <attribute id="U2" value="0.155273" type="6" />
                     <attribute id="V1" value="0.391602" type="6" />
                     <attribute id="V2" value="0.584961" type="6" />
                 </node>
                 <node id="IconUV">
-                    <attribute id="MapKey" value="ce6d75eb-7484-4a2a-83b3-59bcf08d1cf0_9374355049938944132-FemaleHero_(Icon_Human_Female)" type="22" />
-                    <attribute id="U1" value="0.157227" type="6" />
-                    <attribute id="U2" value="0.311523" type="6" />
-                    <attribute id="V1" value="0.391602" type="6" />
-                    <attribute id="V2" value="0.584961" type="6" />
-                </node>
-                <node id="IconUV">
-                    <attribute id="MapKey" value="cea79c70-74fa-485d-81a9-9b9ea9cb29f7_9230232989418389512-FTJ_Magister_Ranged_Wand_Fire_(Icon_Human_Female)" type="22" />
-                    <attribute id="U1" value="0.313477" type="6" />
-                    <attribute id="U2" value="0.467773" type="6" />
-                    <attribute id="V1" value="0.391602" type="6" />
-                    <attribute id="V2" value="0.584961" type="6" />
-                </node>
-                <node id="IconUV">
-                    <attribute id="MapKey" value="cea79c70-74fa-485d-81a9-9b9ea9cb29f7_9232484789232074785-FTJ_Magister_Melee_Axe_(Icon_Human_Female)" type="22" />
-                    <attribute id="U1" value="0.469727" type="6" />
-                    <attribute id="U2" value="0.624023" type="6" />
-                    <attribute id="V1" value="0.391602" type="6" />
-                    <attribute id="V2" value="0.584961" type="6" />
-                </node>
-                <node id="IconUV">
-                    <attribute id="MapKey" value="cea79c70-74fa-485d-81a9-9b9ea9cb29f7_9658083750111608869-FTJ_Magister_Melee_Axe_(Icon_Human_Female)" type="22" />
-                    <attribute id="U1" value="0.625977" type="6" />
-                    <attribute id="U2" value="0.780273" type="6" />
-                    <attribute id="V1" value="0.391602" type="6" />
-                    <attribute id="V2" value="0.584961" type="6" />
-                </node>
-                <node id="IconUV">
-                    <attribute id="MapKey" value="e585123c-a3fc-4cfa-80d8-34c572f17590_9950738973934922752-Undead_FireSkeleton_Mage_(Icon_Human_Male)" type="22" />
-                    <attribute id="U1" value="0.782227" type="6" />
-                    <attribute id="U2" value="0.936523" type="6" />
-                    <attribute id="V1" value="0.391602" type="6" />
-                    <attribute id="V2" value="0.584961" type="6" />
-                </node>
-                <node id="IconUV">
-                    <attribute id="MapKey" value="f42d370c-91bb-40ae-8bb4-bbfb1b0ae7c9_9369778607162917061-ARX_Magister_Ranged_Bow_(Icon_Human_Female)" type="22" />
+                    <attribute id="MapKey" value="ca992e48-5834-4168-ba01-a661489615b0_9372063392428607619-MaleHero_(Icon_Dwarf_Male)" type="22" />
                     <attribute id="U1" value="0.000976563" type="6" />
                     <attribute id="U2" value="0.155273" type="6" />
                     <attribute id="V1" value="0.586914" type="6" />
                     <attribute id="V2" value="0.780273" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="cb7dac6d-b388-48de-b604-27c6f2310a6d_9374316429089701891-MaleHero_(Icon_Lizard_Male)" type="22" />
+                    <attribute id="U1" value="0.157227" type="6" />
+                    <attribute id="U2" value="0.311523" type="6" />
+                    <attribute id="V1" value="0.586914" type="6" />
+                    <attribute id="V2" value="0.780273" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="ce6d75eb-7484-4a2a-83b3-59bcf08d1cf0_9374355049938944132-FemaleHero_(Icon_Human_Female)" type="22" />
+                    <attribute id="U1" value="0.313477" type="6" />
+                    <attribute id="U2" value="0.467773" type="6" />
+                    <attribute id="V1" value="0.586914" type="6" />
+                    <attribute id="V2" value="0.780273" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="cea79c70-74fa-485d-81a9-9b9ea9cb29f7_9230232989418389512-FTJ_Magister_Ranged_Wand_Fire_(Icon_Human_Female)" type="22" />
+                    <attribute id="U1" value="0.469727" type="6" />
+                    <attribute id="U2" value="0.624023" type="6" />
+                    <attribute id="V1" value="0.586914" type="6" />
+                    <attribute id="V2" value="0.780273" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="cea79c70-74fa-485d-81a9-9b9ea9cb29f7_9232484789232074785-FTJ_Magister_Melee_Axe_(Icon_Human_Female)" type="22" />
+                    <attribute id="U1" value="0.625977" type="6" />
+                    <attribute id="U2" value="0.780273" type="6" />
+                    <attribute id="V1" value="0.586914" type="6" />
+                    <attribute id="V2" value="0.780273" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="cea79c70-74fa-485d-81a9-9b9ea9cb29f7_9658083750111608869-FTJ_Magister_Melee_Axe_(Icon_Human_Female)" type="22" />
+                    <attribute id="U1" value="0.782227" type="6" />
+                    <attribute id="U2" value="0.936523" type="6" />
+                    <attribute id="V1" value="0.586914" type="6" />
+                    <attribute id="V2" value="0.780273" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="e585123c-a3fc-4cfa-80d8-34c572f17590_9950738973934922752-Undead_FireSkeleton_Mage_(Icon_Human_Male)" type="22" />
+                    <attribute id="U1" value="0.000976563" type="6" />
+                    <attribute id="U2" value="0.155273" type="6" />
+                    <attribute id="V1" value="0.782227" type="6" />
+                    <attribute id="V2" value="0.975586" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="f42d370c-91bb-40ae-8bb4-bbfb1b0ae7c9_9369778607162917061-ARX_Magister_Ranged_Bow_(Icon_Human_Female)" type="22" />
+                    <attribute id="U1" value="0.157227" type="6" />
+                    <attribute id="U2" value="0.311523" type="6" />
+                    <attribute id="V1" value="0.782227" type="6" />
+                    <attribute id="V2" value="0.975586" type="6" />
                 </node>
             </children>
         </node>
