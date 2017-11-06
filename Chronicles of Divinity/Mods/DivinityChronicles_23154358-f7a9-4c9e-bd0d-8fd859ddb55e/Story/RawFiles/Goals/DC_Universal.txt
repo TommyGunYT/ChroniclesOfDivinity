@@ -56,12 +56,15 @@ IF
 CharacterUsedItemTemplate(_Player, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _)
 THEN
 DisplayText(_Player,"Running Debug Tool!");
-Proc_StartDialog(1,"IconIcara",CHARACTERGUID_Icon_DC_Icara_5e6f4d0d-3d29-84d7-4e65-27e1539a56a2,(CHARACTERGUID)_Player);
+PlaySound(_Player,"SE_Lohse_song_full_performance");
+CharacterItemSetEvent(_Player,ITEMGUID_DC_CannonTest_a73e91ba-a474-4f02-9f5f-3f4270aefed0,"TestCannonOn");
 
-
-
-
-
+IF
+CharacterUsedItemTemplate(_Player, "DC_BOOK_TutorialShip_TimeTravel_baec138a-3f8d-4252-8c22-a3c70f31a464", _)
+THEN
+DisplayText(_Player,"Running Teleporter Dialogue!");
+PlaySound(_Player,"SE_Lohse_song_full_performance");
+Proc_StartDialog(0,"Icara_Teleport",CHARACTERGUID_DC_Icara_Teleporter_ea4b5b68-d341-4518-b802-08e18900236c,_Player);
 EXITSECTION
 
 ENDEXITSECTION

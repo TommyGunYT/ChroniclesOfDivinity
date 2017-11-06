@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1509803561" />
+    <header version="2" time="1509971882" />
     <version major="3" minor="1" revision="4" build="0" />
     <region id="IconUVList">
         <node id="root">
@@ -181,9 +181,30 @@
                     <attribute id="V2" value="0.975586" type="6" />
                 </node>
                 <node id="IconUV">
-                    <attribute id="MapKey" value="f42d370c-91bb-40ae-8bb4-bbfb1b0ae7c9_9369778607162917061-ARX_Magister_Ranged_Bow_(Icon_Human_Female)" type="22" />
+                    <attribute id="MapKey" value="f23b364a-f034-4a92-8e75-3797e96b9638_18446744073709551615-_(Icon_DC_Icara)" type="22" />
                     <attribute id="U1" value="0.157227" type="6" />
                     <attribute id="U2" value="0.311523" type="6" />
+                    <attribute id="V1" value="0.782227" type="6" />
+                    <attribute id="V2" value="0.975586" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="f23b364a-f034-4a92-8e75-3797e96b9638_18446744073709551615-_(Icon_Icara)" type="22" />
+                    <attribute id="U1" value="0.313477" type="6" />
+                    <attribute id="U2" value="0.467773" type="6" />
+                    <attribute id="V1" value="0.782227" type="6" />
+                    <attribute id="V2" value="0.975586" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="f23b364a-f034-4a92-8e75-3797e96b9638_18446744073709551615-_(Icon_NPC_Icara)" type="22" />
+                    <attribute id="U1" value="0.469727" type="6" />
+                    <attribute id="U2" value="0.624023" type="6" />
+                    <attribute id="V1" value="0.782227" type="6" />
+                    <attribute id="V2" value="0.975586" type="6" />
+                </node>
+                <node id="IconUV">
+                    <attribute id="MapKey" value="f42d370c-91bb-40ae-8bb4-bbfb1b0ae7c9_9369778607162917061-ARX_Magister_Ranged_Bow_(Icon_Human_Female)" type="22" />
+                    <attribute id="U1" value="0.625977" type="6" />
+                    <attribute id="U2" value="0.780273" type="6" />
                     <attribute id="V1" value="0.782227" type="6" />
                     <attribute id="V2" value="0.975586" type="6" />
                 </node>
