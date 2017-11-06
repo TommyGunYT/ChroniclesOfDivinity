@@ -24,8 +24,6 @@ THEN
 CharacterAddSourcePoints((CHARACTERGUID)_Player,1);
 //END_REGION
 
-// DEBUG TOOL
-
 IF
 DialogStarted("DC_Rat_Test", _Instance)
 AND
@@ -35,15 +33,7 @@ CharacterGetDisplayName(_Player, _Handle, _Ref)
 THEN
 DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
 
-
-
-
-
-IF
-CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_DimaTest_25603aa3-0ea4-4818-a6e4-0fbd6455fc3b)
-THEN
-DisplayText(_Player,"Working");
-
+//REGION DEBUG TOOL
 IF
 CharacterLeveledUp(_Player)
 AND
@@ -51,6 +41,9 @@ ItemTemplateIsInCharacterInventory(_Player,"DC_Debug_Book_b7e7be57-2940-4260-885
 THEN
 DisplayText(_Player,"Book Incoming!");
 ItemTemplateAddTo("DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657",_Player,1);
+
+//END_REGION
+
 
 IF
 CharacterUsedItemTemplate(_Player, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _)
@@ -65,6 +58,19 @@ THEN
 DisplayText(_Player,"Running Teleporter Dialogue!");
 PlaySound(_Player,"SE_Lohse_song_full_performance");
 Proc_StartDialog(0,"Icara_Teleport",CHARACTERGUID_DC_Icara_Teleporter_ea4b5b68-d341-4518-b802-08e18900236c,_Player);
+
+IF
+GlobalFlagSet("TP_Isles_Main")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TP_FTJ_Isles_BeachMain_fda011da-df2c-4696-868b-a9fe5591df55,"");
+GlobalClearFlag("TP_Isles_Main");
+
+
+IF
+GlobalFlagSet("TP_Isles_DragonIsland")
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TP_FTJ_Isles_DragonIsland_7e24ada7-03ce-414e-9c3a-eb18c9c418f6,"");
+GlobalClearFlag("TP_Isles_DragonIsland");
 EXITSECTION
 
 ENDEXITSECTION

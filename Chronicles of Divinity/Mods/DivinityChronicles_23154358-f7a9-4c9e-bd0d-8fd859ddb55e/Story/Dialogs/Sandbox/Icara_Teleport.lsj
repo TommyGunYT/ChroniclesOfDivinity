@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1509996752,
+         "time" : 1509998309,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -289,7 +289,17 @@
                         "endnode" : {"type" : 19, "value" : 1},
                         "exclusive" : {"type" : 19, "value" : 0},
                         "optional" : {"type" : 19, "value" : 0},
-                        "setflags" : [ {} ],
+                        "setflags" : [
+                           {
+                              "flaggroup" : [
+                                 {
+                                    "flag" : [
+                                       {
+                                          "name" : {"type" : 22, "value" : "TP_Isles_Main"},"value" : {"type" : 19, "value" : 1}}
+                                    ],"type" : {"type" : 22, "value" : "Global"}}
+                              ]
+                           }
+                        ],
                         "speaker" : {"type" : 4, "value" : 1},
                         "stub" : {"type" : 19, "value" : 1},
                         "transitionmode" : {"type" : 1, "value" : 0},
@@ -385,7 +395,7 @@
                                  {
                                     "flag" : [
                                        {
-                                          "name" : {"type" : 22, "value" : "TP_Isles_Main"},"value" : {"type" : 19, "value" : 1}}
+                                          "name" : {"type" : 22, "value" : "TP_Isles_DragonIsland"},"value" : {"type" : 19, "value" : 1}}
                                     ],"type" : {"type" : 22, "value" : "Global"}}
                               ]
                            }
