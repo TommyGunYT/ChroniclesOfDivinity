@@ -1,6 +1,8 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
+SetOnStage(CHARACTERGUID_DC_PlayerBoat_Beach_83985725-9cb5-479d-9284-5cc75d0520a8,0);
+SetOnStage(ITEMGUID_S_DC_PlayerBoat_MainBeach_db06b8de-0f6e-45b1-9774-dbbfb205a21c,1);
 
 KBSECTION
 //REGION Source Points Override
@@ -24,6 +26,7 @@ THEN
 CharacterAddSourcePoints((CHARACTERGUID)_Player,1);
 //END_REGION
 
+//REGION DIALOGUE NAMES
 IF
 DialogStarted("DC_Rat_Test", _Instance)
 AND
@@ -32,6 +35,7 @@ AND
 CharacterGetDisplayName(_Player, _Handle, _Ref)
 THEN
 DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
+//END_REGION
 
 //REGION DEBUG TOOL
 IF
@@ -42,15 +46,18 @@ THEN
 DisplayText(_Player,"Book Incoming!");
 ItemTemplateAddTo("DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657",_Player,1);
 
-//END_REGION
-
-
 IF
 CharacterUsedItemTemplate(_Player, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _)
 THEN
 DisplayText(_Player,"Running Debug Tool!");
 PlaySound(_Player,"SE_Lohse_song_full_performance");
 CharacterItemSetEvent(_Player,ITEMGUID_DC_CannonTest_a73e91ba-a474-4f02-9f5f-3f4270aefed0,"TestCannonOn");
+Proc_TestFunky(_Player);
+
+PROC
+Proc_TestFunky((GUIDSTRING)_Player)
+THEN
+DisplayText(_Player,"Funky!");
 
 IF
 CharacterUsedItemTemplate(_Player, "DC_BOOK_TutorialShip_TimeTravel_baec138a-3f8d-4252-8c22-a3c70f31a464", _)
@@ -58,19 +65,89 @@ THEN
 DisplayText(_Player,"Running Teleporter Dialogue!");
 PlaySound(_Player,"SE_Lohse_song_full_performance");
 Proc_StartDialog(0,"Icara_Teleport",CHARACTERGUID_DC_Icara_Teleporter_ea4b5b68-d341-4518-b802-08e18900236c,_Player);
+//END_REGION
 
+//REGION TRAVEL AGENCY FOR PLAYTESTING
 IF
 GlobalFlagSet("TP_Isles_Main")
 THEN
 CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TP_FTJ_Isles_BeachMain_fda011da-df2c-4696-868b-a9fe5591df55,"");
 GlobalClearFlag("TP_Isles_Main");
 
-
 IF
 GlobalFlagSet("TP_Isles_DragonIsland")
 THEN
 CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TP_FTJ_Isles_DragonIsland_7e24ada7-03ce-414e-9c3a-eb18c9c418f6,"");
 GlobalClearFlag("TP_Isles_DragonIsland");
+//END_REGION
+
+//REGION BOAT DOCK - Main Isles Beach
+IF
+CharacterUsedItem(_Player,ITEMGUID_S_DC_PlayerBoat_MainBeach_db06b8de-0f6e-45b1-9774-dbbfb205a21c)
+AND
+DB_IsPlayer(_Player)
+THEN
+SetOnStage(CHARACTERGUID_DC_PlayerBoat_Beach_83985725-9cb5-479d-9284-5cc75d0520a8,1);
+SetOnStage(ITEMGUID_S_DC_PlayerBoat_MainBeach_db06b8de-0f6e-45b1-9774-dbbfb205a21c,0);
+CharacterMakePlayer(CHARACTERGUID_DC_PlayerBoat_Beach_83985725-9cb5-479d-9284-5cc75d0520a8);
+CharacterAddToParty(CHARACTERGUID_DC_PlayerBoat_Beach_83985725-9cb5-479d-9284-5cc75d0520a8,(CHARACTERGUID)_Player);
+MakePlayerActive(CHARACTERGUID_DC_PlayerBoat_Beach_83985725-9cb5-479d-9284-5cc75d0520a8);
+CharacterRemoveFromParty((CHARACTERGUID)_Player);
+SetCameraDistanceOverride(55.0);
+GlobalSetFlag("PlayerIsBoat");
+DB_ShipOwner((CHARACTERGUID)_Player);
+SetOnStage((CHARACTERGUID)_Player,0);
+
+IF
+GlobalFlagSet("PlayerIsBoat")
+THEN
+PROC_GLO_PartyMembers_TempRemoveAll(0);
+
+IF
+CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_DockingTrigger_MainBeach_9d776048-1f28-4856-90de-d958ef2e4825)
+AND
+GlobalGetFlag("PlayerIsBoat",1)
+THEN
+CharacterAddSkill(_Player,"Shout_Docking");
+GlobalSetFlag("BoatAtMainBeach");
+
+IF
+CharacterLeftTrigger(_Player,TRIGGERGUID_DC_DockingTrigger_MainBeach_9d776048-1f28-4856-90de-d958ef2e4825)
+THEN
+CharacterRemoveSkill(_Player,"Shout_Docking");
+
+IF
+CharacterUsedSkill(_Ship,"Shout_Docking","")
+AND
+DB_ShipOwner((CHARACTERGUID)_Player)
+AND
+CharacterGetReservedUserID((CHARACTERGUID)_Player, _User)
+AND
+GlobalGetFlag("BoatAtMainBeach",1)
+THEN
+SetOnStage((CHARACTERGUID)_Player,1);
+SetOnStage(ITEMGUID_S_DC_PlayerBoat_MainBeach_db06b8de-0f6e-45b1-9774-dbbfb205a21c,1);
+CharacterMakePlayer((CHARACTERGUID)_Player);
+CharacterAddToParty((CHARACTERGUID)_Player,_Ship);
+MakePlayerActive((CHARACTERGUID)_Player);
+CharacterAssignToUser(_User, (CHARACTERGUID)_Player);
+SetCameraDistanceOverride(25.0);
+GlobalClearFlag("PlayerIsBoat");
+GlobalClearFlag("BoatAtMainBeach");
+CharacterRemoveFromParty(_Ship);
+SetOnStage(_Ship,0);
+NOT DB_ShipOwner((CHARACTERGUID)_Player);
+//END_REGION
+
+
+
+
+
+
+//END_REGION
+
+
+
 EXITSECTION
 
 ENDEXITSECTION
