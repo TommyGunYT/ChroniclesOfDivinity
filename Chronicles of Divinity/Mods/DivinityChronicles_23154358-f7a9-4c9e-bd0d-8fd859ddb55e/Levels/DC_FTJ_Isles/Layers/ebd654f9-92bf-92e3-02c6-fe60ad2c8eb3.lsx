@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1510167656" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="ebd654f9-92bf-92e3-02c6-fe60ad2c8eb3" type="31" />
+            <attribute id="Name" value="Isles - Dragon Island" type="23" />
+        </node>
+    </region>
+</save>
