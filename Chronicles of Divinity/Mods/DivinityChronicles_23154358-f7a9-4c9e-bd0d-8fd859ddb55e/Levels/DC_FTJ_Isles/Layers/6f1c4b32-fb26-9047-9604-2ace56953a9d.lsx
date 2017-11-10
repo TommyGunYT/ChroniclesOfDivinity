@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1510335149" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="6f1c4b32-fb26-9047-9604-2ace56953a9d" type="31" />
+            <attribute id="Name" value="Poor House" type="23" />
+        </node>
+    </region>
+</save>

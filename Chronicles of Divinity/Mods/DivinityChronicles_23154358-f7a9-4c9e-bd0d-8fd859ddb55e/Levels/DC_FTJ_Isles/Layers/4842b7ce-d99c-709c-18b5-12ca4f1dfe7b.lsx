@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1510335149" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="4842b7ce-d99c-709c-18b5-12ca4f1dfe7b" type="31" />
+            <attribute id="Name" value="Seekers Isle" type="23" />
+        </node>
+    </region>
+</save>
