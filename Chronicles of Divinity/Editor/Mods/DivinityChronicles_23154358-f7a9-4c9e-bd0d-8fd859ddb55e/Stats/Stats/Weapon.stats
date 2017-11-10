@@ -1,0 +1,26 @@
+<?xml version="1.0" encoding="utf-8"?>
+<stats stat_object_definition_id="a1fa1d2f-c335-4902-898c-4228c3c07d52">
+  <stat_objects>
+    <stat_object index="0" is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="WPN_Masters_Sword" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_RC_Swords" />
+        <field name="ItemGroup" type="StringStatObjectFieldDefinition" value="EMPTY" />
+        <field name="Requirements" type="StringStatObjectFieldDefinition" value="Strength 20" />
+        <field name="AttackAPCost" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="Damage Type" type="EnumerationStatObjectFieldDefinition" value="5" enumeration_type_name="Damage Type" />
+        <field name="Damage Range" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="13000" />
+        <field name="WeaponType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="WeaponType" />
+        <field name="AnimType" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="AnimType" />
+        <field name="SingleHanded" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="Loremaster" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Skills" type="StringStatObjectFieldDefinition" value="BlinkStrike" />
+        <field name="ItemColor" type="StringStatObjectFieldDefinition" value="HumansEpic" />
+        <field name="RuneSlots" type="IntegerStatObjectFieldDefinition" value="2" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="Unique" type="IntegerStatObjectFieldDefinition" value="1" />
+      </fields>
+    </stat_object>
+  </stat_objects>
+</stats>
