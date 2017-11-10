@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1510275211" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="b82ed4da-410b-830d-ae1a-79b44b5de7ad" type="31" />
+            <attribute id="Name" value="Boarding Areas" type="23" />
+        </node>
+    </region>
+</save>

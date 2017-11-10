@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1510276717" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="d832ba8b-66b3-87ae-4940-6a487ab01b8e" type="31" />
+            <attribute id="Name" value="Docked Boats" type="23" />
+        </node>
+    </region>
+</save>

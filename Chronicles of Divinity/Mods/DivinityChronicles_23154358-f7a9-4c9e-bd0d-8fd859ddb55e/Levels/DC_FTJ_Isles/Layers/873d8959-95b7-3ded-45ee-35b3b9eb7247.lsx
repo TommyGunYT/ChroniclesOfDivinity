@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1510275211" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="873d8959-95b7-3ded-45ee-35b3b9eb7247" type="31" />
+            <attribute id="Name" value="Boat Triggers" type="23" />
+        </node>
+    </region>
+</save>

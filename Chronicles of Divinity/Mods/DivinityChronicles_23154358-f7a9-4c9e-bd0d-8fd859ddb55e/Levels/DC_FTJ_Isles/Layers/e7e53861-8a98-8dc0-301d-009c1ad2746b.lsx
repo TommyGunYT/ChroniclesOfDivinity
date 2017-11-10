@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1510275211" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="e7e53861-8a98-8dc0-301d-009c1ad2746b" type="31" />
+            <attribute id="Name" value="PlayerBoat Starting Points" type="23" />
+        </node>
+    </region>
+</save>
