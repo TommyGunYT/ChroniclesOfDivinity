@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1510372488" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="479f2dd9-82da-c0a2-63a6-89e1dd229dc5" type="31" />
+            <attribute id="Name" value="Sun Cover Hut" type="23" />
+        </node>
+    </region>
+</save>
