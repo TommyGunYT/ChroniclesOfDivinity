@@ -10,7 +10,7 @@
                     <attribute id="OriginName" value="MyOrigin" type="22" />
                 	<attribute id="OriginDescription" value="Generic description." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                 	<attribute id="OriginLongDescription" value="Very long descritpion goes here." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
-                    <attribute id="CharacterUUID" value="d0bdf611-648e-47b4-81c6-fdaa0df990a6" type="22" />
+                    <attribute id="CharacterUUID" value="9bb6deac-e6c1-4759-bd2c-2aaa92435616" type="22" />
                     <attribute id="UserCanAlterTags" value="0" type="19" />
                     <attribute id="SkillSet" value="Avatar_Generic" type="22" />
 
