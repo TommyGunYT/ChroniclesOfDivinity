@@ -79,8 +79,19 @@ CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TP_FTJ_Isles_DragonIsland_7e24a
 GlobalClearFlag("TP_Isles_DragonIsland");
 //END_REGION
 
-//REGION BOAT DOCK - Main Isles Beach
-
+//REGION COUNTER BUTTON
+IF
+CharacterUsedItem(_Player,ITEMGUID_DC_BigFriendlyButton_5bd44cb6-60c4-431c-b3d9-c2e35ca34ee2)
+AND
+DB_IsPlayer(_Player)
+AND
+GetVarInteger(_Player,"NumberStuff",_NMBVal)
+AND
+IntegerSum(_NMBVal,1,_NewNMB)
+AND
+IntegertoString(_NewNMB, _CurrentNMB)
+THEN
+DisplayText(_Player,_CurrentNMB);
 //END_REGION
 EXITSECTION
 

@@ -3,26 +3,6 @@ SubGoalCombiner SGC_AND
 INITSECTION
 DB_Dialogs(CHARACTERGUID_DC_Basement_Rat_8368340b-fd16-4f10-895f-48e4d62c9f6f,"DC_Rat_Test");
 KBSECTION
-IF
-CharacterUsedItemTemplate((CHARACTERGUID)_Player, "DC_CON_Potion_Source_a5fdf6a5-a170-4598-9652-850977dc362d", (ITEMGUID)_Item)
-AND
-CharacterGetMaxSourcePoints(_Player, (INTEGER)_CurrentSP)
-AND
-IntegerSum(_CurrentSP, 1, (INTEGER)_MaxSP)
-THEN
-CharacterOverrideMaxSourcePoints(_Player, _MaxSP);
-
-// Increase Source Point by 1
-IF
-CharacterUsedItemTemplate((CHARACTERGUID)_Player, "DC_Quest_SourcePointScroll_000_56e7c888-7929-47c7-aa95-8a1838256783", (ITEMGUID)_Item)
-AND
-CharacterGetMaxSourcePoints(_Player, (INTEGER)_CurrentSP)
-AND
-IntegerSum(_CurrentSP, 1, (INTEGER)_MaxSP)
-THEN
-CharacterAddSourcePoints((CHARACTERGUID)_Player,1);
-
-
 // DEBUG TOOL
 
 IF
@@ -33,10 +13,6 @@ AND
 CharacterGetDisplayName(_Player, _Handle, _Ref)
 THEN
 DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
-
-
-
-
 EXITSECTION
 
 ENDEXITSECTION
