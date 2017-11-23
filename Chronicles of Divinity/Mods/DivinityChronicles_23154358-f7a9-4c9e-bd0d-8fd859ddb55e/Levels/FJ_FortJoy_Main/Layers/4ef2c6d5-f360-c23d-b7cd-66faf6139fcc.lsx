@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1511453312" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="4ef2c6d5-f360-c23d-b7cd-66faf6139fcc" type="31" />
+            <attribute id="Name" value="DC Hidden Locations" type="23" />
+        </node>
+    </region>
+</save>

@@ -1,40 +1,13 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-
+//REGION USEFUL SCRIPTS / FOR LATER USE
+//ApplyStatus(_Player,"QUEST_TIEDUP",-1.0);
+//CharacterSetAnimationOverride(_Player,"Tied_Up_01_Loop");
+// RS3_FX_SK_Soul_Ghosts_01 | GHOST EFFECT |
+//END_REGION
+LockSecretRegion(TRIGGERGUID_SecretRegionTrigger_000_117f85c7-0f28-4636-a01b-5c3ddb614853);
 KBSECTION
-//REGION Source Points Override
-IF
-CharacterUsedItemTemplate((CHARACTERGUID)_Player, "DC_CON_Potion_Source_a5fdf6a5-a170-4598-9652-850977dc362d", (ITEMGUID)_Item)
-AND
-CharacterGetMaxSourcePoints(_Player, (INTEGER)_CurrentSP)
-AND
-IntegerSum(_CurrentSP, 1, (INTEGER)_MaxSP)
-THEN
-CharacterOverrideMaxSourcePoints(_Player, _MaxSP);
-
-// Increase Source Point by 1
-IF
-CharacterUsedItemTemplate((CHARACTERGUID)_Player, "DC_Quest_SourcePointScroll_000_56e7c888-7929-47c7-aa95-8a1838256783", (ITEMGUID)_Item)
-AND
-CharacterGetMaxSourcePoints(_Player, (INTEGER)_CurrentSP)
-AND
-IntegerSum(_CurrentSP, 1, (INTEGER)_MaxSP)
-THEN
-CharacterAddSourcePoints((CHARACTERGUID)_Player,1);
-//END_REGION
-
-//REGION DIALOGUE NAMES
-IF
-DialogStarted("DC_Rat_Test", _Instance)
-AND
-DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
-AND
-CharacterGetDisplayName(_Player, _Handle, _Ref)
-THEN
-DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
-//END_REGION
-
 //REGION DEBUG TOOL
 IF
 CharacterLeveledUp(_Player)
@@ -65,6 +38,62 @@ PlaySound(_Player,"SE_Lohse_song_full_performance");
 Proc_StartDialog(0,"Icara_Teleport",CHARACTERGUID_DC_Icara_Teleporter_ea4b5b68-d341-4518-b802-08e18900236c,_Player);
 //END_REGION
 
+//REGION Source Points Override
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Player, "DC_CON_Potion_Source_a5fdf6a5-a170-4598-9652-850977dc362d", (ITEMGUID)_Item)
+AND
+CharacterGetMaxSourcePoints(_Player, (INTEGER)_CurrentSP)
+AND
+IntegerSum(_CurrentSP, 1, (INTEGER)_MaxSP)
+THEN
+CharacterOverrideMaxSourcePoints(_Player, _MaxSP);
+
+// Increase Source Point by 1
+IF
+CharacterUsedItemTemplate((CHARACTERGUID)_Player, "DC_Quest_SourcePointScroll_000_56e7c888-7929-47c7-aa95-8a1838256783", (ITEMGUID)_Item)
+AND
+CharacterGetMaxSourcePoints(_Player, (INTEGER)_CurrentSP)
+AND
+IntegerSum(_CurrentSP, 1, (INTEGER)_MaxSP)
+THEN
+CharacterAddSourcePoints((CHARACTERGUID)_Player,1);
+//END_REGION
+
+//REGION DIALOGUE NAMES & Malady Recruit
+IF
+DialogStarted("DC_Rat_Test", _Instance)
+AND
+DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
+AND
+CharacterGetDisplayName(_Player, _Handle, _Ref)
+THEN
+DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
+
+IF
+DialogEnded("recruitmalady",_ID)
+AND
+DB_IsPlayer(_Player)
+AND
+UserGetFlag(_Player,"DCDebugRecruitMalady",1)
+THEN
+Proc_RecruitMaladyTest(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803);
+
+PROC
+Proc_RecruitMaladyTest(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803)
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterGetReservedUserID((CHARACTERGUID)_player, _user)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803);
+CharacterMakePlayer(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803, _player);
+DB_IsPlayer(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803);
+CharacterAssignToUser(_user, CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803);
+CharacterAddToParty(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803, _player);
+//END_REGION
+
+
+
 //REGION TRAVEL AGENCY FOR PLAYTESTING
 IF
 GlobalFlagSet("TP_Isles_Main")
@@ -93,6 +122,30 @@ IntegertoString(_NewNMB, _CurrentNMB)
 THEN
 DisplayText(_Player,_CurrentNMB);
 //END_REGION
+
+IF
+CharacterUsedItem(_Player,ITEMGUID_DC_Sandbox_Lever_cf25673d-0e86-40ff-83fb-34bd0315862a)
+AND
+GetRandomPositionInTrigger(TRIGGERGUID_DC_Sandbox_BoxTrigger_a0e613a6-f155-49f7-88f6-59d6fc1a4763,_bX,_bY,_bZ)
+AND
+CharacterCreateAtPosition(_bX,_bY,_bZ,"CHARACTERGUID_Animals_Rabbit_A_ebd3b174-0bf0-464f-948d-8ea5f13d3a81",1,_RNDRabbit)
+THEN
+DisplayText(_Player,"Lever Initiated!");
+LockSecretRegion(TRIGGERGUID_SecretRegionTrigger_000_117f85c7-0f28-4636-a01b-5c3ddb614853);
+DB_BoomRabbits(_RNDRabbit);
+
+IF
+CharacterUsedItem(_Player,ITEMGUID_DC_Sandbox_Lever_Boom_656ee691-a96f-4f84-aa5b-23b3923c1e01)
+AND
+DB_BoomRabbits(_RNDRabbit)
+AND
+GetPosition(_RNDRabbit,_rX,_rY,_rZ)
+THEN
+CharacterDie(_RNDRabbit,0,"Explode");
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Lightning_Vertical_01",_rX,_rY,_rZ);
+UnlockSecretRegion(TRIGGERGUID_SecretRegionTrigger_000_117f85c7-0f28-4636-a01b-5c3ddb614853);
+NOT DB_BoomRabbits(_RNDRabbit);
+
 EXITSECTION
 
 ENDEXITSECTION

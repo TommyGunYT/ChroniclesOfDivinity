@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1511453312" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="c87bcbdf-90ee-e438-b79a-b0f905da280b" type="31" />
+            <attribute id="Name" value="Teleports" type="23" />
+        </node>
+    </region>
+</save>

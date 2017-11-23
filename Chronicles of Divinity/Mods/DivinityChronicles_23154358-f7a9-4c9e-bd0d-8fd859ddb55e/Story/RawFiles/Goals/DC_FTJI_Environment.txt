@@ -38,6 +38,15 @@ DisplayText(_Player,"Chopping tree!");
 ItemDestroy(ITEMGUID_DC_NAT_TreePine_Big_Standing_057a5562-f78f-4aa6-abaa-409f1574c2fb);
 //END_REGION
 
+//REGION TELEPORTS
+
+//Wavedancer Top Deck
+IF
+CharacterUsedItem(_Player,ITEMGUID_TOOL_Ladder_6H_B_000_2ea89052-f075-44b5-bf16-ITEMGUID_TOOL_Ladder_6H_B_000_2ea89052-f075-44b5-bf16-299b72a5fc39)
+THEN
+TeleportTo(_Player,TRIGGERGUID_DC_TP_ShrineIsle_WaveDancer_MiddleDeck_Up_217d567b-d254-41e6-a859-9b7ade75579d);
+//END_REGION
+
 IF
 CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_TRIG_TreeBridge_PointA_d7607d71-3d4b-4b44-8ab2-74ff110f0b6b)
 THEN

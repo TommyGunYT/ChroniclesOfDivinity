@@ -1,3 +1,12 @@
+new entry "Potion"
+type "Potion"
+data "Act" "1"
+data "Weight" "250"
+data "Value" "20"
+data "UseAPCost" "1"
+data "AddToBottomBar" "No"
+data "InventoryTab" "Consumable"
+
 new entry "Stats_Drowning"
 type "Potion"
 data "Act" "1"
