@@ -22,7 +22,7 @@ CharacterUsedItemTemplate(_Player, "DC_Debug_Book_b7e7be57-2940-4260-885f-af9291
 THEN
 DisplayText(_Player,"Running Debug Tool!");
 PlaySound(_Player,"SE_Lohse_song_full_performance");
-CharacterItemSetEvent(_Player,ITEMGUID_DC_CannonTest_a73e91ba-a474-4f02-9f5f-3f4270aefed0,"TestCannonOn");
+GlobalClearFlag("BjornSawPlayer");
 Proc_TestFunky(_Player);
 
 PROC

@@ -8,6 +8,10 @@ DB_Dialogs(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6
 DB_Dialogs(CHARACTERGUID_DC_Maya_dcb9edbe-3470-428b-8684-785e5648a04d,"DC_Maya");
 DB_Dialogs(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"DC_Dima");
 
+DB_BrandonPosters(ITEMGUID_BOOK_poster_C_001_7ee87860-daf2-47a3-aaf0-fe346e396deb);
+DB_BrandonPosters(ITEMGUID_BOOK_poster_C_002_c25f4c4a-4c35-4403-b58f-a0b1556daa8c);
+DB_BrandonPosters(ITEMGUID_BOOK_poster_C_003_67782721-e7ab-450b-a3fb-6fa1b3de77f9);
+DB_BrandonPosters(ITEMGUID_BOOK_poster_B_000_973e55e2-e2e4-4607-9d81-446ee54303dd);
 
 SetOnStage(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,0);
 SetOnStage(ITEMGUID_DC_BrandonsBoat_Broken_f749bbe3-c284-4ce3-80d5-755905e0f339,1);
@@ -81,11 +85,7 @@ SetOnStage(CHARACTERGUID_DC_BrandonKMiddell_773d4b3e-2094-47af-a3cd-c1101d3a1110
 GlobalSetFlag("DC_RescuedBrandon");
 SetStoryEvent(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"DimaTakeDownPoster");
 
-IF
-StoryEvent(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"DimaTakeDownPoster")
-THEN
-ItemDestroy(ITEMGUID_DC_Poster_Brandon_6637a4da-a0b9-4857-88f2-d4bca543f2e3);
-GlobalClearFlag("FatherAndDaughterStarted");
+
 //END_REGION
 
 //REGION - BRANDON DIMA AD
@@ -222,6 +222,27 @@ IF
 DialogEnded("DC_BrandonSaved",_)
 THEN
 CharacterMoveTo(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6aab2d888,TRIGGERGUID_DC_BrandonBeach_6f3fa649-022a-4b2a-8860-0d772156847d,0,"",0);
+//END_REGION
+
+//REGION - WANTED POSTERS
+IF
+CharacterUsedItem(_Player, _BrandonPosters)
+AND
+DB_BrandonPosters(_BrandonPosters)
+AND
+GlobalGetFlag("FatherAndDaughterStarted",0)
+THEN
+ObjectSetFlag(_Player,"QuestUpdate_FatherAndDaughter_Poster");
+GlobalSetFlag("FatherAndDaughterStarted");
+
+IF
+StoryEvent(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"DimaTakeDownPoster")
+AND
+DB_BrandonPosters(_BrandonPosters)
+THEN
+ItemDestroy(ITEMGUID_DC_Poster_Brandon_6637a4da-a0b9-4857-88f2-d4bca543f2e3);
+ItemDestroy((ITEMGUID)_BrandonPosters);
+GlobalClearFlag("FatherAndDaughterStarted");
 //END_REGION
 EXITSECTION
 

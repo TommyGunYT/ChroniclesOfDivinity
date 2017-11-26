@@ -163,6 +163,7 @@ GetPosition((CHARACTERGUID)_PlayerOneClone,_pc1X,_pc1Y,_pc1Z)
 THEN
 PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01",_pc1X,_pc1Y,_pc1Z);
 PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_IllusionDeath_01",_pc1X,_pc1Y,_pc1Z);
+PlaySound((CHARACTERGUID)_PlayerOneClone,"GP_ScriptedEvent_GhostDissipate");
 TimerLaunch("CloneDeaths",500);
 
 IF
@@ -174,6 +175,7 @@ GetPosition((CHARACTERGUID)_PlayerTwo,_pf1X,_pf1Y,_pf1Z)
 THEN
 PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01",_pf1X,_pf1Y,_pf1Z);
 PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_IllusionDeath_01",_pf1X,_pf1Y,_pf1Z);
+PlaySound((CHARACTERGUID)_PlayerTwo,"GP_ScriptedEvent_GhostDissipate");
 TimerLaunch("CloneDeaths",500);
 
 IF
@@ -209,6 +211,7 @@ ProcStopLoopEffect(_VoidHandle);
 NOT DB_VoidHandle(_VoidHandle);
 GlobalSetFlag("MetVoidCatFTJ");
 PlayEffect(_Player,"RS3_FX_GP_ScriptedEvent_CameraShake_Intense_01");
+PlaySound(CHARACTERGUID_DC_VoidCat_000_b25ab4ad-16c9-41ba-b84f-46fc039afcd1,"GP_ScriptedEvent_GhostDissipate");
 TimerLaunch("VoidCatDisappear",650);
 TimerLaunch("StartCatDialogVoidCat",3000);
 

@@ -16,4 +16,5 @@ data "ItemColor" "HumansEpic"
 data "RuneSlots" "2"
 data "MinAmount" "0"
 data "Unique" "1"
+data "Act" "1"
 

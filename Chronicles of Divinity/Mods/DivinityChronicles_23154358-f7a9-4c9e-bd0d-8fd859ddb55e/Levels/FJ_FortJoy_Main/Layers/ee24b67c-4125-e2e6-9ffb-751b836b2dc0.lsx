@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1511561390" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="ee24b67c-4125-e2e6-9ffb-751b836b2dc0" type="31" />
+            <attribute id="Name" value="Secret Cavern" type="23" />
+        </node>
+    </region>
+</save>
