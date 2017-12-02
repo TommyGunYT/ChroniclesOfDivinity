@@ -1,0 +1,225 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, 0);
+ItemSetCanInteract(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6, 0);
+ItemSetCanInteract(ITEMGUID_DC_BeachTop_SecretLadder_8c513253-cca1-4561-9606-f7e897daf57c, 0);
+CharacterFreeze(CHARACTERGUID_DC_FTJI_GuardStatue_000_ac31e8d5-a826-4c07-a39f-e8173842c90e);
+CharacterFreeze(CHARACTERGUID_DC_FTJI_GuardStatue_001_dff07aa9-5c91-4b51-afa7-a8c145f08c16);
+CharacterFreeze(CHARACTERGUID_DC_FTJI_GuardStatue_002_b54d88f6-435e-4d2f-a4ba-e81e5230bc54);
+
+SetOnStage(ITEMGUID_S_DC_AltarPressurePlate_A_06e48943-f1d5-448a-a2a7-4b463d28c9c1, 0);
+SetOnStage(ITEMGUID_S_DC_AltarPressurePlate_B_f0584303-f72d-46b6-81fb-73a81704e6df, 0);
+SetOnStage(ITEMGUID_S_DC_AltarPressurePlate_C_31305832-c732-49a9-89a7-3f8be794a30e, 0);
+
+DB_Dialogs(ITEMGUID_S_DC_AltarArea_Totem_B_2143b86b-e111-43f8-ab78-18c5d6d55478,"AltarAreaGateTotems");
+DB_Dialogs(ITEMGUID_S_DC_AltarArea_Totem_A_19d9ea09-d7fe-426c-b929-e4a73688a058,"AltarAreaGateTotems");
+
+DB_ShovelArea(TRIGGERGUID_DC_SecretAltarBox_A_95d1e8b1-b12a-43ee-a5b1-73c5727ac236,"DCSAPA",ITEMGUID_DC_SandPile_PlateA_463bc3b6-0ffb-4b9b-8196-b79541bf409e);
+DB_ShovelArea(TRIGGERGUID_DC_SecretAltarBox_B_77cc65d8-565a-4fdf-bfc5-d7dedc108613,"DCSAPB",ITEMGUID_DC_SandPile_PlateB_524df6c6-dd2f-4af9-991e-d7c2d10e4035);
+DB_ShovelArea(TRIGGERGUID_DC_SecretAltarBox_C_4a1f7b7d-33f5-437f-ac63-672e483d5383,"DCSAPC",ITEMGUID_DC_SandPile_PlateC_f4588f14-2fab-48a3-a8a9-7bb0d5564671);
+
+DB_DCShovels("ITEMGUID_TOOL_Shovel_A_41486dd2-3fd5-464e-870e-844120cf0517");
+DB_DCShovels("ITEMGUID_TOOL_Shovel_Improvised_A_422f6db6-20a3-4def-97c8-5bf47c69a073");
+
+TimerLaunch("DC_SecretAltarDoorPlates",500);
+KBSECTION
+//REGION SECRET ALTAR ENTRANCE
+IF
+CharacterUsedItem(_Player, ITEMGUID_DC_SecretAltarEntrance_SunkBoat_341e2852-b7ad-40e9-9cc1-d1666e142e33)
+THEN
+DisplayText(_Player, "Someone else must have found this before us... No bodies though.");
+
+IF
+CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_SecretAltarDoor_PerceptionCheck_9202c7e5-5769-4e2d-8913-8150a95f1efa)
+AND
+CharacterGetAttribute(_Player, "Wits", _Wits)
+AND
+_Wits >= 16
+AND
+GlobalGetFlag("SecretAltarEntranceUnlocked",0)
+THEN
+ItemSetCanInteract(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6, 1);
+PlayEffect(ITEMGUID_S_DC_AltarPressurePlate_A_06e48943-f1d5-448a-a2a7-4b463d28c9c1, "RS3_FX_UI_PerceptionReveal_01");
+PlaySound(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6,"Items_Objects_IllusionMaterial_Appear");
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_DC_SandPile_PlateA_463bc3b6-0ffb-4b9b-8196-b79541bf409e)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_ShovelArea(_AltEntrTrigger, _AltEntrPlatee, _AltEntrSandPile)
+AND
+DB_DCShovels(_DCShovel)
+AND
+ItemTemplateIsInCharacterInventory((CHARACTERGUID)_Player, _DCShovel, 1)
+THEN
+SetOnStage(ITEMGUID_S_DC_AltarPressurePlate_A_06e48943-f1d5-448a-a2a7-4b463d28c9c1, 1);
+PlayEffect(ITEMGUID_S_DC_AltarPressurePlate_A_06e48943-f1d5-448a-a2a7-4b463d28c9c1, "RS3_FX_UI_PerceptionReveal_01");
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_DC_SandPile_PlateB_524df6c6-dd2f-4af9-991e-d7c2d10e4035)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_ShovelArea(_AltEntrTrigger, _AltEntrPlatee, _AltEntrSandPile)
+AND
+DB_DCShovels(_DCShovel)
+AND
+ItemTemplateIsInCharacterInventory((CHARACTERGUID)_Player, _DCShovel, 1)
+THEN
+SetOnStage(ITEMGUID_S_DC_AltarPressurePlate_B_f0584303-f72d-46b6-81fb-73a81704e6df, 1);
+PlayEffect(ITEMGUID_S_DC_AltarPressurePlate_B_f0584303-f72d-46b6-81fb-73a81704e6df, "RS3_FX_UI_PerceptionReveal_01");
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_DC_SandPile_PlateC_f4588f14-2fab-48a3-a8a9-7bb0d5564671)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_ShovelArea(_AltEntrTrigger, _AltEntrPlatee, _AltEntrSandPile)
+AND
+DB_DCShovels(_DCShovel)
+AND
+ItemTemplateIsInCharacterInventory((CHARACTERGUID)_Player, _DCShovel, 1)
+THEN
+SetOnStage(ITEMGUID_S_DC_AltarPressurePlate_C_31305832-c732-49a9-89a7-3f8be794a30e, 1);
+PlayEffect(ITEMGUID_S_DC_AltarPressurePlate_C_31305832-c732-49a9-89a7-3f8be794a30e, "RS3_FX_UI_PerceptionReveal_01");
+
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_DC_AltarPressurePlate_A_06e48943-f1d5-448a-a2a7-4b463d28c9c1, "S_DC_FTJI_AltarPlateOn")
+AND
+DB_IsPlayer(_Player)
+AND
+GlobalGetFlag("SecretAltarEntranceUnlocked",0)
+THEN
+GlobalSetFlag("SecretAltarPlateA");
+TimerLaunch("DC_SecretAltarDoorPlates",150);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_DC_AltarPressurePlate_A_06e48943-f1d5-448a-a2a7-4b463d28c9c1, "S_DC_FTJI_AltarPlateOff")
+AND
+GlobalGetFlag("SecretAltarEntranceUnlocked",0)
+THEN
+GlobalClearFlag("SecretAltarPlateA");
+ItemCloseAndLock(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6,"SUPERHARDKEYGLWITHTHAT");
+ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, 0);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_DC_AltarPressurePlate_B_f0584303-f72d-46b6-81fb-73a81704e6df, "S_DC_FTJI_AltarPlateOn")
+AND
+DB_IsPlayer(_Player)
+AND
+GlobalGetFlag("SecretAltarEntranceUnlocked",0)
+THEN
+GlobalSetFlag("SecretAltarPlateB");
+TimerLaunch("DC_SecretAltarDoorPlates",150);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_DC_AltarPressurePlate_B_f0584303-f72d-46b6-81fb-73a81704e6df, "S_DC_FTJI_AltarPlateOff")
+AND
+GlobalGetFlag("SecretAltarEntranceUnlocked",0)
+THEN
+GlobalClearFlag("SecretAltarPlateB");
+ItemCloseAndLock(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6,"SUPERHARDKEYGLWITHTHAT");
+ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, 0);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_DC_AltarPressurePlate_C_31305832-c732-49a9-89a7-3f8be794a30e, "S_DC_FTJI_AltarPlateOn")
+AND
+DB_IsPlayer(_Player)
+AND
+GlobalGetFlag("SecretAltarEntranceUnlocked",0)
+THEN
+GlobalSetFlag("SecretAltarPlateC");
+TimerLaunch("DC_SecretAltarDoorPlates",150);
+
+IF
+CharacterItemEvent(_, ITEMGUID_S_DC_AltarPressurePlate_C_31305832-c732-49a9-89a7-3f8be794a30e, "S_DC_FTJI_AltarPlateOff")
+AND
+GlobalGetFlag("SecretAltarEntranceUnlocked",0)
+THEN
+GlobalClearFlag("SecretAltarPlateC");
+ItemCloseAndLock(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6,"SUPERHARDKEYGLWITHTHAT");
+ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, 0);
+
+IF
+TimerFinished("DC_SecretAltarDoorPlates")
+AND
+GlobalGetFlag("SecretAltarPlateA",1)
+AND
+GlobalGetFlag("SecretAltarPlateB",1)
+AND
+GlobalGetFlag("SecretAltarPlateC",1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6);
+ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, 1);
+TimerLaunch("KeyTimer10049",100);
+
+IF
+TimerFinished("DC_SecretAltarDoorPlates")
+THEN
+ItemLock(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6,"SUPERHARDKEYGLWITHTHAT");
+//END_REGION
+
+//REGION ALTAR AREA ENTRANCE
+IF
+CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_AltarArea_Entrance_329563e4-41cc-414a-824f-c9794207c368)
+AND
+UserGetFlag(_Player, "ApproachedAltarAreaGate", 0)
+AND
+UserGetFlag(_Player, "AltarAreaGateWelcome", 0)
+THEN
+Proc_StartDialog(0, "AltarAreaGateTotems", ITEMGUID_S_DC_AltarArea_Totem_A_19d9ea09-d7fe-426c-b929-e4a73688a058, ITEMGUID_S_DC_AltarArea_Totem_B_2143b86b-e111-43f8-ab78-18c5d6d55478, _Player);
+
+IF
+DialogEnded("AltarAreaGateTotems", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+UserGetFlag(_Player, "AltarAreaGateWelcome", 1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_DC_AltarArea_Gate_e6dd22f0-b71f-4436-a1a3-2ed52df5c97c);
+
+IF
+CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_AltarArea_Entrance_329563e4-41cc-414a-824f-c9794207c368)
+AND
+UserGetFlag(_Player, "AltarAreaGateWelcome", 1)
+THEN
+ItemUnlockAndOpen(ITEMGUID_DC_AltarArea_Gate_e6dd22f0-b71f-4436-a1a3-2ed52df5c97c);
+
+IF
+CharacterLeftTrigger(_Player, TRIGGERGUID_DC_AltarArea_Entrance_329563e4-41cc-414a-824f-c9794207c368)
+AND
+ItemIsOpened(ITEMGUID_DC_AltarArea_Gate_e6dd22f0-b71f-4436-a1a3-2ed52df5c97c, 1)
+THEN
+TimerLaunch("CloseAltarAreaGate",2000);
+
+IF
+TimerFinished("CloseAltarAreaGate")
+THEN
+ItemCloseAndLock(ITEMGUID_DC_AltarArea_Gate_e6dd22f0-b71f-4436-a1a3-2ed52df5c97c, "IMPOSSIKEY");
+
+IF
+ItemOpened(ITEMGUID_DC_AltarArea_Gate_e6dd22f0-b71f-4436-a1a3-2ed52df5c97c)
+THEN
+ItemLock(ITEMGUID_DC_AltarArea_Gate_e6dd22f0-b71f-4436-a1a3-2ed52df5c97c, "IMPOSSIKEY");
+
+
+//END_REGION
+
+//REGION BEACHTOP SECRET LADDER
+IF
+CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_FTJI_LadderSecret_655a1ee0-7841-49fa-a0f4-837bda50731e)
+AND
+GlobalGetFlag("FTJIBeachLadder", 0)
+THEN
+ItemSetCanInteract(ITEMGUID_DC_BeachTop_SecretLadder_8c513253-cca1-4561-9606-f7e897daf57c, 1);
+PlayEffect(ITEMGUID_DC_BeachTop_SecretLadder_8c513253-cca1-4561-9606-f7e897daf57c, "RS3_FX_UI_PerceptionReveal_01");
+PlaySound(ITEMGUID_DC_BeachTop_SecretLadder_8c513253-cca1-4561-9606-f7e897daf57c,"Items_Objects_IllusionMaterial_Appear");
+GlobalSetFlag("FTJIBeachLadder");
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

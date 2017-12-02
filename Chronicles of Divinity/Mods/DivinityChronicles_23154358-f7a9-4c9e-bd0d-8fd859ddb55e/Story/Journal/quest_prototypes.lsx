@@ -1,6 +1,6 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1509410079" />
+    <header version="2" time="1511804545" />
     <version major="3" minor="1" revision="4" build="0" />
     <region id="Quests">
         <node id="root">
@@ -277,6 +277,28 @@
                             <attribute id="QuestRewardLevel" value="0" type="4" />
                             <attribute id="ReputationGain" value="0" type="4" />
                             <attribute id="Status" value="Start" type="22" />
+                        </node>
+                    </children>
+                </node>
+                <node id="Quest">
+                    <attribute id="CategoryID" value="DC_Side_Quests" type="22" />
+                    <attribute id="MainQuest" value="0" type="19" />
+                    <attribute id="QuestBroadcastLevel" value="2" type="1" />
+                    <attribute id="QuestID" value="TheSkeletonKey" type="22" />
+                    <attribute id="QuestTitle" value="The Skeleton Key" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="Shareable" value="1" type="19" />
+                    <attribute id="SortingPriority" value="0" type="4" />
+                    <children>
+                        <node id="QuestState">
+                            <attribute id="Achievement" value="" type="22" />
+                            <attribute id="Act" value="0" type="4" />
+                            <attribute id="Description" value="A dwarf located in a cave under the Seeker&apos;s Camp were making a lot of keys. It may indicate he&apos;s trying to craft a rather special type of key." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                            <attribute id="Gain" value="0" type="4" />
+                            <attribute id="Marker" value="" type="22" />
+                            <attribute id="QuestRewardCount" value="0" type="4" />
+                            <attribute id="QuestRewardLevel" value="0" type="4" />
+                            <attribute id="ReputationGain" value="0" type="4" />
+                            <attribute id="Status" value="STARTInspectedKeys" type="22" />
                         </node>
                     </children>
                 </node>

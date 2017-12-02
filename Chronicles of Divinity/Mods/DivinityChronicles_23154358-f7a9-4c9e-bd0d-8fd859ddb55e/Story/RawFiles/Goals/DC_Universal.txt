@@ -6,7 +6,6 @@ INITSECTION
 //CharacterSetAnimationOverride(_Player,"Tied_Up_01_Loop");
 // RS3_FX_SK_Soul_Ghosts_01 | GHOST EFFECT |
 //END_REGION
-LockSecretRegion(TRIGGERGUID_SecretRegionTrigger_000_117f85c7-0f28-4636-a01b-5c3ddb614853);
 KBSECTION
 //REGION DEBUG TOOL
 IF
@@ -20,15 +19,7 @@ ItemTemplateAddTo("DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657",_Player,1
 IF
 CharacterUsedItemTemplate(_Player, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _)
 THEN
-DisplayText(_Player,"Running Debug Tool!");
 PlaySound(_Player,"SE_Lohse_song_full_performance");
-GlobalClearFlag("BjornSawPlayer");
-Proc_TestFunky(_Player);
-
-PROC
-Proc_TestFunky((GUIDSTRING)_Player)
-THEN
-DisplayText(_Player,"Funky!");
 
 IF
 CharacterUsedItemTemplate(_Player, "DC_BOOK_TutorialShip_TimeTravel_baec138a-3f8d-4252-8c22-a3c70f31a464", _)
@@ -36,6 +27,47 @@ THEN
 DisplayText(_Player,"Running Teleporter Dialogue!");
 PlaySound(_Player,"SE_Lohse_song_full_performance");
 Proc_StartDialog(0,"Icara_Teleport",CHARACTERGUID_DC_Icara_Teleporter_ea4b5b68-d341-4518-b802-08e18900236c,_Player);
+//END_REGION
+
+//REGION DEBUG RECRUITMENT
+IF
+GlobalFlagSet("DC_RecruitFullTempParty")
+THEN
+Proc_DebugRecruitParty();
+
+PROC
+Proc_DebugRecruitParty()
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(_Player, _X, _Y, _Z)
+AND
+CharacterCreateAtPosition(_X, _Y, _Z, "CHARACTERGUID_GLO_Saheila_PostFTJ_10b71425-00b2-4668-b1df-227d254c7ae2", 0, _TempDebugCompanion)
+AND
+CharacterCreateAtPosition(_X, _Y, _Z, "CHARACTERGUID_Elves_Female_Malady_cbc79f47-50a1-4837-9d09-fcbd7b75a919", 0, _TempDebugCompanion)
+AND
+CharacterCreateAtPosition(_X, _Y, _Z, "CHARACTERGUID_Animals_Dog_B_b6a6c50d-ca6a-456f-ad81-9a72b081e4b5", 0, _TempDebugCompanion)
+AND
+CharacterGetReservedUserID((CHARACTERGUID)_Player, _User)
+THEN
+DB_TempDebugCompanion(_TempDebugCompanion);
+TimerLaunch("RecruitTempCharsDC", 500);
+
+IF
+TimerFinished("RecruitTempCharsDC")
+AND
+DB_IsPlayer(_Player)
+AND
+DB_TempDebugCompanion(_TempDebugCompanion)
+AND
+CharacterGetReservedUserID((CHARACTERGUID)_Player, _User)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker((CHARACTERGUID)_TempDebugCompanion);
+CharacterMakePlayer((CHARACTERGUID)_TempDebugCompanion, _Player);
+DB_IsPlayer((CHARACTERGUID)_TempDebugCompanion);
+CharacterAssignToUser(_User, (CHARACTERGUID)_TempDebugCompanion);
+CharacterAddToParty((CHARACTERGUID)_TempDebugCompanion, _Player);
+GlobalClearFlag("DC_RecruitFullTempParty");
 //END_REGION
 
 //REGION Source Points Override
@@ -68,31 +100,7 @@ AND
 CharacterGetDisplayName(_Player, _Handle, _Ref)
 THEN
 DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
-
-IF
-DialogEnded("recruitmalady",_ID)
-AND
-DB_IsPlayer(_Player)
-AND
-UserGetFlag(_Player,"DCDebugRecruitMalady",1)
-THEN
-Proc_RecruitMaladyTest(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803);
-
-PROC
-Proc_RecruitMaladyTest(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803)
-AND
-DB_IsPlayer(_Player)
-AND
-CharacterGetReservedUserID((CHARACTERGUID)_player, _user)
-THEN
-ProcRemoveAllDialogEntriesForSpeaker(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803);
-CharacterMakePlayer(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803, _player);
-DB_IsPlayer(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803);
-CharacterAssignToUser(_user, CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803);
-CharacterAddToParty(CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803, _player);
 //END_REGION
-
-
 
 //REGION TRAVEL AGENCY FOR PLAYTESTING
 IF
@@ -108,20 +116,6 @@ CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TP_FTJ_Isles_DragonIsland_7e24a
 GlobalClearFlag("TP_Isles_DragonIsland");
 //END_REGION
 
-//REGION COUNTER BUTTON
-IF
-CharacterUsedItem(_Player,ITEMGUID_DC_BigFriendlyButton_5bd44cb6-60c4-431c-b3d9-c2e35ca34ee2)
-AND
-DB_IsPlayer(_Player)
-AND
-GetVarInteger(_Player,"NumberStuff",_NMBVal)
-AND
-IntegerSum(_NMBVal,1,_NewNMB)
-AND
-IntegertoString(_NewNMB, _CurrentNMB)
-THEN
-DisplayText(_Player,_CurrentNMB);
-//END_REGION
 
 IF
 CharacterUsedItem(_Player,ITEMGUID_DC_Sandbox_Lever_cf25673d-0e86-40ff-83fb-34bd0315862a)
@@ -130,9 +124,35 @@ GetRandomPositionInTrigger(TRIGGERGUID_DC_Sandbox_BoxTrigger_a0e613a6-f155-49f7-
 AND
 CharacterCreateAtPosition(_bX,_bY,_bZ,"CHARACTERGUID_Animals_Rabbit_A_ebd3b174-0bf0-464f-948d-8ea5f13d3a81",1,_RNDRabbit)
 THEN
-DisplayText(_Player,"Lever Initiated!");
-LockSecretRegion(TRIGGERGUID_SecretRegionTrigger_000_117f85c7-0f28-4636-a01b-5c3ddb614853);
 DB_BoomRabbits(_RNDRabbit);
+Proc_SandboxLever1();
+
+PROC
+Proc_SandboxLever1()
+AND
+DB_IsPlayer(_Player)
+THEN
+DisplayText(_Player,"Lever Initiated!");
+
+PROC
+Proc_SandboxLever1()
+AND
+GetPosition(ITEMGUID_S_DC_StandingTorch_Osiris_e4c7e09b-676d-40c8-a0bc-dd6417b37952,_X,_Y,_Z)
+AND
+CharacterCreateAtPosition(_X,_Y,_Z,"Helper_Invisible_A_Character_a157953f-8e80-4c98-b227-12fd3f6cb7bb",0,_InviChar)
+THEN
+CharacterUseItem(_InviChar,ITEMGUID_S_DC_StandingTorch_Osiris_e4c7e09b-676d-40c8-a0bc-dd6417b37952,"LightTorchTest");
+DB_DCInviChar(_InviChar);
+TimerLaunch("InviCharUseTorch",100);
+
+IF
+TimerFinished("InviCharUseTorch")
+AND
+DB_DCInviChar(_InviChar)
+THEN
+CharacterDieImmediate(_InviChar, 0, "DoT");
+NOT DB_DCInviChar(_InviChar);
+
 
 IF
 CharacterUsedItem(_Player,ITEMGUID_DC_Sandbox_Lever_Boom_656ee691-a96f-4f84-aa5b-23b3923c1e01)
@@ -145,7 +165,6 @@ CharacterDie(_RNDRabbit,0,"Explode");
 PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Lightning_Vertical_01",_rX,_rY,_rZ);
 UnlockSecretRegion(TRIGGERGUID_SecretRegionTrigger_000_117f85c7-0f28-4636-a01b-5c3ddb614853);
 NOT DB_BoomRabbits(_RNDRabbit);
-
 EXITSECTION
 
 ENDEXITSECTION

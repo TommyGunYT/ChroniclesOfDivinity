@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1511735478" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="e43e7670-c3e4-6bcd-eb84-e2ce32f5ea87" type="31" />
+            <attribute id="Name" value="FX Location Points" type="23" />
+        </node>
+    </region>
+</save>

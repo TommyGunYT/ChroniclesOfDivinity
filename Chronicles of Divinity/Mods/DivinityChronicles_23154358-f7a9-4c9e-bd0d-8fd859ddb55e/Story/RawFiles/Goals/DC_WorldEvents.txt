@@ -233,6 +233,11 @@ AND
 CharacterIsDead(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830,0)
 THEN
 ProcCharacterMoveToAndTalk(CHARACTERGUID_S_FTJ_BlackCat_4bff6ccc-5889-4c90-bcb1-572f1c29d830,_Player,"BlackCatSawVoidCat",0,"",1,15.0);
+
+PROC
+ProcRegionEnded("FJ_FortJoy_Main")
+THEN
+GoalCompleted;
 EXITSECTION
 
 ENDEXITSECTION

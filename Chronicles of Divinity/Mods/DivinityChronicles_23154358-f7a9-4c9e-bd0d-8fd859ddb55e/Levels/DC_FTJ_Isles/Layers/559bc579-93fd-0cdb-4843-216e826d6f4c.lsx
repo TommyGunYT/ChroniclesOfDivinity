@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1512063369" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="559bc579-93fd-0cdb-4843-216e826d6f4c" type="31" />
+            <attribute id="Name" value="Culling" type="23" />
+        </node>
+    </region>
+</save>

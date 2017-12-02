@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1512162481" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="b378bc38-3116-23e8-3291-161e83e4cef2" type="31" />
+            <attribute id="Name" value="Digspots" type="23" />
+        </node>
+    </region>
+</save>

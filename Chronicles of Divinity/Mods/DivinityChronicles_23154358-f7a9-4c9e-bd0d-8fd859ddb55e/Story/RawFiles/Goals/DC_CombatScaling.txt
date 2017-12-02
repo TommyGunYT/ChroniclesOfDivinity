@@ -1,0 +1,258 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_DC_ScalingEnabled(2);
+DB_DC_HighestLevel("HighestLevel", 1, 0, 1);
+DB_DC_ScalingFlag("MS_DecreaseMonsterDifficulty", -1);
+DB_DC_ScalingFlag("MS_IncreaseMonsterDifficulty", 1);
+DB_DC_ResetFlag("MS_ResetMonsterDifficulty");
+DB_DC_ToggleFlag("MS_ToggleMonsterDifficulty");
+DB_DC_GaveItem(0);
+// DC_ScalingTag
+DB_ScalingAreaTriggers(TRIGGERGUID_DC_DBTestTrigger_d8ee2108-cd8d-4760-b9c6-c208c097eb5f);
+KBSECTION
+//REGION SCALING SETUP
+PROC
+	PROC_DC_GiveBook()
+AND
+	DB_IsPlayer(_Character)
+AND
+	ItemTemplateIsInCharacterInventory(_Character, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", 0)
+THEN
+	ItemTemplateAddTo("DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _Character, 1);
+
+PROC
+	PROC_DC_DisplayToggle((INTEGER)_IsEnabled)
+AND
+	_IsEnabled == 0
+AND
+	DB_IsPlayer(_Character)
+THEN
+	CharacterStatusText(_Character, "Monster Scaling Disabled!");
+
+PROC
+	PROC_DC_DisplayToggle((INTEGER)_IsEnabled)
+AND
+	_IsEnabled == 1
+AND
+	DB_IsPlayer(_Character)
+THEN
+	CharacterStatusText(_Character, "Monster Scaling Enabled!");
+
+PROC
+	PROC_DC_DisplayDifficulty((INTEGER)_Difficulty)
+AND
+	_Difficulty > 0
+AND
+	IntegertoString(_Difficulty, _StringDifficulty)
+AND
+	StringConcatenate("Monster Scaling set to +", _StringDifficulty, _Message)
+AND
+	DB_IsPlayer(_Character)
+THEN
+	CharacterStatusText(_Character, _Message);
+
+PROC
+	PROC_DC_DisplayDifficulty((INTEGER)_Difficulty)
+AND
+	_Difficulty == 0
+AND
+	DB_IsPlayer(_Character)
+THEN
+	CharacterStatusText(_Character, "Monster Scaling set to 0");
+
+PROC
+	PROC_DC_DisplayDifficulty((INTEGER)_Difficulty)
+AND
+	_Difficulty < 0
+AND
+	IntegertoString(_Difficulty, _StringDifficulty)
+AND
+	StringConcatenate("Monster Scaling set to ", _StringDifficulty, _Message)
+AND
+	DB_IsPlayer(_Character)
+THEN
+	CharacterStatusText(_Character, _Message);
+
+PROC
+	PROC_DC_AlterScalingDifficulty((STRING)_Flag)
+AND
+	DB_DC_ScalingFlag(_Flag, _ChangeMod)
+AND
+	DB_DC_HighestLevel("HighestLevel", _Level, _CurrentMod, _Total)
+AND
+	IntegerSum(_CurrentMod, _ChangeMod, _NewMod)
+AND
+	IntegerSum(_Level, _NewMod, _NewTotal)
+THEN
+	NOT DB_DC_HighestLevel("HighestLevel", _Level, _CurrentMod, _Total);
+	DB_DC_HighestLevel("HighestLevel", _Level, _NewMod, _NewTotal);
+	PROC_DC_DisplayDifficulty(_NewMod);
+	GlobalClearFlag(_Flag);
+
+PROC
+	PROC_DC_ResetScalingDifficulty((STRING)_Flag)
+AND
+	DB_DC_ResetFlag(_Flag)
+AND
+	DB_DC_HighestLevel("HighestLevel", _Level, _CurrentMod, _Total)
+THEN
+	NOT DB_DC_HighestLevel("HighestLevel", _Level, _CurrentMod, _Total);
+	DB_DC_HighestLevel("HighestLevel", _Level, 0, _Level);
+	PROC_DC_DisplayDifficulty(0);
+	GlobalClearFlag(_Flag);
+
+PROC
+	PROC_DC_ToggleScalingDifficulty((STRING)_Flag)
+AND
+	DB_DC_ToggleFlag(_Flag)
+AND
+	DB_DC_ScalingEnabled(_IsEnabled)
+AND
+	IntegerSum(_IsEnabled, 1, _ModMe)
+AND
+	IntegerModulo(_ModMe, 2, _NewIsEnabled)
+THEN
+	NOT DB_DC_ScalingEnabled(_IsEnabled);
+	DB_DC_ScalingEnabled(_NewIsEnabled);
+	PROC_DC_DisplayToggle(_NewIsEnabled);
+
+PROC
+	PROC_DC_UpdateLevel()
+AND
+	DB_IsPlayer(_Character)
+AND
+	CharacterGetLevel(_Character, _Level)
+AND
+	DB_DC_HighestLevel("HighestLevel", _HighestLevel, _Mod, _LevelScale)
+AND
+	_Level > _HighestLevel
+AND
+	IntegerSum(_Level, _Mod, _NewScale)
+THEN
+	NOT DB_DC_HighestLevel("HighestLevel", _HighestLevel, _Mod, _LevelScale);
+	DB_DC_HighestLevel("HighestLevel", _Level, _Mod, _NewScale);
+
+PROC
+	PROC_DC_EnableScaling()
+AND
+	DB_DC_ScalingEnabled(_IsEnabled)
+AND
+	_IsEnabled == 2
+THEN
+	GlobalSetFlag("MS_ToggleMonsterDifficulty");
+
+IF
+	SavegameLoaded(_,_,_,_)
+THEN
+	PROC_DC_GiveBook();
+	PROC_DC_UpdateLevel();
+	PROC_DC_EnableScaling();
+
+IF
+	RegionStarted(_)
+THEN
+	PROC_DC_GiveBook();
+	PROC_DC_UpdateLevel();
+	PROC_DC_EnableScaling();
+
+IF
+	CharacterLeveledUp(_Character)
+THEN
+	PROC_DC_UpdateLevel();
+
+IF
+	GlobalFlagSet(_Flag)
+THEN
+	PROC_DC_ToggleScalingDifficulty(_Flag);
+	PROC_DC_AlterScalingDifficulty(_Flag);
+	PROC_DC_ResetScalingDifficulty(_Flag);
+
+IF
+	CharacterUsedItemTemplate(_Character, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _Item)
+THEN
+	Proc_StartDialog(0, "DC_DebugBook", _Item, _Character);
+
+IF
+	GlobalFlagCleared(_Flag)
+THEN
+	PROC_DC_ToggleScalingDifficulty(_Flag);
+//END_REGION
+
+IF
+	ObjectEnteredCombat((CHARACTERGUID)_Character, _)
+AND
+	DB_DC_ScalingEnabled(1)
+AND
+	NOT DB_IsPlayer(_Character)
+AND
+	CharacterGetLevel(_Character, _Level)
+AND
+	DB_DC_HighestLevel("HighestLevel", _, _, _HighestLevel)
+AND
+	_Level < _HighestLevel
+AND
+	IsTagged(_Character, "DC_ScalingOverride", 0)
+AND
+	IsTagged(_Character, "SQUIRREL", 0)
+THEN
+	CharacterLevelUpTo(_Character, _HighestLevel);
+
+IF
+CharacterEnteredTrigger(_DCNPC, _ScalingNPCCounterRegion)
+//AND
+//NOT DB_IsPlayer(_DCNPC)
+AND
+DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
+THEN
+DB_InRegion(_DCNPC, _ScalingNPCCounterRegion);
+
+IF
+CharacterEnteredTrigger(_Player, _ScalingNPCCounterRegion)
+AND
+DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
+THEN
+DB_InRegion(_Player, _ScalingNPCCounterRegion);
+
+IF
+CharacterEnteredTrigger(_Player, _ScalingNPCCounterRegion)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_InRegion(_DCNPC, _ScalingNPCCounterRegion)
+AND
+NOT DB_IsPlayer(_DCNPC)
+//AND
+//IsTagged(_DCNPC, "DC_ScalingTag", 1)
+AND
+DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
+AND
+CharacterGetLevel(_Player, _Level)
+AND
+DB_DC_HighestLevel("HighestLevel", _, _, _HighestLevel)
+AND
+_Level < _HighestLevel
+THEN
+CharacterLevelUpTo(_DCNPC, _HighestLevel);
+
+IF
+CharacterLeftTrigger(_DCNPC, _ScalingNPCCounterRegion)
+AND
+DB_InRegion(_DCNPC, _ScalingNPCCounterRegion)
+AND
+DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
+THEN
+NOT DB_InRegion(_DCNPC, _ScalingNPCCounterRegion);
+
+IF
+CharacterLeftTrigger(_Player, _ScalingNPCCounterRegion)
+AND
+DB_InRegion(_Player, _ScalingNPCCounterRegion)
+AND
+DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
+THEN
+NOT DB_InRegion(_Player, _ScalingNPCCounterRegion);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

@@ -1,0 +1,119 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+TimerFinished("PirateIsleCrabFight")
+THEN
+TimerLaunch("PirateIsleCrab1",200);
+
+IF
+TimerFinished("PirateIsleCrab1")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787,_holeX, _holeY, _holeZ)
+AND
+CharacterCreateAtPosition(_holeX, _holeY, _holeZ, "CHARACTERGUID_DC_PirateCrab_Small_3f221530-3cce-4ea8-9889-24502581e3b9", 1, (CHARACTERGUID)_PirateCrab1)
+AND
+CharacterGetLevel((CHARACTERGUID)_Player,_LVL)
+THEN
+CharacterLevelUpTo((CHARACTERGUID)_PirateCrab1,_LVL);
+ProcCharacterMoveTo((CHARACTERGUID)_PirateCrab1, TRIGGERGUID_DC_CrabPoint_1_002f7aa2-c91a-4e3d-9ad9-3c75341b700b, 1, "Crab1Arrived");
+DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab1);
+TimerLaunch("PirateIsleCrab2", 4000);
+
+IF
+StoryEvent(_, "Crab1Arrived")
+AND
+DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab1)
+THEN
+DisplayText((CHARACTERGUID)_PirateCrab1, "Alright boys! I'mma keep 'em busy. You position yourself!");
+SetCanJoinCombat((CHARACTERGUID)_PirateCrab1, 1);
+TimerLaunch("CrabCommand", 1000);
+
+IF
+TimerFinished("CrabCommand")
+AND
+DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab1)
+THEN
+SetFaction((CHARACTERGUID)_PirateCrab1, "Evil NPC");
+
+IF
+TimerFinished("PirateIsleCrab2")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787,_holeX, _holeY, _holeZ)
+AND
+CharacterCreateAtPosition(_holeX, _holeY, _holeZ, "CHARACTERGUID_DC_PirateCrab_Small_3f221530-3cce-4ea8-9889-24502581e3b9", 1, (CHARACTERGUID)_PirateCrab2)
+AND
+CharacterGetLevel((CHARACTERGUID)_Player,_LVL)
+THEN
+CharacterLevelUpTo((CHARACTERGUID)_PirateCrab2,_LVL);
+ProcCharacterMoveTo((CHARACTERGUID)_PirateCrab2, TRIGGERGUID_DC_CrabPoint_2_6ee9e0d5-bb38-4087-9007-3ee4a1d648e4, 1, "Crab2Arrived");
+DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab2);
+TimerLaunch("PirateIsleCrab3", 3500);
+
+IF
+StoryEvent(_, "Crab2Arrived")
+AND
+DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab2)
+THEN
+DisplayText((CHARACTERGUID)_PirateCrab2, "We'll beat the crab outta ye!");
+SetCanJoinCombat((CHARACTERGUID)_PirateCrab2, 1);
+SetFaction((CHARACTERGUID)_PirateCrab2, "Evil NPC");
+
+IF
+TimerFinished("PirateIsleCrab3")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787,_holeX, _holeY, _holeZ)
+AND
+CharacterCreateAtPosition(_holeX, _holeY, _holeZ, "CHARACTERGUID_DC_PirateCrab_Small_3f221530-3cce-4ea8-9889-24502581e3b9", 1, (CHARACTERGUID)_PirateCrab3)
+AND
+CharacterGetLevel((CHARACTERGUID)_Player,_LVL)
+THEN
+CharacterLevelUpTo((CHARACTERGUID)_PirateCrab3,_LVL);
+ProcCharacterMoveTo((CHARACTERGUID)_PirateCrab3, TRIGGERGUID_DC_CrabPoint_3_bb0fb782-8def-41d7-8425-4ad9abf2fa9d, 1, "Crab3Arrived");
+DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab3);
+TimerLaunch("PirateIsleCrab4", 4500);
+
+IF
+StoryEvent(_, "Crab3Arrived")
+AND
+DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab3)
+THEN
+DisplayText((CHARACTERGUID)_PirateCrab3, "Pinch-maneuver, boys!");
+SetCanJoinCombat((CHARACTERGUID)_PirateCrab3, 1);
+SetFaction((CHARACTERGUID)_PirateCrab3, "Evil NPC");
+
+IF
+TimerFinished("PirateIsleCrab4")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787,_holeX, _holeY, _holeZ)
+AND
+CharacterCreateAtPosition(_holeX, _holeY, _holeZ, "CHARACTERGUID_DC_PirateCrab_Small_3f221530-3cce-4ea8-9889-24502581e3b9", 1, (CHARACTERGUID)_PirateCrab4)
+AND
+CharacterGetLevel((CHARACTERGUID)_Player,_LVL)
+THEN
+CharacterLevelUpTo((CHARACTERGUID)_PirateCrab4,_LVL);
+ProcCharacterMoveTo(_PirateCrab4, TRIGGERGUID_DC_CrabPoint_4_579424fe-b976-41b2-a721-5f18712e4f92, 1, "Crab4Arrived");
+DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab4);
+
+IF
+StoryEvent(_, "Crab4Arrived")
+AND
+DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab4)
+THEN
+DisplayText((CHARACTERGUID)_PirateCrab4, "Don't be shellfish, guys! Leave one for me too!");
+SetCanJoinCombat((CHARACTERGUID)_PirateCrab4, 1);
+SetFaction((CHARACTERGUID)_PirateCrab4, "Evil NPC");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

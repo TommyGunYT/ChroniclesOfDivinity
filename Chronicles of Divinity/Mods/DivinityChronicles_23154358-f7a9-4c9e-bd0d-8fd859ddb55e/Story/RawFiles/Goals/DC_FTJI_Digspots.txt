@@ -1,0 +1,26 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+SetOnStage(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, 0);
+
+DB_ShovelArea(TRIGGERGUID_S_FTJII_DigspotBOX_001_3938fb86-34bf-47b7-b7bb-e84349ed67eb,"FTJIDigspot1",ITEMGUID_S_FTJII_Digspot_001_4a820ce9-a8f2-4d57-857b-4d5e2ce0d1c4);
+DB_ShovelRewardItemAppear("FTJIDigspot1", ITEMGUID_DC_DigSpot001_Helper_5e485722-1cbf-424f-b379-24ad82c73822, TRIGGERGUID_S_FTJII_DigspotBOX_001_3938fb86-34bf-47b7-b7bb-e84349ed67eb);
+
+DB_ShovelArea(TRIGGERGUID_S_FTJII_DigspotBOX_002_8b4ed94b-a787-45d4-af8e-f7fc639d906e,"FTJIDigspot",ITEMGUID_S_FTJII_Digspot_002_221aedf0-3841-4f64-be5b-3c7eaf854d7c);
+DB_ShovelArea(TRIGGERGUID_S_FTJII_DigspotBOX_003_e51a0894-0823-4fac-8214-010024ed7b88,"FTJIDigspot",ITEMGUID_S_FTJII_Digspot_003_291905e5-4a7c-42d2-ac57-21eba98bcc1c);
+DB_ShovelArea(TRIGGERGUID_S_FTJII_DigspotBOX_004_924bd159-2dbc-4321-bbb3-cbc959ba6da3,"FTJIDigspot",ITEMGUID_S_FTJII_Digspot_004_c0c3b2f0-2f20-4dd2-a8fa-76eb00a67634);
+DB_ShovelArea(TRIGGERGUID_S_FTJII_DigspotBOX_005_1d4883c3-aee2-4e53-8129-596c8cb5d30a,"FTJIDigspot",ITEMGUID_S_FTJII_Digspot_005_d822c6ee-b914-4951-83a8-a315de296c19);
+DB_ShovelArea(TRIGGERGUID_S_FTJI_DigSpotBOX_PirateCaveEntrance_a9c1816f-8958-4e8a-adee-10c7dd46acc6,"FTJIDigspot",ITEMGUID_S_FTJI_DigSpot_PirateCaveEntrance_265bd64c-3537-464b-bf3d-6924decb43a4);
+
+KBSECTION
+IF
+ItemEnteredTrigger(ITEMGUID_DC_DigSpot001_Helper_5e485722-1cbf-424f-b379-24ad82c73822, TRIGGERGUID_S_FTJII_EventBOX_001_817b6065-de59-44b4-b069-88e97b7e1169, _)
+THEN
+SetOnStage(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, 1);
+PlayEffect(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, "RS3_FX_UI_PerceptionReveal_01");
+PlaySound(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787,"UI_Game_PerceptionReveal_Puzzle");
+TimerLaunch("PirateIsleCrabFight", 250);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

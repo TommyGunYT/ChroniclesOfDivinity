@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1512002731" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="5f5bc588-3e1c-998a-6c4c-05f95b895245" type="31" />
+            <attribute id="Name" value="Exploration Locations" type="23" />
+        </node>
+    </region>
+</save>

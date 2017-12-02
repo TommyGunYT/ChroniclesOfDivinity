@@ -2,6 +2,7 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 DB_Dialogs(CHARACTERGUID_DC_Basement_Rat_8368340b-fd16-4f10-895f-48e4d62c9f6f,"DC_Rat_Test");
+
 KBSECTION
 // DEBUG TOOL
 
@@ -13,6 +14,14 @@ AND
 CharacterGetDisplayName(_Player, _Handle, _Ref)
 THEN
 DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
+
+//REGION
+//IF
+//CharacterUsedItem(_Player,ITEMGUID_S_DC_StandingTorch_Osiris_e4c7e09b-676d-40c8-a0bc-dd6417b37952)
+//THEN
+//PROC_StopLoopEffect(ITEMGUID_S_Test2_3fbf91c3-0cd4-4f55-8ee1-aebfe00f7eeb,"RS3_FX_LTS_Torch_Standing_A_01");
+
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

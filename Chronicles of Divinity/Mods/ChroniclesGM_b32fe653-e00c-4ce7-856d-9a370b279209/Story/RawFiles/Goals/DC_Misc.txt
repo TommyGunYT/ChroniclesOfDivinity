@@ -1,0 +1,13 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedItem(_Player, ITEMGUID_BLD_Ship_Interior_Hatch_A_Dynamic_000_3a2f209c-cbf4-47ae-acb3-c746ba280b0b)
+THEN
+CameraActivate(_Player, "DC_Cam_LowerDeck", 0.0, 0, 0, 0);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

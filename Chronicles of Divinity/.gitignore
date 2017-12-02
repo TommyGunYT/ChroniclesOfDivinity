@@ -14,3 +14,20 @@ Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Story/RawFiles/stor
 Public/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Assets/*
 Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Levels/*/WorldMap/Minimap.dds
 Mods/DivinityChronicles_23154358-f7a9-4c9e-bd0d-8fd859ddb55e/Levels/*/WorldMap/Minimap*
+
+Projects/*
+#Story files that can be compiled by the user (only raw files needed).
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/meta.lsx
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Story/log.txt
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Story/goals.div
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Story/goals.raw
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Story/story.div
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Story/story.div.osi
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Story/story_ac.dat
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Story/RawFiles/story_definitions.div
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Story/RawFiles/story_header.div
+
+#Assets
+Public/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Assets/*
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Levels/*/WorldMap/Minimap.dds
+Mods/ChroniclesGM_b32fe653-e00c-4ce7-856d-9a370b279209/Levels/*/WorldMap/Minimap*
