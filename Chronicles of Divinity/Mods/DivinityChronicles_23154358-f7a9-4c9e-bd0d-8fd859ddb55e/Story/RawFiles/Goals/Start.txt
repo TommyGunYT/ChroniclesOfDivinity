@@ -8,7 +8,7 @@ DB_Origins((CHARACTERGUID)S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f);
 DB_Origins((CHARACTERGUID)S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb);
 DB_Origins((CHARACTERGUID)S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978);
 DB_Origins((CHARACTERGUID)S_Player_GenericOrigin_7b6c1f26-fe4e-40bd-a5d0-e6ff58cef4fe);
-DB_Origins((CHARACTERGUID)S_Player_Kara_9bb6deac-e6c1-4759-bd2c-2aaa92435616);
+DB_Origins((CHARACTERGUID)S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd);
 
 DB_UndeadRacePresets(0,"Undead_Dwarf");
 DB_UndeadRacePresets(1,"Undead_Elf");

@@ -1,118 +1,158 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-
+// Pirate Crabs: Captain Pincer | Powder Monkey Claudia | Sailing Master Shelldon | Leonardo "One Eye" DaPinchi | Admiral Seamore
+DB_PirateCrabs(CHARACTERGUID_DC_PirateCrab_Small_000_d3e19eb6-d57b-401f-a1f7-08a361c43db3, CHARACTERGUID_DC_PirateCrab_Small_001_a8716063-b987-4141-9b62-1614a7d394f0, CHARACTERGUID_DC_PirateCrab_Small_002_493a8255-599c-497c-bdc1-8f85d96c22af, CHARACTERGUID_DC_PirateCrab_Small_004_eb58b5ac-bbdd-4563-ac25-9d1c8bce9c78, CHARACTERGUID_DC_PirateCrab_Small_003_70b34b76-2423-45d4-bf36-3bcab8e99dc9);
+SetOnStage(CHARACTERGUID_DC_PirateCrab_Pincer_d3e19eb6-d57b-401f-a1f7-08a361c43db3, 0);
+SetOnStage(CHARACTERGUID_DC_PirateCrab_Small_Clawdia_a8716063-b987-4141-9b62-1614a7d394f0, 0);
+SetOnStage(CHARACTERGUID_DC_PirateCrab_Shelldon_493a8255-599c-497c-bdc1-8f85d96c22af, 0);
+SetOnStage(CHARACTERGUID_DC_PirateCrab_Seamore_70b34b76-2423-45d4-bf36-3bcab8e99dc9, 0);
+SetOnStage(CHARACTERGUID_DC_PirateCrab_Leonardo_eb58b5ac-bbdd-4563-ac25-9d1c8bce9c78, 0);
 KBSECTION
 IF
+ItemEnteredTrigger(ITEMGUID_DC_DigSpot001_Helper_5e485722-1cbf-424f-b379-24ad82c73822, TRIGGERGUID_S_FTJII_EventBOX_001_817b6065-de59-44b4-b069-88e97b7e1169, _)
+THEN
+SetOnStage(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, 1);
+PlayEffect(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, "RS3_FX_UI_PerceptionReveal_01");
+PlayEffect(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, "RS3_FX_Environment_FieldDust_01");
+PlaySound(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787,"UI_Game_PerceptionReveal_Puzzle");
+TimerLaunch("PirateIsleCrabFight", 150);
+
+IF
 TimerFinished("PirateIsleCrabFight")
+THEN
+TimerLaunch("PirateIsleCrab1",150);
+//REGION PINCER
+IF
+TimerFinished("PirateIsleCrab1")
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, _HoleX, _HoleY, _HoleZ)
+THEN
+CharacterAppearAtPosition(CHARACTERGUID_DC_PirateCrab_Pincer_d3e19eb6-d57b-401f-a1f7-08a361c43db3, _HoleX, _HoleY, _HoleZ, 1, "CaptainPincerAppears");
+PlayEffectAtPosition("RS3_FX_Environment_FieldDust_01", _HoleX, _HoleY, _HoleZ);
+
+IF
+StoryEvent(_, "CaptainPincerAppears")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, _HoleX, _HoleY, _HoleZ)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_DC_PirateCrab_Pincer_d3e19eb6-d57b-401f-a1f7-08a361c43db3, TRIGGERGUID_DC_CrabKing_002f7aa2-c91a-4e3d-9ad9-3c75341b700b, 1, "CaptainPincerArrives");
+CharacterAppearAtPosition(CHARACTERGUID_DC_PirateCrab_Small_Clawdia_a8716063-b987-4141-9b62-1614a7d394f0, _HoleX, _HoleY, _HoleZ, 1, "ClawdiaAppears");
+PlayEffectAtPosition("RS3_FX_Environment_FieldDust_01", _HoleX, _HoleY, _HoleZ);
+
+IF
+StoryEvent(_, "CaptainPincerArrives")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, _HoleX, _HoleY, _HoleZ)
+THEN
+DisplayText(CHARACTERGUID_DC_PirateCrab_Pincer_d3e19eb6-d57b-401f-a1f7-08a361c43db3, "Get away from our hole, you bloody scallywag!");
+ProcFaceCharacter(CHARACTERGUID_DC_PirateCrab_Pincer_d3e19eb6-d57b-401f-a1f7-08a361c43db3, _Player);
+SetCanJoinCombat(CHARACTERGUID_DC_PirateCrab_Pincer_d3e19eb6-d57b-401f-a1f7-08a361c43db3, 1);
+SetFaction(CHARACTERGUID_DC_PirateCrab_Pincer_d3e19eb6-d57b-401f-a1f7-08a361c43db3, "Evil NPC");
+
+//END_REGION
+//REGION CLAWDIA
+IF
+StoryEvent(_, "ClawdiaAppears")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, _HoleX, _HoleY, _HoleZ)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_DC_PirateCrab_Small_Clawdia_a8716063-b987-4141-9b62-1614a7d394f0, TRIGGERGUID_DC_CrabClawdia_70c5ad86-e36c-403f-affb-9f5ffb0a2bfe, 1, "ClawdiaArrives");
+CharacterAppearAtPosition(CHARACTERGUID_DC_PirateCrab_Shelldon_493a8255-599c-497c-bdc1-8f85d96c22af, _HoleX, _HoleY, _HoleZ, 1, "ShelldonAppears");
+PlayEffectAtPosition("RS3_FX_Environment_FieldDust_01", _HoleX, _HoleY, _HoleZ);
+
+IF
+StoryEvent(_, "ClawdiaArrives")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, _HoleX, _HoleY, _HoleZ)
+THEN
+DisplayText(CHARACTERGUID_DC_PirateCrab_Small_Clawdia_a8716063-b987-4141-9b62-1614a7d394f0, "We're under attack! Me' hearties hands, to your positions!");
+ProcFaceCharacter(CHARACTERGUID_DC_PirateCrab_Small_Clawdia_a8716063-b987-4141-9b62-1614a7d394f0, _Player);
+
+IF
+StoryEvent(_, "ShelldonAppears")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, _HoleX, _HoleY, _HoleZ)
+THEN
+SetCanJoinCombat(CHARACTERGUID_DC_PirateCrab_Small_Clawdia_a8716063-b987-4141-9b62-1614a7d394f0, 1);
+SetFaction(CHARACTERGUID_DC_PirateCrab_Small_Clawdia_a8716063-b987-4141-9b62-1614a7d394f0, "Evil NPC");
+ProcCharacterMoveTo(CHARACTERGUID_DC_PirateCrab_Shelldon_493a8255-599c-497c-bdc1-8f85d96c22af, TRIGGERGUID_DC_CrabShelldon_114f774a-a17c-40b0-bbf4-f21e4c67cdbb, 1, "ShelldonArrives");
+CharacterAppearAtPosition(CHARACTERGUID_DC_PirateCrab_Seamore_70b34b76-2423-45d4-bf36-3bcab8e99dc9, _HoleX, _HoleY, _HoleZ, 1, "SeamoreAppears");
+PlayEffectAtPosition("RS3_FX_Environment_FieldDust_01", _HoleX, _HoleY, _HoleZ);
+
+IF
+StoryEvent(_, "ShelldonArrives")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, _HoleX, _HoleY, _HoleZ)
+THEN
+DisplayText(CHARACTERGUID_DC_PirateCrab_Shelldon_493a8255-599c-497c-bdc1-8f85d96c22af, "You're in a pinch now, shrimp-smelling landlubbers!");
+ProcFaceCharacter(CHARACTERGUID_DC_PirateCrab_Shelldon_493a8255-599c-497c-bdc1-8f85d96c22af, _Player);
+
+IF
+StoryEvent(_, "SeamoreAppears")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, _HoleX, _HoleY, _HoleZ)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_DC_PirateCrab_Seamore_70b34b76-2423-45d4-bf36-3bcab8e99dc9, TRIGGERGUID_DC_CrabSeamore_543dec29-9d04-4b71-8ff0-70c0f46e35b0, 1, "SeamoreArrives");
+CharacterAppearAtPosition(CHARACTERGUID_DC_PirateCrab_Leonardo_eb58b5ac-bbdd-4563-ac25-9d1c8bce9c78, _HoleX, _HoleY, _HoleZ, 1, "LeonardoAppears");
+PlayEffectAtPosition("RS3_FX_Environment_FieldDust_01", _HoleX, _HoleY, _HoleZ);
+
+IF
+StoryEvent(_, "SeamoreArrives")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, _HoleX, _HoleY, _HoleZ)
+THEN
+DisplayText(CHARACTERGUID_DC_PirateCrab_Seamore_70b34b76-2423-45d4-bf36-3bcab8e99dc9, "After we're done, you'll be havin' a real crabby day!");
+ProcFaceCharacter(CHARACTERGUID_DC_PirateCrab_Seamore_70b34b76-2423-45d4-bf36-3bcab8e99dc9, _Player);
+
+IF
+StoryEvent(_, "LeonardoAppears")
+AND
+DB_IsPlayer(_Player)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_DC_PirateCrab_Leonardo_eb58b5ac-bbdd-4563-ac25-9d1c8bce9c78, TRIGGERGUID_DC_CrabLeonardo_42a39b6d-5b71-4ba4-9f59-c9eb803f97b0, 1, "LeonardoArrives");
+
+IF
+StoryEvent(_, "LeonardoArrives")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787, _HoleX, _HoleY, _HoleZ)
+THEN
+DisplayText(CHARACTERGUID_DC_PirateCrab_Leonardo_eb58b5ac-bbdd-4563-ac25-9d1c8bce9c78, "Hold on mates! Don't be shellfish, let me have a jab at one of 'em too!");
+ProcFaceCharacter(CHARACTERGUID_DC_PirateCrab_Leonardo_eb58b5ac-bbdd-4563-ac25-9d1c8bce9c78, _Player);
+TimerLaunch("CrabBattleStart", 200);
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_PUZ_Lever_Floor_A_000_e7eb64bb-e514-48a7-9cad-5b4c4039e892)
 THEN
 TimerLaunch("PirateIsleCrab1",200);
 
 IF
-TimerFinished("PirateIsleCrab1")
-AND
-DB_IsPlayer(_Player)
-AND
-GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787,_holeX, _holeY, _holeZ)
-AND
-CharacterCreateAtPosition(_holeX, _holeY, _holeZ, "CHARACTERGUID_DC_PirateCrab_Small_3f221530-3cce-4ea8-9889-24502581e3b9", 1, (CHARACTERGUID)_PirateCrab1)
-AND
-CharacterGetLevel((CHARACTERGUID)_Player,_LVL)
+TimerFinished("CrabBattleStart")
 THEN
-CharacterLevelUpTo((CHARACTERGUID)_PirateCrab1,_LVL);
-ProcCharacterMoveTo((CHARACTERGUID)_PirateCrab1, TRIGGERGUID_DC_CrabPoint_1_002f7aa2-c91a-4e3d-9ad9-3c75341b700b, 1, "Crab1Arrived");
-DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab1);
-TimerLaunch("PirateIsleCrab2", 4000);
-
-IF
-StoryEvent(_, "Crab1Arrived")
-AND
-DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab1)
-THEN
-DisplayText((CHARACTERGUID)_PirateCrab1, "Alright boys! I'mma keep 'em busy. You position yourself!");
-SetCanJoinCombat((CHARACTERGUID)_PirateCrab1, 1);
-TimerLaunch("CrabCommand", 1000);
-
-IF
-TimerFinished("CrabCommand")
-AND
-DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab1)
-THEN
-SetFaction((CHARACTERGUID)_PirateCrab1, "Evil NPC");
-
-IF
-TimerFinished("PirateIsleCrab2")
-AND
-DB_IsPlayer(_Player)
-AND
-GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787,_holeX, _holeY, _holeZ)
-AND
-CharacterCreateAtPosition(_holeX, _holeY, _holeZ, "CHARACTERGUID_DC_PirateCrab_Small_3f221530-3cce-4ea8-9889-24502581e3b9", 1, (CHARACTERGUID)_PirateCrab2)
-AND
-CharacterGetLevel((CHARACTERGUID)_Player,_LVL)
-THEN
-CharacterLevelUpTo((CHARACTERGUID)_PirateCrab2,_LVL);
-ProcCharacterMoveTo((CHARACTERGUID)_PirateCrab2, TRIGGERGUID_DC_CrabPoint_2_6ee9e0d5-bb38-4087-9007-3ee4a1d648e4, 1, "Crab2Arrived");
-DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab2);
-TimerLaunch("PirateIsleCrab3", 3500);
-
-IF
-StoryEvent(_, "Crab2Arrived")
-AND
-DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab2)
-THEN
-DisplayText((CHARACTERGUID)_PirateCrab2, "We'll beat the crab outta ye!");
-SetCanJoinCombat((CHARACTERGUID)_PirateCrab2, 1);
-SetFaction((CHARACTERGUID)_PirateCrab2, "Evil NPC");
-
-IF
-TimerFinished("PirateIsleCrab3")
-AND
-DB_IsPlayer(_Player)
-AND
-GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787,_holeX, _holeY, _holeZ)
-AND
-CharacterCreateAtPosition(_holeX, _holeY, _holeZ, "CHARACTERGUID_DC_PirateCrab_Small_3f221530-3cce-4ea8-9889-24502581e3b9", 1, (CHARACTERGUID)_PirateCrab3)
-AND
-CharacterGetLevel((CHARACTERGUID)_Player,_LVL)
-THEN
-CharacterLevelUpTo((CHARACTERGUID)_PirateCrab3,_LVL);
-ProcCharacterMoveTo((CHARACTERGUID)_PirateCrab3, TRIGGERGUID_DC_CrabPoint_3_bb0fb782-8def-41d7-8425-4ad9abf2fa9d, 1, "Crab3Arrived");
-DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab3);
-TimerLaunch("PirateIsleCrab4", 4500);
-
-IF
-StoryEvent(_, "Crab3Arrived")
-AND
-DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab3)
-THEN
-DisplayText((CHARACTERGUID)_PirateCrab3, "Pinch-maneuver, boys!");
-SetCanJoinCombat((CHARACTERGUID)_PirateCrab3, 1);
-SetFaction((CHARACTERGUID)_PirateCrab3, "Evil NPC");
-
-IF
-TimerFinished("PirateIsleCrab4")
-AND
-DB_IsPlayer(_Player)
-AND
-GetPosition(ITEMGUID_S_DC_CrabHole_cc759a49-4dac-41d5-ab73-a0d82b7bc787,_holeX, _holeY, _holeZ)
-AND
-CharacterCreateAtPosition(_holeX, _holeY, _holeZ, "CHARACTERGUID_DC_PirateCrab_Small_3f221530-3cce-4ea8-9889-24502581e3b9", 1, (CHARACTERGUID)_PirateCrab4)
-AND
-CharacterGetLevel((CHARACTERGUID)_Player,_LVL)
-THEN
-CharacterLevelUpTo((CHARACTERGUID)_PirateCrab4,_LVL);
-ProcCharacterMoveTo(_PirateCrab4, TRIGGERGUID_DC_CrabPoint_4_579424fe-b976-41b2-a721-5f18712e4f92, 1, "Crab4Arrived");
-DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab4);
-
-IF
-StoryEvent(_, "Crab4Arrived")
-AND
-DB_DC_PirateCrabs((CHARACTERGUID)_PirateCrab4)
-THEN
-DisplayText((CHARACTERGUID)_PirateCrab4, "Don't be shellfish, guys! Leave one for me too!");
-SetCanJoinCombat((CHARACTERGUID)_PirateCrab4, 1);
-SetFaction((CHARACTERGUID)_PirateCrab4, "Evil NPC");
+SetCanJoinCombat(CHARACTERGUID_DC_PirateCrab_Shelldon_493a8255-599c-497c-bdc1-8f85d96c22af, 1);
+SetCanJoinCombat(CHARACTERGUID_DC_PirateCrab_Seamore_70b34b76-2423-45d4-bf36-3bcab8e99dc9, 1);
+SetCanJoinCombat(CHARACTERGUID_DC_PirateCrab_Leonardo_eb58b5ac-bbdd-4563-ac25-9d1c8bce9c78, 1);
+SetFaction(CHARACTERGUID_DC_PirateCrab_Shelldon_493a8255-599c-497c-bdc1-8f85d96c22af, "Evil NPC");
+SetFaction(CHARACTERGUID_DC_PirateCrab_Seamore_70b34b76-2423-45d4-bf36-3bcab8e99dc9, "Evil NPC");
+SetFaction(CHARACTERGUID_DC_PirateCrab_Leonardo_eb58b5ac-bbdd-4563-ac25-9d1c8bce9c78, "Evil NPC");
 EXITSECTION
 
 ENDEXITSECTION

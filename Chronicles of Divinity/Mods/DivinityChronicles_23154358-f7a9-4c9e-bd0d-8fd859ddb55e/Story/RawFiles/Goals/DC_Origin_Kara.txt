@@ -1,0 +1,81 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CrackDoorPlanks(ITEMGUID_ARX_MoveablePlank_004_f2fe8418-712b-4c67-9f54-046078dd4165);
+DB_CrackDoorPlanks(ITEMGUID_ARX_MoveablePlank_005_225b4d02-9809-4a25-9712-bf7928497c97);
+KBSECTION
+IF
+CharacterUsedItem(_Player, ITEMGUID_S_TUT_LowerDeck_DoorToStairs_000_b18d5ea1-ec4c-44f4-9a3b-5b851d1d9b8b)
+AND
+CharacterIsPlayer(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0)
+THEN
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd);
+DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Origin_Kara_TUT");
+
+IF
+ObjectFlagSet("KaraRelationUp2", _, _)
+AND
+DB_IsPlayer(_Player)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, 2);
+ObjectClearFlag(_Player, "KaraRelationUp2");
+
+IF
+DialogEnded("Origin_Kara_TUT", _ID)
+AND
+GlobalGetFlag("TUT_KaraToCrack", 1)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_CrackRoomDoorPoint_dfaa1e02-9f66-45a8-81d0-ef2e27307188, 1, "KaraToCrackDoor");
+
+IF
+StoryEvent(_, "KaraToCrackDoor")
+AND
+DB_CrackDoorPlanks(_CrackDoorPlanks)
+AND
+ObjectIsInTrigger(_CrackDoorPlanks, TRIGGERGUID_DC_CrackDoorBox_b049c44e-9206-4685-8bee-36330dea68f1, 1)
+AND
+GetPosition(TRIGGERGUID_DC_CrackRoomBarricadePoint_60f43c07-2e30-4e1f-8d83-613fd56ab6aa, _X, _Y, _Z)
+THEN
+ItemDestroy((ITEMGUID)_CrackDoorPlanks);
+TimerLaunch("KaraOpenCrackDoor", 250);
+
+IF
+TimerFinished("KaraOpenCrackDoor")
+AND
+ItemIsClosed(ITEMGUID_S_DC_DoorToCrack_62d12db8-b51f-44c0-a2a2-b487151f480e, 1)
+THEN
+ItemOpen(ITEMGUID_S_DC_DoorToCrack_62d12db8-b51f-44c0-a2a2-b487151f480e);
+
+IF
+ItemOpened(ITEMGUID_S_DC_DoorToCrack_62d12db8-b51f-44c0-a2a2-b487151f480e)
+AND
+GlobalGetFlag("TUT_KaraToCrack", 1)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_KaraByPlanks_455a6458-cb5f-4660-aff0-84fb55b740f2, 1, "KaraToCrackPlanks");
+UnlockSecretRegion(TRIGGERGUID_DC_TUT_CrackRoom_5e307804-65cc-45ef-9f18-e8b1cca5c689);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_CrackTrigger_35dfc19d-10b0-4cf8-aab9-f7b1ef2def3c)
+THEN
+UnlockSecretRegion(TRIGGERGUID_DC_TUT_CrackRoom_5e307804-65cc-45ef-9f18-e8b1cca5c689);
+
+IF
+CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_CrackTrigger_35dfc19d-10b0-4cf8-aab9-f7b1ef2def3c)
+THEN
+UnlockSecretRegion(TRIGGERGUID_DC_TUT_CrackRoom_5e307804-65cc-45ef-9f18-e8b1cca5c689);
+
+IF
+StoryEvent(_, "KaraToCrackPlanks")
+THEN
+CharacterUseItem(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, ITEMGUID_S_DCCrackPlank4_d05a9e0c-5411-4e7f-8c96-96f3a1881b38, "");
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_S_DC_DoorToCrack_62d12db8-b51f-44c0-a2a2-b487151f480e)
+AND
+PartyGetFlag(_Player, "LiedToDaniel", 1)
+THEN
+UnlockSecretRegion(TRIGGERGUID_DC_TUT_CrackRoom_5e307804-65cc-45ef-9f18-e8b1cca5c689);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

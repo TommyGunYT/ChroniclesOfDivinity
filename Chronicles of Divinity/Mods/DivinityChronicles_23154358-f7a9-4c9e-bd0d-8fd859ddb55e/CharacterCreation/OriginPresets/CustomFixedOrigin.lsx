@@ -7,12 +7,14 @@
             <children>
                 <node id="OriginDesc">
                 	<attribute id="OriginDisplayName" value="Kara" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
-                    <attribute id="OriginName" value="MyOrigin" type="22" />
-                	<attribute id="OriginDescription" value="Generic description." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="OriginName" value="Kara" type="22" />
+                	<attribute id="OriginDescription" value="Sensitive to time distortions." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
                 	<attribute id="OriginLongDescription" value="Very long descritpion goes here." handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
-                    <attribute id="CharacterUUID" value="9bb6deac-e6c1-4759-bd2c-2aaa92435616" type="22" />
+                    <attribute id="CharacterUUID" value="bcf8286e-213c-438d-b622-b6e40add12dd" type="22" />
                     <attribute id="UserCanAlterTags" value="0" type="19" />
-                    <attribute id="SkillSet" value="Avatar_Generic" type="22" />
+					<attribute id="DefaultClass" value="Enchanter" type="22" />
+                    <attribute id="SkillSet" value="Avatar_Fane" type="22" />
+					<attribute id="PreviewEquipmentSet" value="Origin_Lohse" type="22" />
 
                 	<children>
                 		<node id="SupportedGenders">

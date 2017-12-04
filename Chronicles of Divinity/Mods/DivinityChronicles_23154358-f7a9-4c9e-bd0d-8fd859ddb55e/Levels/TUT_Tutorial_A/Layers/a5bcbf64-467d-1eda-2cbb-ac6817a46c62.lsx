@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1512341423" />
+    <version major="3" minor="1" revision="4" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="a5bcbf64-467d-1eda-2cbb-ac6817a46c62" type="31" />
+            <attribute id="Name" value="Chronicles of Divinity" type="23" />
+        </node>
+    </region>
+</save>

@@ -75,6 +75,8 @@ DisplayText(_Player,"What's that behind...?");
 IF
 CharacterUsedItem(_Player,ITEMGUID_S_DCCrackPlank1_1eaf8edd-3636-4e50-a4f1-670d07c59772)
 AND
+CharacterIsControlled(_Player, 1)
+AND
 GlobalGetFlag("TouchedTimeWornPlanks",0)
 THEN
 ApplyDamage(_Player,5,"Chaos");
@@ -82,6 +84,8 @@ GlobalSetFlag("TouchedTimeWornPlanks");
 
 IF
 CharacterUsedItem(_Player,ITEMGUID_S_DCCrackPlank2_3b0033f0-5806-4dcd-a9a0-bcae0a98b79c)
+AND
+CharacterIsControlled(_Player, 1)
 AND
 GlobalGetFlag("TouchedTimeWornPlanks",0)
 THEN
@@ -91,6 +95,8 @@ GlobalSetFlag("TouchedTimeWornPlanks");
 IF
 CharacterUsedItem(_Player,ITEMGUID_S_DCCrackPlank3_16e96ade-755b-42f5-aeb8-3aa549830042)
 AND
+CharacterIsControlled(_Player, 1)
+AND
 GlobalGetFlag("TouchedTimeWornPlanks",0)
 THEN
 ApplyDamage(_Player,5,"Chaos");
@@ -98,6 +104,8 @@ GlobalSetFlag("TouchedTimeWornPlanks");
 
 IF
 CharacterUsedItem(_Player,ITEMGUID_S_DCCrackPlank4_d05a9e0c-5411-4e7f-8c96-96f3a1881b38)
+AND
+CharacterIsControlled(_Player, 1)
 AND
 GlobalGetFlag("TouchedTimeWornPlanks",0)
 THEN
