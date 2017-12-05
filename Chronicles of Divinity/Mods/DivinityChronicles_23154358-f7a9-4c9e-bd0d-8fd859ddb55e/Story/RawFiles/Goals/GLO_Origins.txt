@@ -10,7 +10,7 @@ DB_OriginRecruitmentDialog(CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a
 DB_OriginRecruitmentDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f,"Ifan_Recruitment");
 DB_OriginRecruitmentDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978,"Beast_Recruitment");
 DB_OriginRecruitmentDialog(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb,"Fane_Recruitment");
-DB_OriginRecruitmentDialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_Recruitment");
+//DB_OriginRecruitmentDialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_Recruitment");
 
 // Override Origin-as-NPC dialog for a particular region. If none defined for the current region, the default is used
 DB_OriginRecruitmentDialog_Region("TUT_Tutorial_A",(CHARACTERGUID)CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c,"TUT_LowerDeck_OriginSebille");
@@ -19,7 +19,7 @@ DB_OriginRecruitmentDialog_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_RedPri
 DB_OriginRecruitmentDialog_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f,"");
 DB_OriginRecruitmentDialog_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978,"TUT_LowerDeck_OriginBeast");
 DB_OriginRecruitmentDialog_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb,"TUT_LowerDeck_OriginFane");
-DB_OriginRecruitmentDialog_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"TUT_LowerDeck_OriginKara");
+//DB_OriginRecruitmentDialog_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"TUT_LowerDeck_OriginKara");
 
 DB_OriginInPartyDialog((CHARACTERGUID)CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f,"RedPrince");
 DB_OriginInPartyDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c,"Sebille");
@@ -35,7 +35,7 @@ DB_OriginWarning1Dialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e
 DB_OriginWarning1Dialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f,"Ifan_Warning1");
 DB_OriginWarning1Dialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978,"Beast_Warning1");
 DB_OriginWarning1Dialog(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb,"Fane_Warning1");
-DB_OriginWarning1Dialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_Warning1");
+//DB_OriginWarning1Dialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_Warning1");
 
 DB_OriginWarning2Dialog((CHARACTERGUID)CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f,"RedPrince_Warning2");
 DB_OriginWarning2Dialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c,"Sebille_Warning2");
@@ -43,7 +43,7 @@ DB_OriginWarning2Dialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e
 DB_OriginWarning2Dialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f,"Ifan_Warning2");
 DB_OriginWarning2Dialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978,"Beast_Warning2");
 DB_OriginWarning2Dialog(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb,"Fane_Warning2");
-DB_OriginWarning2Dialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_Warning2");
+//DB_OriginWarning2Dialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_Warning2");
 
 DB_OriginLeavingDialog((CHARACTERGUID)CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f,"RedPrince_Leaving");
 DB_OriginLeavingDialog(CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c,"Sebille_Leaving");
@@ -51,7 +51,7 @@ DB_OriginLeavingDialog(CHARACTERGUID_S_Player_Lohse_bb932b13-8ebf-4ab4-aac0-83e6
 DB_OriginLeavingDialog(CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f,"Ifan_Leaving");
 DB_OriginLeavingDialog(CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978,"Beast_Leaving");
 DB_OriginLeavingDialog(CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb,"Fane_Leaving");
-DB_OriginLeavingDialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_Leaving");
+//DB_OriginLeavingDialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_Leaving");
 
 // DB_OriginRecruitmentLocation_Region format:
 //  Region, OriginCharacter, Location, behaviour script reaction 
@@ -63,7 +63,7 @@ DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Lohs
 DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f,S_TUT_Origin_Ifan_Start_Point_116a2f15-43ad-4ca8-9786-607a818f6abb,"State_Tutorial");
 DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978,S_TUT_Origin_Beast_Start_Point_e43a2fe3-bb04-4883-8ebf-1a3277e89ebb,"State_Tutorial");
 DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb,TRIGGERGUID_S_TUT_Origin_Fane_Start_Point_6b099337-511e-4e4b-bdc6-d98fbac599cf,"State_Tutorial");
-DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,TRIGGERGUID_S_TUT_Origin_Kara_Start_Point_d25d1528-6b89-47ee-9060-846d419c6288,"State_Tutorial");
+DB_OriginRecruitmentLocation_Region("TUT_Tutorial_A",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,TRIGGERGUID_S_TUT_Origin_Kara_Start_Point_d25d1528-6b89-47ee-9060-846d419c6288,"");
 
 // Fort Joy origin/recruitment points
 DB_OriginRecruitmentLocation_Region("FJ_FortJoy_Main",(CHARACTERGUID)CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c,(TRIGGERGUID)S_FTJ_Origin_SebilleDefault_Point_eefe4cdc-f44a-49c4-9a7a-f576a7a619a0,"State_FortJoy");
@@ -72,7 +72,7 @@ DB_OriginRecruitmentLocation_Region("FJ_FortJoy_Main",CHARACTERGUID_S_Player_Red
 DB_OriginRecruitmentLocation_Region("FJ_FortJoy_Main",CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f,TRIGGERGUID_S_FTJ_Origin_IfanDefault_Point_811d43e1-5c27-4d00-aedf-51b629ac9dc8,"State_FortJoy");
 DB_OriginRecruitmentLocation_Region("FJ_FortJoy_Main",CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978,TRIGGERGUID_S_FTJ_Origin_BeastDefault_Point_2e7e34e8-290a-433b-8e0c-90d8579e7303,"State_FortJoy");
 DB_OriginRecruitmentLocation_Region("FJ_FortJoy_Main",CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb,TRIGGERGUID_S_FTJ_Origin_FaneDefault_Point_f0023da8-dbf4-4ed9-95be-7d0cd1ce183e,"State_FortJoy");
-DB_OriginRecruitmentLocation_Region("FJ_FortJoy_Main",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,TRIGGERGUID_S_TUT_Origin_Kara_Start_Point_d25d1528-6b89-47ee-9060-846d419c6288,"State_Tutorial"); //DC NEED FIX
+//DB_OriginRecruitmentLocation_Region("FJ_FortJoy_Main",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,TRIGGERGUID_S_TUT_Origin_Kara_Start_Point_d25d1528-6b89-47ee-9060-846d419c6288,"State_Tutorial"); //DC NEED FIX
 
 //Shelter Rrecruitment Point (not a separate region)
 DB_OriginRecruitmentLocation_Region("__Shelter",(CHARACTERGUID)CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c,(TRIGGERGUID)TRIGGERGUID_S_FTJ_SW_Origin_SebilleRecruit_Point_29f28941-3e5a-476e-a337-ee0548b0c797,"State_Shelter");
@@ -81,7 +81,7 @@ DB_OriginRecruitmentLocation_Region("__Shelter",CHARACTERGUID_S_Player_Lohse_bb9
 DB_OriginRecruitmentLocation_Region("__Shelter",CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f,TRIGGERGUID_S_FTJ_SW_Origin_IfanRecruit_Point_bd1ebe86-9911-4cd0-965e-414016db6799,"State_Shelter");
 DB_OriginRecruitmentLocation_Region("__Shelter",CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978,TRIGGERGUID_S_FTJ_SW_Origin_BeastRecruit_Point_56f6eaa1-ffde-4c8c-b473-c276b5e0e83b,"State_Shelter");
 DB_OriginRecruitmentLocation_Region("__Shelter",CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb,TRIGGERGUID_S_FTJ_SW_Origin_FaneRecruit_Point_fe0dfb2d-c56f-4c03-adf5-f69fd91a959f,"State_Shelter");
-DB_OriginRecruitmentLocation_Region("__Shelter",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,TRIGGERGUID_S_TUT_Origin_Kara_Start_Point_d25d1528-6b89-47ee-9060-846d419c6288,"State_Tutorial"); //DC NEED FIX
+//DB_OriginRecruitmentLocation_Region("__Shelter",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,TRIGGERGUID_S_TUT_Origin_Kara_Start_Point_d25d1528-6b89-47ee-9060-846d419c6288,"State_Tutorial"); //DC NEED FIX
 
 //Lady Vengeance Recruitment Point (and any level after)
 DB_OriginRecruitmentLocation_Region("LV_HoE_Main",(CHARACTERGUID)CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c,(TRIGGERGUID)TRIGGERGUID_S_GLO_LV_SebilleRecruit_Point_f660527c-54c7-4261-a38d-d843a53e3276,"State_LadyVengeance");
@@ -90,7 +90,7 @@ DB_OriginRecruitmentLocation_Region("LV_HoE_Main",CHARACTERGUID_S_Player_Lohse_b
 DB_OriginRecruitmentLocation_Region("LV_HoE_Main",CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f,TRIGGERGUID_S_GLO_LV_IfanRecruit_Point_e00a315e-8ee3-4ce2-b52f-dae07a70af50,"State_LadyVengeance");
 DB_OriginRecruitmentLocation_Region("LV_HoE_Main",CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978,TRIGGERGUID_S_GLO_LV_BeastRecruit_Point_317b541d-c58d-48aa-b85b-7ef6fe580685,"State_LadyVengeance");
 DB_OriginRecruitmentLocation_Region("LV_HoE_Main",CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb,TRIGGERGUID_S_GLO_LV_FaneRecruit_Point_d7bc0df9-226c-4cdd-ad61-79a7e2c62e9a,"State_LadyVengeance");
-DB_OriginRecruitmentLocation_Region("LV_HoE_Main",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,TRIGGERGUID_S_TUT_Origin_Kara_Start_Point_d25d1528-6b89-47ee-9060-846d419c6288,"State_Tutorial"); //DC NEED FIX
+//DB_OriginRecruitmentLocation_Region("LV_HoE_Main",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,TRIGGERGUID_S_TUT_Origin_Kara_Start_Point_d25d1528-6b89-47ee-9060-846d419c6288,"State_Tutorial"); //DC NEED FIX
 
 DB_OriginRecruitmentLocation_Region("ARX_Endgame",(CHARACTERGUID)CHARACTERGUID_S_Player_Sebille_c8d55eaf-e4eb-466a-8f0d-6a9447b5b24c,(TRIGGERGUID)NULL_00000000-0000-0000-0000-000000000000,"");
 DB_OriginRecruitmentLocation_Region("ARX_Endgame",CHARACTERGUID_S_Player_RedPrince_a26a1efb-cdc8-4cf3-a7b2-b2f9544add6f,NULL_00000000-0000-0000-0000-000000000000,"");
@@ -98,7 +98,7 @@ DB_OriginRecruitmentLocation_Region("ARX_Endgame",CHARACTERGUID_S_Player_Lohse_b
 DB_OriginRecruitmentLocation_Region("ARX_Endgame",CHARACTERGUID_S_Player_Ifan_ad9a3327-4456-42a7-9bf4-7ad60cc9e54f,NULL_00000000-0000-0000-0000-000000000000,"");
 DB_OriginRecruitmentLocation_Region("ARX_Endgame",CHARACTERGUID_S_Player_Beast_f25ca124-a4d2-427b-af62-df66df41a978,NULL_00000000-0000-0000-0000-000000000000,"");
 DB_OriginRecruitmentLocation_Region("ARX_Endgame",CHARACTERGUID_S_Player_Fane_02a77f1f-872b-49ca-91ab-32098c443beb,NULL_00000000-0000-0000-0000-000000000000,"");
-DB_OriginRecruitmentLocation_Region("ARX_Endgame",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,TRIGGERGUID_S_TUT_Origin_Kara_Start_Point_d25d1528-6b89-47ee-9060-846d419c6288,"State_Tutorial"); //DC NEED FIX
+//DB_OriginRecruitmentLocation_Region("ARX_Endgame",CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,TRIGGERGUID_S_TUT_Origin_Kara_Start_Point_d25d1528-6b89-47ee-9060-846d419c6288,"State_Tutorial"); //DC NEED FIX
 
 
 DB_Origins_RecruitmenOnLVLevels("RC_Main");
