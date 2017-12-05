@@ -84,4 +84,4 @@ TeleportTo(_Player,TRIGGERGUID_DC_TP_TreeBridge_PointA_a0f50c14-a398-4f3a-817f-3
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "__Start"
+ParentTargetEdge "DC_Isles"

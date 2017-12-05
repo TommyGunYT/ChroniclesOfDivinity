@@ -17,4 +17,4 @@ KBSECTION
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "__Start"
+ParentTargetEdge "DC_Isles"

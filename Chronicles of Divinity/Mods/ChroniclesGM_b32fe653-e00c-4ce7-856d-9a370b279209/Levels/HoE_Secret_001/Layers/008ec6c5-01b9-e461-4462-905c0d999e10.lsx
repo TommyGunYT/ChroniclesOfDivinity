@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1506635563" />
+    <version major="3" minor="1" revision="3" build="1" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="008ec6c5-01b9-e461-4462-905c0d999e10" type="31" />
+            <attribute id="Name" value="Walls and terrain" type="23" />
+        </node>
+    </region>
+</save>

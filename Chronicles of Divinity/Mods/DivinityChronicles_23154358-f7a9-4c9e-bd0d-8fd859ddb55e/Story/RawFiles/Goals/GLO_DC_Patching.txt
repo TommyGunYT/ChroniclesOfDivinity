@@ -1,9 +1,0 @@
-Version 1
-SubGoalCombiner SGC_AND
-INITSECTION
-DB_ChroniclesOfDivinity_Version(1);
-KBSECTION
-
-EXITSECTION
-
-ENDEXITSECTION

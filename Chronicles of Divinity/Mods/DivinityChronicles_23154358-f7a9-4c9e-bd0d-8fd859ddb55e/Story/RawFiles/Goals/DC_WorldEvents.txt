@@ -138,7 +138,7 @@ DB_FuturePlayerClonesFane((CHARACTERGUID)_PlayerTwo);
 DB_CombatStored(_ID);
 
 IF
-CharacterReceivedDamage(CHARACTERGUID_DC_VoidCat_000_b25ab4ad-16c9-41ba-b84f-46fc039afcd1)
+CharacterReceivedDamage(CHARACTERGUID_DC_VoidCat_000_b25ab4ad-16c9-41ba-b84f-46fc039afcd1, _, _)
 AND
 CharacterGetHitpointsPercentage(CHARACTERGUID_DC_VoidCat_000_b25ab4ad-16c9-41ba-b84f-46fc039afcd1,_Percentage)
 AND

@@ -40,7 +40,7 @@ PlaySound(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4,"Creatur
 SetOnStage(CHARACTERGUID_DC_HoeStream_CustomBlue_5831c7a1-60c2-4ccc-87b2-6dc2b4a8cbf6,1);
 
 IF
-CharacterReceivedDamage(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4)
+CharacterReceivedDamage(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4, _, _)
 AND
 CharacterGetHitpointsPercentage(CHARACTERGUID_DC_VoidCat_3b96fa75-22e1-4410-bde5-0d469e18fae4,_Percentage)
 AND

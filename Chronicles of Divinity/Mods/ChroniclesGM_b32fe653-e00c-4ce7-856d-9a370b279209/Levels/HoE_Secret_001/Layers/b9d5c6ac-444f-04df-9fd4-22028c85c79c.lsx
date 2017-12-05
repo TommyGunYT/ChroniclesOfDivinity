@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1506638865" />
+    <version major="3" minor="1" revision="3" build="1" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="b9d5c6ac-444f-04df-9fd4-22028c85c79c" type="31" />
+            <attribute id="Name" value="Skydome" type="23" />
+        </node>
+    </region>
+</save>

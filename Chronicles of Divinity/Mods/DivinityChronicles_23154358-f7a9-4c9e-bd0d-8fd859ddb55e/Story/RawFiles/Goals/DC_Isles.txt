@@ -1,0 +1,20 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_CheckLevelStart("DC_FTJ_Isles");
+KBSECTION
+IF
+RegionStarted("DC_FTJ_Isles")
+THEN
+GoalCompleted;
+
+IF
+DB_CheckLevelStart("DC_FTJ_Isles")
+AND
+DB_CurrentLevel("DC_FTJ_Isles")
+THEN
+GoalCompleted;
+EXITSECTION
+NOT DB_CheckLevelStart("DC_FTJ_Isles");
+ENDEXITSECTION
+ParentTargetEdge "__Start"

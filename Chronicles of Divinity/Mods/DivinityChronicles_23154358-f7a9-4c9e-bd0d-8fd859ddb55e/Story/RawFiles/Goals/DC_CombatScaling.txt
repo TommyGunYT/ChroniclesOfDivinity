@@ -255,4 +255,4 @@ NOT DB_InRegion(_Player, _ScalingNPCCounterRegion);
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "__Start"
+ParentTargetEdge "DC_Isles"

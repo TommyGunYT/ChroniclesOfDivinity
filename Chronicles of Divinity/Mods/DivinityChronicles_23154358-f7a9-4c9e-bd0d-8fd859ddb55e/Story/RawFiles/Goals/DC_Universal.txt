@@ -5,6 +5,7 @@ INITSECTION
 //ApplyStatus(_Player,"QUEST_TIEDUP",-1.0);
 //CharacterSetAnimationOverride(_Player,"Tied_Up_01_Loop");
 // RS3_FX_SK_Soul_Ghosts_01 | GHOST EFFECT |
+// RS3_FX_SubEffects_KrakenRay_LightningArcs_01 (Environmental effect)
 //END_REGION
 KBSECTION
 //REGION DEBUG TOOL
