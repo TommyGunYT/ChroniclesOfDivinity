@@ -20,7 +20,7 @@ ItemTemplateAddTo("DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657",_Player,1
 IF
 CharacterUsedItemTemplate(_Player, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _)
 THEN
-PlaySound(_Player,"SE_Lohse_song_full_performance");
+Proc_StartDialog(0,"DC_DEBUG", _Player);
 
 IF
 CharacterUsedItemTemplate(_Player, "DC_BOOK_TutorialShip_TimeTravel_baec138a-3f8d-4252-8c22-a3c70f31a464", _)
@@ -116,6 +116,16 @@ THEN
 CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TP_FTJ_Isles_DragonIsland_7e24ada7-03ce-414e-9c3a-eb18c9c418f6,"");
 GlobalClearFlag("TP_Isles_DragonIsland");
 //END_REGION
+
+//REGION DEBUG Book
+IF
+GlobalFlagSet("DC_DEBUG_KaraToFTJ")
+AND
+CharacterIsControlled(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_Kara_StartPoint_9f4326f0-68c4-4aab-84de-0f412c8dd979);
+//END_REGION
+
 
 
 IF

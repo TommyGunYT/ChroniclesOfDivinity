@@ -1,7 +1,7 @@
 Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
-//DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Origin_Kara_TUT");
+DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Origin_Kara_TUT");
 KBSECTION
 //REGION STARTING FLOOR
 IF
@@ -95,29 +95,15 @@ GlobalGetFlag("DC_TUTRescueStart", 1)
 AND
 GetRandomPositionInTrigger(TRIGGERGUID_S_TUT_LowerDeck_VoidlingArena_7426287c-a87b-4f01-b5d6-7e0c189c8540, _VoidlingX, _VoidlingY, _VoidlingZ)
 AND
-CharacterCreateAtPosition(_VoidlingX, _VoidlingY, _VoidlingZ, "TUT_Creatures_Voidwoken_Hatchling_d3d153ae-4f4c-4d15-9082-2a8208831626", 0, _Voidling)
-THEN
-DB_NOOP(1);
-
-IF
-CombatStarted(_CombatID)
+GetRandomPositionInTrigger(TRIGGERGUID_S_TUT_LowerDeck_VoidlingArena_7426287c-a87b-4f01-b5d6-7e0c189c8540, _Voidling1, _Voidling2, _Voidling3)
 AND
-GlobalGetFlag("DC_TUTRescueStart", 1)
-AND
-GetRandomPositionInTrigger(TRIGGERGUID_S_TUT_LowerDeck_VoidlingArena_7426287c-a87b-4f01-b5d6-7e0c189c8540, _VoidlingX, _VoidlingY, _VoidlingZ)
+GetRandomPositionInTrigger(TRIGGERGUID_S_TUT_LowerDeck_VoidlingArena_7426287c-a87b-4f01-b5d6-7e0c189c8540, _VoidlingA, _VoidlingB, _VoidlingC)
 AND
 CharacterCreateAtPosition(_VoidlingX, _VoidlingY, _VoidlingZ, "TUT_Creatures_Voidwoken_Hatchling_d3d153ae-4f4c-4d15-9082-2a8208831626", 0, _Voidling)
-THEN
-DB_NOOP(1);
-
-IF
-CombatStarted(_CombatID)
 AND
-GlobalGetFlag("DC_TUTRescueStart", 1)
+CharacterCreateAtPosition(_Voidling1, _Voidling2, _Voidling3, "TUT_Creatures_Voidwoken_Hatchling_d3d153ae-4f4c-4d15-9082-2a8208831626", 0, _Voidling)
 AND
-GetRandomPositionInTrigger(TRIGGERGUID_S_TUT_LowerDeck_VoidlingArena_7426287c-a87b-4f01-b5d6-7e0c189c8540, _VoidlingX, _VoidlingY, _VoidlingZ)
-AND
-CharacterCreateAtPosition(_VoidlingX, _VoidlingY, _VoidlingZ, "TUT_Creatures_Voidwoken_Hatchling_d3d153ae-4f4c-4d15-9082-2a8208831626", 0, _Voidling)
+CharacterCreateAtPosition(_VoidlingA, _VoidlingB, _VoidlingC, "TUT_Creatures_Voidwoken_Hatchling_d3d153ae-4f4c-4d15-9082-2a8208831626", 0, _Voidling)
 THEN
 DB_NOOP(1);
 
@@ -133,63 +119,97 @@ AND
 CharacterIsDead(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0)
 THEN
 GlobalSetFlag("KaraSurvivedTUTRescue");
-ProcCharacterMoveToAndTalk(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, "Origin_Kara_TUT", 0, "", 1, 15.0);
-
-IF
-GlobalFlagSet("DC_TUTTimeMonster")
-AND
-DB_IsPlayer(_Player)
-AND
-GetPosition(TRIGGERGUID_DC_KaraByPlanks_455a6458-cb5f-4660-aff0-84fb55b740f2, _DX, _DY, _DZ)
-AND
-CharacterCreateAtPosition(_DX, _DY, _DZ, "CHARACTERGUID_DC_Distorted_Creature_485e275f-f435-42ab-a6c7-936cb36bd3ff", 1, _BossVoidling)
-AND
-PlayLoopEffect((CHARACTERGUID)_BossVoidling, "RS3_FX_GP_ScriptedEvent_IllusionOverlay_Platforms_01", "", _DistortTUTHandle)
-AND
-PlayLoopEffect((CHARACTERGUID)_BossVoidling, "RS3_FX_Char_Creatures_Head_Kraken_A_Feeler_Light_01", "", _DistortTUTHandle)
-AND
-PlayLoopEffect((CHARACTERGUID)_BossVoidling, "RS3_FX_GP_Status_Shocked_01", "", _DistortTUTHandle)
-THEN
-Proc_ShakeCameraForTime(_Player,2000);
-ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_Metal_A_001_f953662f-9154-4bf2-848e-23b0ef16aea6);
-ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_013_618d3285-2bd0-45df-a5fe-2482a89cd72c);
-ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_011_aaea47e7-6e1e-4be9-ae83-28d4300a8649);
-ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_012_80355997-b1a0-4e36-95bf-4bf3398c1ad8);
-PlayEffect(_BossVoidling, "RS3_FX_GP_ScriptedEvent_Beast_HatAppear_01");
-DB_TUTBossVoidling(_BossVoidling);
+NOT DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Origin_Kara_TUT");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd);
+DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Origin_Kara_TUT_Rescue");
+ProcCharacterMoveToAndTalk(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, "Origin_Kara_TUT_Rescue", 0, "", 1, 15.0);
 GlobalClearFlag("DC_TUTRescueStart");
 
 IF
 DialogEnded("Origin_Kara_TUT_Rescue", _ID)
 AND
-GlobalGetFlag("DC_TUTTimeMonster", 1)
+DB_IsPlayer(_Player)
 AND
-DB_TUTBossVoidling(_BossVoidling)
+GlobalGetFlag("TUT_FightDistortCreature", 0)
+AND
+GetPosition(TRIGGERGUID_DC_CrackRoomDoorPoint_dfaa1e02-9f66-45a8-81d0-ef2e27307188, _DX, _DY, _DZ)
+AND
+CharacterCreateAtPosition(_DX, _DY, _DZ, "CHARACTERGUID_DC_Distorted_Creature_485e275f-f435-42ab-a6c7-936cb36bd3ff", 1, _DCBossVoidling)
+AND
+PlayLoopEffect((CHARACTERGUID)_DCBossVoidling, "RS3_FX_GP_ScriptedEvent_IllusionOverlay_Platforms_01", "", _DistortTUTHandle)
+AND
+PlayLoopEffect((CHARACTERGUID)_DCBossVoidling, "RS3_FX_Char_Creatures_Head_Kraken_A_Feeler_Light_01", "", _DistortTUTHandle)
+AND
+PlayLoopEffect((CHARACTERGUID)_DCBossVoidling, "RS3_FX_GP_Status_Shocked_01", "", _DistortTUTHandle)
 THEN
-SetFaction((GUIDSTRING)_BossVoidling, "Evil NPC");
+Proc_ShakeCameraForTime(_Player,3000);
+ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_Metal_A_001_f953662f-9154-4bf2-848e-23b0ef16aea6);
+ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_013_618d3285-2bd0-45df-a5fe-2482a89cd72c);
+ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_011_aaea47e7-6e1e-4be9-ae83-28d4300a8649);
+ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_012_80355997-b1a0-4e36-95bf-4bf3398c1ad8);
+PlayEffect(_DCBossVoidling, "RS3_FX_GP_ScriptedEvent_Beast_HatAppear_01");
+GlobalClearFlag("DC_TUTRescueStart");
+SetFaction((GUIDSTRING)_DCBossVoidling, "Evil NPC");
+SetCanJoinCombat((GUIDSTRING)_DCBossVoidling, 1);
+EnterCombat((GUIDSTRING)_DCBossVoidling, _Player);
+DB_TUTBossVoidling(_DCBossVoidling);
 
 IF
-CharacterDying((CHARACTERGUID)_BossVoidling)
+CharacterDying(_DCBossVoidling)
 AND
 DB_IsPlayer(_Player)
 AND
-DB_TUTBossVoidling(_BossVoidling)
+DB_TUTBossVoidling(_DCBossVoidling)
+AND
+CharacterIsDead(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0)
 THEN
-PlayEffect((GUIDSTRING)_BossVoidling, "RS3_FX_GP_ScriptedEvent_Illusion_Death_01");
+PlayEffect((GUIDSTRING)_DCBossVoidling, "RS3_FX_GP_ScriptedEvent_Illusion_Death_01");
 PartySetFlag(_Player, "TUTKilledBossVoidling");
-PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd);
-//NOT DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Origin_Kara_TUT");
-DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Origin_Kara_TUT_Rescue");
 ProcCharacterMoveToAndTalk(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, "Origin_Kara_TUT_Rescue", 0, "", 1, 15.0);
 TimerLaunch("DistortedCreatureDyingTUT",  2000);
+GlobalSetFlag("TUT_FightDistortCreature");
 
 IF
 TimerFinished("DistortedCreatureDyingTUT")
 AND
-DB_TUTBossVoidling(_BossVoidling)
+DB_TUTBossVoidling(_DCBossVoidling)
 THEN
-SetOnStage((GUIDSTRING)_BossVoidling, 0);
+SetOnStage((GUIDSTRING)_DCBossVoidling, 0);
 
+IF
+DialogEnded("Origin_Kara_TUT_Rescue", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+GlobalGetFlag("TUT_Kara_BeatDistortion", 1)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, 0)
+THEN
+SetHasDialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0);
+CharacterSetReactionPriority(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "AutomatedDialog_Interrupt", 0);
+CharacterSetForceSynch(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 1);
+CharacterSetForceUpdate(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 1);
+ProcCharacterMoveTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_StorageGuardDaniel_Siwan_Disappear_848b8e5c-39aa-465c-9863-08a1fd2ea4a7, 1, "TUT_KaraEscapeShip");
+GlobalClearFlag("TUT_FightDistortCreature");
+
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_StairDisappear_8abce54c-2d98-4634-a695-393153d7498c)
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, 0)
+AND
+CharacterIsControlled(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0)
+THEN
+Proc_KaraToFTJ();
+
+PROC
+Proc_KaraToFTJ()
+AND
+CharacterIsControlled(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_Kara_StartPoint_9f4326f0-68c4-4aab-84de-0f412c8dd979);
 //END_REGION
 EXITSECTION
 

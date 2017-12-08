@@ -9,6 +9,7 @@ DB_DC_ResetFlag("MS_ResetMonsterDifficulty");
 DB_DC_ToggleFlag("MS_ToggleMonsterDifficulty");
 DB_DC_GaveItem(0);
 // DC_ScalingTag
+
 DB_ScalingAreaTriggers(TRIGGERGUID_DC_DBTestTrigger_d8ee2108-cd8d-4760-b9c6-c208c097eb5f);
 KBSECTION
 //REGION SCALING SETUP
@@ -255,4 +256,4 @@ NOT DB_InRegion(_Player, _ScalingNPCCounterRegion);
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "DC_Isles"
+ParentTargetEdge "__Start"

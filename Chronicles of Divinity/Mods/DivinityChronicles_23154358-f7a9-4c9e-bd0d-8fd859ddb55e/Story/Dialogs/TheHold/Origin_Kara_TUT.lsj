@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1512427110,
+         "time" : 1512673509,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -4679,9 +4679,9 @@
                                                 "TagText" : {
                                                    "handle" : "ls::TranslatedStringRepository::s_HandleUnknown",
                                                    "type" : 28,
-                                                   "value" : "She waggels her eyebrows at you, a slight smile sneaking up her cheek."
+                                                   "value" : "She waggles her eyebrows at you, a slight smile sneaking up her cheek."
                                                 },
-                                                "stub" : {"type" : 19, "value" : 0}
+                                                "stub" : {"type" : 19, "value" : 1}
                                              }
                                           ]
                                        }

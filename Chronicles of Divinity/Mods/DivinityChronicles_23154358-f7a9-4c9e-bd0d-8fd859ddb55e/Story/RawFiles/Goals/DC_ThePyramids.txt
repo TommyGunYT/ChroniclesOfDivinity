@@ -27,4 +27,4 @@ ObjectSetFlag(_player,"QuestUpdate_DCPyramids_UsefulTools");
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "DC_FortMisery"
+ParentTargetEdge "__Start"

@@ -149,4 +149,4 @@ CharacterAddSourcePoints(_Player,1);
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "DC_FortMisery"
+ParentTargetEdge "__Start"
