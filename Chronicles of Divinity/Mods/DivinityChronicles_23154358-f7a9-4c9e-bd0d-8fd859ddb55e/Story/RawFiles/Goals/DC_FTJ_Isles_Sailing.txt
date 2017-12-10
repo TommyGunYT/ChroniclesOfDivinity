@@ -3,12 +3,12 @@ SubGoalCombiner SGC_AND
 INITSECTION
 //SetOnStage(Boat on Fort Joy with Brandon),1)
 SetOnStage(ITEMGUID_S_DC_BoardingBoat_ShrineIsle_db06b8de-0f6e-45b1-9774-dbbfb205a21c,1); //Launch: Make 0
-SetOnStage(ITEMGUID_S_DC_BoardingBoat_DragonIsle_46af6441-3529-4f1d-bdd2-f1854ccd1ebf,1);
-SetOnStage(ITEMGUID_S_DC_BoardingBoat_PirateIsle_d01adccc-23c0-40e1-8993-7eda1cda6f11,1);
-SetOnStage(ITEMGUID_S_DC_BoardingBoat_SeekerIsle_0a1ebbd5-d914-4bfc-aad9-fce0daabf4b1,1);
-SetOnStage(ITEMGUID_S_DC_BoardingBoat_HandsomeIsle_d8ca18d3-c57e-454e-a2b9-4835dbc8d25a,1);
-SetOnStage(ITEMGUID_S_DC_BoardingBoat_WaveDancer_b6f1f853-587a-4382-9410-48a2382a3633,1);
-SetOnStage(ITEMGUID_S_DC_BoardingBoat_SecretAltarEntrance_ad8224a2-d00d-45c4-8927-30751db53978,1);
+SetOnStage(ITEMGUID_S_DC_BoardingBoat_DragonIsle_46af6441-3529-4f1d-bdd2-f1854ccd1ebf,0);
+SetOnStage(ITEMGUID_S_DC_BoardingBoat_PirateIsle_d01adccc-23c0-40e1-8993-7eda1cda6f11,0);
+SetOnStage(ITEMGUID_S_DC_BoardingBoat_SeekerIsle_0a1ebbd5-d914-4bfc-aad9-fce0daabf4b1,0);
+SetOnStage(ITEMGUID_S_DC_BoardingBoat_HandsomeIsle_d8ca18d3-c57e-454e-a2b9-4835dbc8d25a,0);
+SetOnStage(ITEMGUID_S_DC_BoardingBoat_WaveDancer_b6f1f853-587a-4382-9410-48a2382a3633,0);
+SetOnStage(ITEMGUID_S_DC_BoardingBoat_SecretAltarEntrance_ad8224a2-d00d-45c4-8927-30751db53978,0);
 
 
 
@@ -74,13 +74,32 @@ SetOnStage((CHARACTERGUID)_PlayerShip,1);
 CharacterMakePlayer((CHARACTERGUID)_PlayerShip);
 CharacterAddToParty((CHARACTERGUID)_PlayerShip,(CHARACTERGUID)_Player);
 MakePlayerActive((CHARACTERGUID)_PlayerShip);
-TeleportTo((CHARACTERGUID)_Player,TRIGGERGUID_DC_TP_PlayerBoat_LowerDeck_ab21c5b5-c251-4415-935b-8bc31e3c6679);
+TeleportTo((CHARACTERGUID)_Player, TRIGGERGUID_DC_TP_PlayerBoat_LowerDeck_ab21c5b5-c251-4415-935b-8bc31e3c6679);
 CharacterRemoveFromParty((CHARACTERGUID)_Player);
 SetCameraDistanceOverride(85.0);
+CharacterAddSkill((CHARACTERGUID)_PlayerShip,"Shout_GoToLowerDeck");
 GlobalSetFlag("PlayerIsBoat");
+SetTag((CHARACTERGUID)_PlayerShip, "PlayerSailor");
 DB_ShipOwner((CHARACTERGUID)_Player);
 DB_IsPlayer((CHARACTERGUID)_PlayerShip);
-CharacterAddSkill((CHARACTERGUID)_PlayerShip,"Shout_GoToLowerDeck");
+Proc_DCPlayersToLowerDeck();
+
+PROC
+Proc_DCPlayersToLowerDeck()
+AND
+DB_IsPlayer(_PartyPlayer)
+AND
+DB_IsPlayer((CHARACTERGUID)_PlayerShip)
+AND
+DB_DCBoatAgency(_DockLoc, _DockShip, _PlayerShipStart, _LandingStart, _LandCam)
+AND
+ObjectIsInTrigger(_PartyPlayer, (TRIGGERGUID)_DockLoc, 1)
+AND
+IsTagged(_PartyPlayer, "PlayerSailor", 0)
+THEN
+TeleportTo((CHARACTERGUID)_PartyPlayer, TRIGGERGUID_DC_TP_PlayerBoat_LowerDeck_ab21c5b5-c251-4415-935b-8bc31e3c6679);
+CharacterRemoveFromParty((CHARACTERGUID)_PartyPlayer);
+DB_DCDeckPartyCharacters((CHARACTERGUID)_PartyPlayer);
 
 IF
 CharacterUsedSkill(_Ship,"Shout_Docking","")
@@ -93,24 +112,33 @@ DB_DCBoatAgency(_DockLoc, _DockShip, _PlayerShipStart, _LandingStart, _LandCam)
 AND
 DB_IsPlayer(_Player)
 AND
+DB_DCDeckPartyCharacters((CHARACTERGUID)_PartyPlayer)
+AND
 ObjectIsInTrigger(_PlayerShip, (TRIGGERGUID)_DockLoc, 1)
 AND
 CharacterGetReservedUserID((CHARACTERGUID)_Player, _User)
 THEN
-TeleportTo((CHARACTERGUID)_Player,_LandingStart);
+TeleportTo((CHARACTERGUID)_Player, _LandingStart);
+TeleportTo((CHARACTERGUID)_PartyPlayer, _LandingStart);
 CharacterMakePlayer((CHARACTERGUID)_Player);
 CharacterAddToParty((CHARACTERGUID)_Player,_Ship);
-MakePlayerActive((CHARACTERGUID)_Player);
+TeleportTo((CHARACTERGUID)_Player, _LandingStart);
+CharacterMakePlayer((CHARACTERGUID)_PartyPlayer);
+CharacterAddToParty((CHARACTERGUID)_PartyPlayer,_Ship);
+MakePlayerActive((CHARACTERGUID)_PartyPlayer);
 CharacterAssignToUser(_User, (CHARACTERGUID)_Player);
+CharacterAssignToUser(_User, (CHARACTERGUID)_PartyPlayer);
 SetCameraDistanceOverride(20.0);
-GlobalClearFlag("PlayerIsBoat");
 CharacterRemoveSkill(_Ship,"Shout_GoToLowerDeck");
 CharacterRemoveFromParty(_Ship);
 SetOnStage(_Ship,0);
 CameraActivate(_Player,_LandCam,0.0,0,0,0);
 NOT DB_ShipOwner((CHARACTERGUID)_Player);
 NOT DB_IsPlayer((CHARACTERGUID)_PlayerShip);
+NOT DB_DCDeckPartyCharacters((CHARACTERGUID)_PartyPlayer);
 GlobalSetFlag("DC_ShowDockedBoats");
+GlobalClearFlag("PlayerIsBoat");
+ClearTag((CHARACTERGUID)_PlayerShip, "PlayerSailor");
 
 //REGION DOCKING SPELL
 IF
@@ -150,6 +178,8 @@ DB_DCBoatAgency(_DockLoc, _DockShip, _PlayerShipStart, _LandingStart, _LandCam)
 AND
 DB_IsPlayer(_Player)
 AND
+DB_DCDeckPartyCharacters((CHARACTERGUID)_PartyPlayer)
+AND
 GlobalGetFlag("PlayerIsBoat",1)
 AND
 CharacterGetReservedUserID((CHARACTERGUID)_Player, _User)
@@ -159,6 +189,7 @@ THEN
 CharacterRemoveSkill(_Player,"Shout_Docking");
 CharacterMakePlayer((CHARACTERGUID)_Player);
 CharacterAddToParty((CHARACTERGUID)_Player,_Ship);
+CharacterAddToParty((CHARACTERGUID)_PartyPlayer,_Ship);
 MakePlayerActive((CHARACTERGUID)_Player);
 CharacterAssignToUser(_User, (CHARACTERGUID)_Player);
 SetCameraDistanceOverride(20.0);
@@ -167,18 +198,27 @@ CameraActivate(_Player,"DC_Cam_LowerDeck",0.0,0,0,0);
 DB_ShipLocation(_ShipX,_ShipY,_ShipZ);
 NOT DB_ShipOwner((CHARACTERGUID)_Player);
 NOT DB_IsPlayer((CHARACTERGUID)_PlayerShip);
+GlobalClearFlag("PlayerIsBoat");
 
 //Stairs to go back up to top deck
 IF
-CharacterUsedItem(_Ship,ITEMGUID_DC_PlayerBoat_LowerDeck_Stairs_DC_PlayerBoat_LowerDeck_000_b79df65c-028b-8403-55bb-8e90a3ddba59)
+CharacterUsedItem(_Player, ITEMGUID_DC_PlayerBoat_LowerDeck_Stairs_DC_PlayerBoat_LowerDeck_000_b79df65c-028b-8403-55bb-8e90a3ddba59)
+AND
+DB_IsPlayer(_Player)
 AND
 DB_DCPlayerBoat(_PlayerShip)
 AND
 DB_DCBoatAgency(_DockLoc, _DockShip, _PlayerShipStart, _LandingStart, _LandCam)
 AND
-DB_IsPlayer(_Player)
-AND
 DB_ShipLocation(_ShipX,_ShipY,_ShipZ)
+AND
+DB_DCDeckPartyCharacters((CHARACTERGUID)_PartyPlayer)
+AND
+GlobalGetFlag("PlayerIsBoat", 0)
+AND
+CharacterIsInPartyWith((CHARACTERGUID)_PlayerShip, _Player, 0)
+AND
+ObjectIsInTrigger(_PartyPlayer, TRIGGERGUID_DC_PlayerBoat_LowerDecks_Check_2bbdf693-8636-4bbd-9f47-6338233a6c17, 1)
 THEN
 TeleportToPosition((CHARACTERGUID)_PlayerShip,_ShipX,_ShipY,_ShipZ,"",0);
 SetOnStage((CHARACTERGUID)_PlayerShip,1);
@@ -187,14 +227,20 @@ CharacterAddToParty((CHARACTERGUID)_PlayerShip,(CHARACTERGUID)_Player);
 MakePlayerActive((CHARACTERGUID)_PlayerShip);
 TeleportTo((CHARACTERGUID)_Player,TRIGGERGUID_DC_TP_PlayerBoat_LowerDeck_ab21c5b5-c251-4415-935b-8bc31e3c6679);
 CharacterRemoveFromParty((CHARACTERGUID)_Player);
+CharacterRemoveFromParty((CHARACTERGUID)_PartyPlayer);
 SetCameraDistanceOverride(85.0);
 DB_ShipOwner((CHARACTERGUID)_Player);
 DB_IsPlayer((CHARACTERGUID)_PlayerShip);
 NOT DB_ShipLocation(_ShipX,_ShipY,_ShipZ);
+GlobalSetFlag("PlayerIsBoat");
 //END_REGION
 
-
-
+IF
+CharacterUsedItem(_Player, ITEMGUID_DC_PlayerBoat_LowerDeck_Stairs_DC_PlayerBoat_LowerDeck_000_b79df65c-028b-8403-55bb-8e90a3ddba59)
+AND
+GlobalGetFlag("PlayerIsBoat", 1)
+THEN
+DisplayText(_Player, "I shouldn't disturb the captain.");
 
 
 //REGION DOCKING BOAT VISIBILITY

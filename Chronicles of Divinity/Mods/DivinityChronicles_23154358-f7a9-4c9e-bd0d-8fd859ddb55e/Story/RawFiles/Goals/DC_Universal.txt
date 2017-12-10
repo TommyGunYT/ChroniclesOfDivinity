@@ -7,6 +7,7 @@ INITSECTION
 // RS3_FX_SK_Soul_Ghosts_01 | GHOST EFFECT |
 // RS3_FX_SubEffects_KrakenRay_LightningArcs_01 (Environmental effect)
 //END_REGION
+DB_DCCompanionTemps(CHARACTERGUID_DC_NPC_Icara_001_ac205041-f93f-4e4d-babf-6db6bd588e15);
 KBSECTION
 //REGION DEBUG TOOL
 IF
@@ -176,6 +177,33 @@ CharacterDie(_RNDRabbit,0,"Explode");
 PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Lightning_Vertical_01",_rX,_rY,_rZ);
 UnlockSecretRegion(TRIGGERGUID_SecretRegionTrigger_000_117f85c7-0f28-4636-a01b-5c3ddb614853);
 NOT DB_BoomRabbits(_RNDRabbit);
+
+IF
+CharacterUsedItem(_Player,ITEMGUID_PUZ_Lever_Floor_D_000_b51595f4-9e2f-446b-9822-5cc6ff810a88)
+AND
+DB_DCCompanionTemps(_tempcompanion)
+THEN
+Proc_AssignNpcToPlayer((CHARACTERGUID)_player, (CHARACTERGUID)_tempcompanion);
+
+
+PROC
+Proc_AssignNpcToPlayer((CHARACTERGUID)_player, (CHARACTERGUID)_tempcompanion)
+AND
+DB_DCCompanionTemps(_tempcompanion)
+AND
+CharacterGetReservedUserID((CHARACTERGUID)_player, _user)
+THEN
+ProcRemoveAllDialogEntriesForSpeaker(_tempcompanion);
+CharacterMakePlayer(_tempcompanion, _player);
+DB_IsPlayer(_tempcompanion);
+CharacterAssignToUser(_user, (CHARACTERGUID)_tempcompanion);
+
+PROC
+Proc_AssignNpcToPlayer((CHARACTERGUID)_player, (CHARACTERGUID)_tempcompanion)
+AND
+DB_DCCompanionTemps(_tempcompanion)
+THEN
+CharacterAddToParty(_tempcompanion, _player);
 EXITSECTION
 
 ENDEXITSECTION

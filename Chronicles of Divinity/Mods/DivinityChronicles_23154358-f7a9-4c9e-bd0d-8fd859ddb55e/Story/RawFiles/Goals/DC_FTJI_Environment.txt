@@ -3,6 +3,9 @@ SubGoalCombiner SGC_AND
 INITSECTION
 SetOnStage(ITEMGUID_DC_FTJI_TreeBridge_Fallen_dc128f39-4c80-400b-afaa-9d46d8ac996a,0);
 SetOnStage(ITEMGUID_DC_FTJI_TreeBridge_Stump_930431fc-f9c1-4305-8e03-27aefec94c6e,0);
+
+DB_Dialogs(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182,"FTJI_StrandedSquirrel");
+DB_Dialogs(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73,"FTJI_StrandedSquirrel");
 KBSECTION
 //REGION CHOP TREE BRIDGE
 IF
@@ -36,16 +39,7 @@ UserGetFlag((CHARACTERGUID)_Player,"EquippedLumberAxe",1)
 THEN
 DisplayText(_Player,"Chopping tree!");
 ItemDestroy(ITEMGUID_DC_NAT_TreePine_Big_Standing_057a5562-f78f-4aa6-abaa-409f1574c2fb);
-//END_REGION
 
-//REGION TELEPORTS
-
-//Wavedancer Top Deck
-IF
-CharacterUsedItem(_Player,ITEMGUID_TOOL_Ladder_6H_B_000_2ea89052-f075-44b5-bf16-ITEMGUID_TOOL_Ladder_6H_B_000_2ea89052-f075-44b5-bf16-299b72a5fc39)
-THEN
-TeleportTo(_Player,TRIGGERGUID_DC_TP_ShrineIsle_WaveDancer_MiddleDeck_Up_217d567b-d254-41e6-a859-9b7ade75579d);
-//END_REGION
 
 IF
 CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_TRIG_TreeBridge_PointA_d7607d71-3d4b-4b44-8ab2-74ff110f0b6b)
@@ -81,6 +75,65 @@ AND
 UserGetFlag((CHARACTERGUID)_Player,"BridgePointB",0)
 THEN
 TeleportTo(_Player,TRIGGERGUID_DC_TP_TreeBridge_PointA_a0f50c14-a398-4f3a-817f-3f791e39dcf3);
+//END_REGION
+
+//REGION TELEPORTS
+
+//Wavedancer Top Deck
+IF
+CharacterUsedItem(_Player,ITEMGUID_TOOL_Ladder_6H_B_000_2ea89052-f075-44b5-bf16-ITEMGUID_TOOL_Ladder_6H_B_000_2ea89052-f075-44b5-bf16-299b72a5fc39)
+THEN
+TeleportTo(_Player,TRIGGERGUID_DC_TP_ShrineIsle_WaveDancer_MiddleDeck_Up_217d567b-d254-41e6-a859-9b7ade75579d);
+//END_REGION
+
+//REGION STRANDED SQUIRREL
+
+IF
+DialogStarted("FTJI_StrandedSquirrel", _ID)
+AND
+DB_IsPlayer(_Player)
+THEN
+DialogAddCharacter(_ID, CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182);
+DialogAddCharacter(_ID, CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73);
+DialogAddCharacter(_ID, _Player);
+
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182, TRIGGERGUID_DC_StrandedSquirrelsArea_20ca2f52-b0fe-4c15-874c-ccb47c876c4f)
+AND
+DB_IsPlayer(_Player)
+THEN
+PartySetFlag(_Player, "SavedStrandedSquirrel");
+GlobalSetFlag("SavedStrandedSquirrel");
+ProcCharacterMoveToAndTalk(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182, _Player,"FTJI_StrandedSquirrel",0,"",0,10.0);
+
+IF
+DialogEnded("FTJI_StrandedSquirrel", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+PartyGetFlag(_Player, "SavedStrandedSquirrel", 1)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182, TRIGGERGUID_DC_SquirrelHole_116036c2-d492-450f-94eb-f9cb2a431028, 1, "DC_Squirrel1Arrives");
+ProcCharacterMoveTo(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73, TRIGGERGUID_DC_SquirrelHole_116036c2-d492-450f-94eb-f9cb2a431028, 1, "DC_Squirrel2Arrives");
+
+IF
+StoryEvent(_, "DC_Squirrel1Arrives")
+AND
+GetPosition(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182, _X, _Y, _Z)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Digging_DirtThrown_01", _X, _Y, _Z);
+SetOnStage(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182, 0);
+
+IF
+StoryEvent(_, "DC_Squirrel2Arrives")
+AND
+GetPosition(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73, _X, _Y, _Z)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Digging_DirtThrown_01", _X, _Y, _Z);
+SetOnStage(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73, 0);
+
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION
