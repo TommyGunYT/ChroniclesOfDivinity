@@ -11,7 +11,13 @@ DB_DC_GaveItem(0);
 // DC_ScalingTag
 
 DB_ScalingAreaTriggers(TRIGGERGUID_DC_DBTestTrigger_d8ee2108-cd8d-4760-b9c6-c208c097eb5f);
+DB_ScalingAreaTriggers(TRIGGERGUID_DC_ScalingRegion_FortJoyStartBeach_c14b8cdb-88ad-4519-beb5-61f1b6dd0678);
+DB_ScalingAreaTriggers(TRIGGERGUID_DC_ScalingRegion_FortJoySubAreas_dcd0900f-5896-44ca-af8d-e606db7e3894);
+
+GlobalSetFlag("MS_ToggleMonsterDifficulty");
 KBSECTION
+//REGION SETUP
+
 //REGION SCALING SETUP
 PROC
 	PROC_DC_GiveBook()
@@ -181,32 +187,69 @@ THEN
 //END_REGION
 
 IF
-	ObjectEnteredCombat((CHARACTERGUID)_Character, _)
+ObjectEnteredCombat((CHARACTERGUID)_Character, _)
 AND
-	DB_DC_ScalingEnabled(1)
+DB_DC_ScalingEnabled(1)
 AND
-	NOT DB_IsPlayer(_Character)
+NOT DB_IsPlayer(_Character)
 AND
-	CharacterGetLevel(_Character, _Level)
+CharacterGetLevel(_Character, _Level)
 AND
-	DB_DC_HighestLevel("HighestLevel", _, _, _HighestLevel)
+DB_DC_HighestLevel("HighestLevel", _, _, _HighestLevel)
 AND
-	_Level < _HighestLevel
+GlobalGetFlag("DC_ThisFlagDoesntExistSoFeelsBadMan", 1)
 AND
-	IsTagged(_Character, "DC_ScalingOverride", 0)
+_Level < _HighestLevel
 AND
-	IsTagged(_Character, "SQUIRREL", 0)
+IsTagged(_Character, "DC_ScalingOverride", 0)
+AND
+IsTagged(_Character, "SQUIRREL", 0)
 THEN
-	CharacterLevelUpTo(_Character, _HighestLevel);
+CharacterLevelUpTo(_Character, _HighestLevel);
 
 IF
 CharacterEnteredTrigger(_DCNPC, _ScalingNPCCounterRegion)
-//AND
-//NOT DB_IsPlayer(_DCNPC)
+AND
+NOT DB_IsPlayer(_DCNPC)
 AND
 DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
 THEN
 DB_InRegion(_DCNPC, _ScalingNPCCounterRegion);
+
+IF
+CharacterLeftTrigger(_DCNPC, _ScalingNPCCounterRegion)
+AND
+DB_InRegion(_DCNPC, _ScalingNPCCounterRegion)
+AND
+DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
+THEN
+NOT DB_InRegion(_DCNPC, _ScalingNPCCounterRegion);
+
+IF
+CharacterLeftTrigger(_Player, _ScalingNPCCounterRegion)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_InRegion(_DCNPC, _ScalingNPCCounterRegion)
+AND
+DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
+AND
+NOT DB_IsPlayer(_DCNPC)
+AND
+IsTagged(_DCNPC, "DC_ScalingOverride", 0)
+AND
+CharacterGetLevel(_DCNPC, _Level)
+AND
+CharacterIsInCombat(_DCNPC, 0)
+AND
+CharacterCanSee(_Player, _DCNPC, 0)
+AND
+DB_DC_HighestLevel("HighestLevel", _, _, _HighestLevel)
+AND
+_Level < _HighestLevel
+THEN
+CharacterLevelUpTo(_DCNPC, _HighestLevel);
+
 
 IF
 CharacterEnteredTrigger(_Player, _ScalingNPCCounterRegion)
@@ -223,12 +266,16 @@ AND
 DB_InRegion(_DCNPC, _ScalingNPCCounterRegion)
 AND
 NOT DB_IsPlayer(_DCNPC)
-//AND
-//IsTagged(_DCNPC, "DC_ScalingTag", 1)
+AND
+IsTagged(_DCNPC, "DC_ScalingOverride", 0)
 AND
 DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
 AND
-CharacterGetLevel(_Player, _Level)
+CharacterGetLevel(_DCNPC, _Level)
+AND
+CharacterIsInCombat(_DCNPC, 0)
+AND
+CharacterCanSee(_Player, _DCNPC, 0)
 AND
 DB_DC_HighestLevel("HighestLevel", _, _, _HighestLevel)
 AND
@@ -236,23 +283,66 @@ _Level < _HighestLevel
 THEN
 CharacterLevelUpTo(_DCNPC, _HighestLevel);
 
+//END_REGION
+
+//REGION Level Up Reactions
+
 IF
-CharacterLeftTrigger(_DCNPC, _ScalingNPCCounterRegion)
+CharacterLeveledUp(_Player)
+//CharacterUsedItem((CHARACTERGUID)_Player, ITEMGUID_PUZ_Lever_Floor_E_001_f8bb9015-4e2a-4a1b-9729-43ae5a070946)
+AND
+DB_IsPlayer(_Player)
 AND
 DB_InRegion(_DCNPC, _ScalingNPCCounterRegion)
 AND
+NOT DB_IsPlayer(_DCNPC)
+AND
+IsTagged(_DCNPC, "DC_ScalingOverride", 0)
+AND
 DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
+AND
+CharacterIsInCombat(_DCNPC, 0)
+AND
+CharacterCanSee(_Player, _DCNPC, 0)
+AND
+CharacterGetLevel(_DCNPC, _Level)
+AND
+DB_DC_HighestLevel("HighestLevel", _, _, _HighestLevel)
+AND
+_Level < _HighestLevel
 THEN
-NOT DB_InRegion(_DCNPC, _ScalingNPCCounterRegion);
+CharacterLevelUpTo(_DCNPC, _HighestLevel);
+Proc_DC_LevelScaling_GenericBoss();
 
-IF
-CharacterLeftTrigger(_Player, _ScalingNPCCounterRegion)
+PROC
+Proc_DC_LevelScaling_GenericBoss()
 AND
-DB_InRegion(_Player, _ScalingNPCCounterRegion)
+DB_IsPlayer(_Player)
+AND
+DB_InRegion(_DCNPC, _ScalingNPCCounterRegion)
+AND
+NOT DB_IsPlayer(_DCNPC)
 AND
 DB_ScalingAreaTriggers(_ScalingNPCCounterRegion)
+AND
+CharacterIsInCombat(_DCNPC, 0)
+AND
+CharacterCanSee(_Player, _DCNPC, 0)
+AND
+IsTagged(_DCNPC, "DC_ScalingOverride", 1)
+AND
+IsTagged(_DCNPC, "DC_BOSS", 1)
+AND
+CharacterGetLevel(_DCNPC, _Level)
+AND
+DB_DC_HighestLevel("HighestLevel", _, _, _HighestLevel)
+AND
+_Level < _HighestLevel
+AND
+IntegerSum(_HighestLevel, 1, _NewHighestLevel)
 THEN
-NOT DB_InRegion(_Player, _ScalingNPCCounterRegion);
+CharacterLevelUpTo(_DCNPC, _NewHighestLevel);
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

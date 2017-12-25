@@ -205,7 +205,14 @@ THEN
 Proc_KaraToFTJ();
 
 PROC
+ProcRegionEnded("TUT_Tutorial_A")
+THEN
+Proc_KaraToFTJ();
+
+PROC
 Proc_KaraToFTJ()
+AND
+NOT DB_IsPlayer(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd)
 AND
 CharacterIsControlled(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0)
 THEN

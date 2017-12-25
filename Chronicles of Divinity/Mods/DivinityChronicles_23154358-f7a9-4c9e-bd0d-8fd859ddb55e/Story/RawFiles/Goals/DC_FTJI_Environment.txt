@@ -4,8 +4,9 @@ INITSECTION
 SetOnStage(ITEMGUID_DC_FTJI_TreeBridge_Fallen_dc128f39-4c80-400b-afaa-9d46d8ac996a,0);
 SetOnStage(ITEMGUID_DC_FTJI_TreeBridge_Stump_930431fc-f9c1-4305-8e03-27aefec94c6e,0);
 
-DB_Dialogs(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182,"FTJI_StrandedSquirrel");
-DB_Dialogs(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73,"FTJI_StrandedSquirrel");
+Proc_FTJI_FX_INIT();
+//DB_Dialogs(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182,"FTJI_StrandedSquirrel");
+//DB_Dialogs(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73,"FTJI_StrandedSquirrel");
 KBSECTION
 //REGION CHOP TREE BRIDGE
 IF
@@ -88,14 +89,14 @@ TeleportTo(_Player,TRIGGERGUID_DC_TP_ShrineIsle_WaveDancer_MiddleDeck_Up_217d567
 
 //REGION STRANDED SQUIRREL
 
-IF
-DialogStarted("FTJI_StrandedSquirrel", _ID)
-AND
-DB_IsPlayer(_Player)
-THEN
-DialogAddCharacter(_ID, CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182);
-DialogAddCharacter(_ID, CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73);
-DialogAddCharacter(_ID, _Player);
+//IF
+//DialogStarted("FTJI_StrandedSquirrel", _ID)
+//AND
+//DB_IsPlayer(_Player)
+//THEN
+//DialogAddCharacter(_ID, CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182);
+//DialogAddCharacter(_ID, CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73);
+//DialogAddCharacter(_ID, _Player);
 
 
 IF
@@ -134,6 +135,13 @@ PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Digging_DirtThrown_01", _X, _Y, _Z
 SetOnStage(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73, 0);
 
 //END_REGION
+
+PROC
+Proc_FTJI_FX_INIT()
+AND
+PlayLoopEffect(CHARACTERGUID_DC_NPC_Icara_001_ac205041-f93f-4e4d-babf-6db6bd588e15, "RS3_FX_Skills_Air_Lightning_Overlay_Loop_01", "", _Icarandle)
+THEN
+DB_NOOP(1);
 EXITSECTION
 
 ENDEXITSECTION

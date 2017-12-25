@@ -1,0 +1,30 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_DC_BarrelMechanics("CONT_Arena_Humans_Citz_Barrel_A_19dddc43-e6bb-4d43-96f6-64617d852c98", 50);
+KBSECTION
+IF
+CharacterUsedItem(_Player, ITEMGUID_DC_Sandbox_Lever_cf25673d-0e86-40ff-83fb-34bd0315862a)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_DC_BarrelMechanics(_DCBarrel, _Chance)
+AND
+Random(100, _Ran)
+AND
+_Ran >= _Chance
+AND
+IntegertoString(_Ran, _RanDisp)
+THEN
+DisplayText(_Player, _RanDisp);
+
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_DC_Sandbox_Lever_cf25673d-0e86-40ff-83fb-34bd0315862a)
+THEN
+Proc_StartDialog(0, "AutomatedTest", CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803, CHARACTERGUID_GLO_Saheila_PostFTJ_000_3528ffe0-da5f-4357-86e8-7f7545015377);
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

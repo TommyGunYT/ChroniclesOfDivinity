@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <save>
-    <header version="2" time="1512327130" />
-    <version major="3" minor="1" revision="4" build="0" />
+    <header version="2" time="1514070063" />
+    <version major="3" minor="1" revision="5" build="0" />
     <region id="Tags">
         <node id="root">
             <children>
@@ -60,14 +60,138 @@
                     <attribute id="Description" value="" type="23" />
                     <attribute id="Name" value="DC_ScalingTag" type="23" />
                     <children>
-                        <node id="Categories" />
+                        <node id="Categories">
+                            <children>
+                                <node id="Category">
+                                    <attribute id="Name" value="Code" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Dialog" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Origin" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Race" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Story" type="23" />
+                                </node>
+                            </children>
+                        </node>
                     </children>
                 </node>
                 <node id="Tag">
                     <attribute id="Description" value="" type="23" />
                     <attribute id="Name" value="KARA" type="23" />
                     <children>
-                        <node id="Categories" />
+                        <node id="Categories">
+                            <children>
+                                <node id="Category">
+                                    <attribute id="Name" value="Origin" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Code" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Dialog" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Story" type="23" />
+                                </node>
+                            </children>
+                        </node>
+                    </children>
+                </node>
+                <node id="Tag">
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="Name" value="OBSERVANT" type="23" />
+                    <children>
+                        <node id="Categories">
+                            <children>
+                                <node id="Category">
+                                    <attribute id="Name" value="Code" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Dialog" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Origin" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Story" type="23" />
+                                </node>
+                            </children>
+                        </node>
+                    </children>
+                </node>
+                <node id="Tag">
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="Name" value="PLAYERBOAT" type="23" />
+                    <children>
+                        <node id="Categories">
+                            <children>
+                                <node id="Category">
+                                    <attribute id="Name" value="Code" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Dialog" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Origin" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Story" type="23" />
+                                </node>
+                            </children>
+                        </node>
+                    </children>
+                </node>
+                <node id="Tag">
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="Name" value="PLAYERBOATCOMPANION" type="23" />
+                    <children>
+                        <node id="Categories">
+                            <children>
+                                <node id="Category">
+                                    <attribute id="Name" value="Code" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Dialog" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Origin" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Story" type="23" />
+                                </node>
+                            </children>
+                        </node>
+                    </children>
+                </node>
+                <node id="Tag">
+                    <attribute id="Description" value="" type="23" />
+                    <attribute id="Name" value="DC_BOSS" type="23" />
+                    <children>
+                        <node id="Categories">
+                            <children>
+                                <node id="Category">
+                                    <attribute id="Name" value="Code" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Dialog" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Origin" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Race" type="23" />
+                                </node>
+                                <node id="Category">
+                                    <attribute id="Name" value="Story" type="23" />
+                                </node>
+                            </children>
+                        </node>
                     </children>
                 </node>
             </children>

@@ -6,6 +6,8 @@ INITSECTION
 //CharacterSetAnimationOverride(_Player,"Tied_Up_01_Loop");
 // RS3_FX_SK_Soul_Ghosts_01 | GHOST EFFECT |
 // RS3_FX_SubEffects_KrakenRay_LightningArcs_01 (Environmental effect)
+// Beam Particle AOE effect  RS3_FX_GP_Status_MagicShell_01
+// RS3_FX_GP_Status_Shocked_01
 //END_REGION
 DB_DCCompanionTemps(CHARACTERGUID_DC_NPC_Icara_001_ac205041-f93f-4e4d-babf-6db6bd588e15);
 KBSECTION
@@ -93,17 +95,6 @@ THEN
 CharacterAddSourcePoints((CHARACTERGUID)_Player,1);
 //END_REGION
 
-//REGION DIALOGUE NAMES & Malady Recruit
-IF
-DialogStarted("DC_Rat_Test", _Instance)
-AND
-DialogGetInvolvedPlayer(_Instance, 1, (CHARACTERGUID)_Player)
-AND
-CharacterGetDisplayName(_Player, _Handle, _Ref)
-THEN
-DialogSetVariableStringForInstance(_Instance, "DC_GetName_abf7b032-1cc1-4341-a79c-649635affb10", _Ref);
-//END_REGION
-
 //REGION TRAVEL AGENCY FOR PLAYTESTING
 IF
 GlobalFlagSet("TP_Isles_Main")
@@ -138,13 +129,6 @@ CharacterCreateAtPosition(_bX,_bY,_bZ,"CHARACTERGUID_Animals_Rabbit_A_ebd3b174-0
 THEN
 DB_BoomRabbits(_RNDRabbit);
 Proc_SandboxLever1();
-
-PROC
-Proc_SandboxLever1()
-AND
-DB_IsPlayer(_Player)
-THEN
-DisplayText(_Player,"Lever Initiated!");
 
 PROC
 Proc_SandboxLever1()
@@ -197,6 +181,7 @@ ProcRemoveAllDialogEntriesForSpeaker(_tempcompanion);
 CharacterMakePlayer(_tempcompanion, _player);
 DB_IsPlayer(_tempcompanion);
 CharacterAssignToUser(_user, (CHARACTERGUID)_tempcompanion);
+DB_IsPlayer((CHARACTERGUID)_tempcompanion);
 
 PROC
 Proc_AssignNpcToPlayer((CHARACTERGUID)_player, (CHARACTERGUID)_tempcompanion)
@@ -204,6 +189,11 @@ AND
 DB_DCCompanionTemps(_tempcompanion)
 THEN
 CharacterAddToParty(_tempcompanion, _player);
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_PUZ_Lever_Floor_E_000_639f9f7b-da9c-4865-aa42-4134314fc36d)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TP_FTJ_Isles_BeachMain_fda011da-df2c-4696-868b-a9fe5591df55, "");
 EXITSECTION
 
 ENDEXITSECTION
