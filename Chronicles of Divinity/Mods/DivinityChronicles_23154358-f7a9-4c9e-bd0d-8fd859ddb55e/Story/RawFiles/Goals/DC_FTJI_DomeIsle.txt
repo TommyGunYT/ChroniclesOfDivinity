@@ -1,0 +1,419 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+SetOnStage(CHARACTERGUID_DC_FTJI_TimeLostDragon_f9c71fbd-ac4b-402d-a5f1-7fb1ccd58f40, 0);
+SetOnStage(ITEMGUID_S_DC_FTJI_DragonSkullA_02e3fbbf-12b1-41b8-9f46-4cca702078a6, 0);
+SetOnStage(ITEMGUID_S_DC_FTJI_DragonSkullB_93837757-0531-4020-a030-8fc1338a61bb, 0);
+SetOnStage(CHARACTERGUID_DC_FTJI_DOME_LampHelper_365bc60b-1361-4c41-856d-cbe8f70772cc, 0);
+SetOnStage(CHARACTERGUID_S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c, 0);
+
+ItemSetCanInteract(ITEMGUID_S_DC_DomeIsle_Lamp_d3300bc6-446b-4d15-b04c-38317923dd76, 0);
+ItemSetCanInteract(ITEMGUID_DC_DomeIsle_Lamp_000_cc9c87ba-5226-4eb6-812f-a7abcad0435c, 0);
+ItemSetCanInteract(ITEMGUID_DC_DomeIsle_Lamp_000_97f76130-9213-4643-8187-3611d82263c3, 0);
+
+
+DB_Dialogs(CHARACTERGUID_S_DC_DomeIsle_Elvira_6f3e752e-407d-4261-b0f2-f8f912538621, "FTJI_Elvira");
+DB_Dialogs(CHARACTERGUID_S_DC_FTJI_Richard_a90c148a-4d38-4e3d-8bc1-91b1d013c899, "FTJI_Richard");
+DB_Dialogs(CHARACTERGUID_S_DC_FTJI_Gareth_8715ca37-077f-44a2-b23c-97fa60a849a1, "FTJI_Gareth");
+
+DB_Dialogs(ITEMGUID_S_DC_FTJI_DomeIsle_BrazierA_ae0e1723-d06e-4349-bbef-309059232b0e, "DomeIsle_Brazier_A");
+DB_Dialogs(ITEMGUID_S_DC_FTJI_DomeIsle_BrazierB_e2fcdba4-3cfb-47cd-aa54-4288d41b970b, "DomeIsle_Brazier_B");
+DB_Dialogs(ITEMGUID_S_DC_FTJI_DomeIsle_BrazierC_efb0ccf8-4a5f-404d-8b79-d0c0d1266288, "DomeIsle_Brazier_C");
+
+DB_DomeIsle_BrazierDialogs("DomeIsle_Brazier_A", TRIGGERGUID_S_DC_FTJI_DomeIsle_FlameA_849be8e4-38aa-4728-9d85-9a7474eb29a2, ITEMGUID_S_DC_FTJI_DomeIsle_BrazierA_ae0e1723-d06e-4349-bbef-309059232b0e);
+DB_DomeIsle_BrazierDialogs("DomeIsle_Brazier_B", TRIGGERGUID_S_DC_FTJI_DomeIsle_FlameB_cd087bf1-cd95-422d-8161-bbcfae751ea9, ITEMGUID_S_DC_FTJI_DomeIsle_BrazierB_e2fcdba4-3cfb-47cd-aa54-4288d41b970b);
+DB_DomeIsle_BrazierDialogs("DomeIsle_Brazier_C", TRIGGERGUID_S_DC_FTJI_DomeIsle_FlameC_0b106788-f8d7-4714-a141-88bae65fecb3, ITEMGUID_S_DC_FTJI_DomeIsle_BrazierC_efb0ccf8-4a5f-404d-8b79-d0c0d1266288);
+
+DB_DC_DomeBrazierFlames("ITEMGUID_DC_FX_Fire_Green_3153f91f-9a59-4391-be86-87a7fb235f6e", "ITEMGUID_DC_FX_Fire_Blue_ed443fa7-a5a1-41c4-bbe7-d1577153da4e", "ITEMGUID_DC_FX_Fire_Red_36ddcde3-e6ae-4c54-a44a-8a714d730664");
+
+DB_DC_DomeIsle_FlameApplications("ITEMGUID_DC_FX_Fire_Green_3153f91f-9a59-4391-be86-87a7fb235f6e", "DomeIsle_GreenFire");
+DB_DC_DomeIsle_FlameApplications("ITEMGUID_DC_FX_Fire_Blue_ed443fa7-a5a1-41c4-bbe7-d1577153da4e", "DomeIsle_BlueFire");
+DB_DC_DomeIsle_FlameApplications("ITEMGUID_DC_FX_Fire_Red_36ddcde3-e6ae-4c54-a44a-8a714d730664", "DomeIsle_RedFire");
+
+DB_DC_DomeIsle_ResearchTeam(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8);
+DB_DC_DomeIsle_ResearchTeam(CHARACTERGUID_S_DC_DomeIsle_Elvira_6f3e752e-407d-4261-b0f2-f8f912538621);
+DB_DC_DomeIsle_ResearchTeam(CHARACTERGUID_S_DC_FTJ_Zika_0787498c-0869-4f05-82d4-6c883d5ea3ea);
+DB_DC_DomeIsle_ResearchTeam(CHARACTERGUID_S_DC_FTJI_Richard_a90c148a-4d38-4e3d-8bc1-91b1d013c899);
+
+DB_DC_DomeIsle_ResearchTeamIndividuals(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, CHARACTERGUID_S_DC_DomeIsle_Elvira_6f3e752e-407d-4261-b0f2-f8f912538621, CHARACTERGUID_S_DC_FTJ_Zika_0787498c-0869-4f05-82d4-6c883d5ea3ea, CHARACTERGUID_S_DC_FTJI_Richard_a90c148a-4d38-4e3d-8bc1-91b1d013c899);
+KBSECTION
+QRY
+DC_QRY_DebugLog((STRING)_Message)
+THEN
+DebugBreak(_Message);
+
+
+//REGION Braziers
+
+IF
+DialogEnded(_Dialog, _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_DomeIsle_BrazierDialogs((STRING)_Dialog, _FlameLoc, _Brazier)
+AND
+DialogGetInvolvedPlayer(_ID, 1, _Speaker)
+AND
+ObjectGetFlag(_Speaker, "DC_FTJI_DomeIsle_BrazierBurn", 1)
+AND
+CharacterGetHitpointsPercentage(_Player, _HPPercentage)
+AND
+IntegerDivide(_HPPercentage, 5, _HPDMG)
+THEN
+PlayBeamEffect(ITEMGUID_S_DC_DomeIsle_Lamp_d3300bc6-446b-4d15-b04c-38317923dd76, _Player, "RS3_FX_GP_Beams_LaserRay_Beam_Lightning_01", "", "");
+PlaySound(ITEMGUID_S_DC_DomeIsle_Lamp_d3300bc6-446b-4d15-b04c-38317923dd76, "Skill_NPC_KrakenRay_Lightning_Cast");
+ApplyDamage(_Player, _HPDMG, "Chaos");
+ObjectClearFlag(_Player, "DC_FTJI_DomeIsle_BrazierBurn");
+
+
+
+
+IF
+DialogEnded(_Dialog, _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_DomeIsle_BrazierDialogs((STRING)_Dialog, _FlameLoc, _Brazier)
+AND
+DB_DC_DomeIsle_FlameApplications(_Fire, _Flag) 
+AND
+DialogGetInvolvedPlayer(_ID, 1, _Speaker)
+AND
+ObjectGetFlag(_Speaker, (STRING)_Flag, 1)
+AND
+ObjectGetFlag(_Brazier, "IsLit", 0)
+AND
+GetPosition(_FlameLoc, _X, _Y, _Z)
+AND
+CreateItemTemplateAtPosition((STRING)_Fire, _X, _Y, _Z, _DomeBrazierFire)
+THEN
+Proc_DC_FTJI_DomeIsle_LightLamp();
+ObjectClearFlag(_Speaker, (STRING)_Flag);
+ObjectSetFlag(_Brazier, "IsLit");
+ObjectSetFlag(_Brazier, (STRING)_Flag);
+ItemSetCanInteract(ITEMGUID_S_DC_DomeIsle_Lamp_d3300bc6-446b-4d15-b04c-38317923dd76, 1);
+DB_DC_FTJI_DomeIsleBraziers(_DomeBrazierFire);
+Proc_DC_FTJI_DomeIsle_BrazierCheck();
+
+PROC
+Proc_DC_FTJI_DomeIsle_LightLamp()
+AND
+GlobalGetFlag("DC_DomeIsle_ActivateLamp", 0)
+THEN
+SetOnStage(CHARACTERGUID_DC_FTJI_DOME_LampHelper_365bc60b-1361-4c41-856d-cbe8f70772cc, 1);
+CharacterUseItem(CHARACTERGUID_DC_FTJI_DOME_LampHelper_365bc60b-1361-4c41-856d-cbe8f70772cc, ITEMGUID_S_DC_DomeIsle_Lamp_d3300bc6-446b-4d15-b04c-38317923dd76, "DomeIsleLampLit");
+
+IF
+StoryEvent(_, "DomeIsleLampLit")
+THEN
+SetOnStage(CHARACTERGUID_DC_FTJI_DOME_LampHelper_365bc60b-1361-4c41-856d-cbe8f70772cc, 0);
+GlobalSetFlag("DC_DomeIsle_ActivateLamp");
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_S_DC_DomeIsle_Lamp_d3300bc6-446b-4d15-b04c-38317923dd76)
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsControlled(_Player, 1)
+AND
+DB_DC_FTJI_DomeIsleBraziers(_DomeBrazierFire)
+AND
+DB_DomeIsle_BrazierDialogs(_, _, _Brazier)
+AND
+GetPosition(_DomeBrazierFire, _X, _Y, _Z)
+THEN
+PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01", _X, _Y, _Z);
+PlayEffectAtPosition("RS3_FX_Skills_Void_Netherswap_Disappear_Root_01", _X, _Y, _Z);
+ItemDestroy(_DomeBrazierFire);
+ItemSetCanInteract(ITEMGUID_S_DC_DomeIsle_Lamp_d3300bc6-446b-4d15-b04c-38317923dd76, 0);
+ObjectClearFlag(_Brazier, "IsLit");
+GlobalClearFlag("DC_DomeIsle_ActivateLamp");
+NOT DB_DC_FTJI_DomeIsleBraziers(_DomeBrazierFire);
+
+
+//END_REGION
+
+
+//REGION Gareth and Jake AD
+
+IF
+CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_GarethAndJake_AD_cae280b0-cb70-4bc8-b89d-db4efa864557)
+AND
+DB_IsPlayer(_Player)
+THEN
+Proc_StartDialog(0, "FTJI_AD_GarethAndJake", CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, CHARACTERGUID_S_DC_FTJI_Gareth_8715ca37-077f-44a2-b23c-97fa60a849a1);
+
+IF
+AutomatedDialogEnded("FTJI_AD_GarethAndJake", _ID)
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_DC_FTJI_Gareth_8715ca37-077f-44a2-b23c-97fa60a849a1, TRIGGERGUID_DC_FTJIGarethToBoat_ac550890-f463-48e8-8871-599aa5e01483, 0, "DC_FTJI_GarethToBoat");
+SetVarFixedString(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, "currentState", "State_Default");
+
+IF
+StoryEvent(_, "DC_FTJI_GarethToBoat")
+THEN
+SetOnStage(CHARACTERGUID_S_DC_FTJI_Gareth_8715ca37-077f-44a2-b23c-97fa60a849a1, 0);
+SetOnStage(ITEMGUID_S_DC_GarethsBoat_d3e63cb7-2717-4118-bd8c-8640820b090f, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister1_324e8aca-3b0b-430e-b8bb-2f6e9edac3fe, 1);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister2_f278b94b-78ac-4cd7-9d8a-1c61e673ead3, 1);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister3_34996c94-6294-45e7-9659-f6fce2a95ea5, 1);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister4_96f35d8a-d38a-4fc1-9b23-bdf4349a16ec, 1);
+GlobalSetFlag("DC_GarethBackToCornered");
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_S_FTJI_DomeIsle_GlowShroom_c71c68a1-dc67-46ff-9f91-08ae2be82ac7)
+THEN
+Proc_StartDialog(0, "FTJI_AD_DomeIsle_BlueMushroom", _Player);
+ItemSetCanInteract(ITEMGUID_S_FTJI_DomeIsle_GlowShroom_c71c68a1-dc67-46ff-9f91-08ae2be82ac7, 0);
+
+//END_REGION
+
+
+//REGION Mysterious Object A
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_S_DC_DomeIsle_MysteriousObject1_b2ed625e-2d5e-4dc0-a1f3-ee4cde7f8071)
+THEN
+Proc_StartDialog(0, "FTJI_DomeIsle_ObjectA", ITEMGUID_S_DC_DomeIsle_MysteriousObject1_b2ed625e-2d5e-4dc0-a1f3-ee4cde7f8071, _Player);
+
+IF
+DialogStarted("FTJI_DomeIsle_ObjectA", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+ItemIsInInventory(ITEMGUID_DC_LOOT_Skull_DragonHead_000_1bb7995f-323e-4f63-9b5c-941828b68db7, 1)
+THEN
+PartySetFlag(_Player, "FTJI_DomeIsle_ObjectA_HasItem");
+
+IF
+DialogEnded("FTJI_DomeIsle_ObjectA", _ID)
+AND
+GlobalGetFlag("FTJI_DomeIsle_ObjectA_Activated", 1)
+AND
+DB_IsPlayer(_Player)
+THEN
+ItemSetCanInteract(ITEMGUID_S_DC_DomeIsle_MysteriousObject1_b2ed625e-2d5e-4dc0-a1f3-ee4cde7f8071, 0);
+ItemToInventory(ITEMGUID_DC_LOOT_Skull_DragonHead_000_1bb7995f-323e-4f63-9b5c-941828b68db7, ITEMGUID_S_DC_DomeIsle_MysteriousObject2_5ebe44ff-2ec2-48fb-9389-70fd3dc5e3e2,1);
+SetOnStage(ITEMGUID_S_DC_FTJI_DragonSkullB_93837757-0531-4020-a030-8fc1338a61bb, 1);
+PlayEffect(ITEMGUID_S_DC_FTJI_DragonSkullB_93837757-0531-4020-a030-8fc1338a61bb, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+GlobalSetFlag("FTJI_Dome_ObjectA_Unsolved");
+Proc_FTJI_DomeIsle_SkullPuzzleCheck();
+
+PROC
+Proc_FTJI_DomeIsle_SkullPuzzleCheck()
+AND
+DB_IsPlayer(_Player)
+AND
+GlobalGetFlag("FTJI_DomeIsle_ObjectA_Activated", 1)
+AND
+GlobalGetFlag("FTJI_DomeIsle_ObjectB_Activated", 1)
+THEN
+CharacterAppear(CHARACTERGUID_DC_FTJI_TimeLostDragon_f9c71fbd-ac4b-402d-a5f1-7fb1ccd58f40, 1, "DC_FTJI_TimeDragonAppear");
+CharacterPlayHUDSound(_Player, "Creatures_Dragon_ABC_Spawn_01");
+
+IF
+StoryEvent(_, "DC_FTJI_TimeDragonAppear")
+AND
+DB_IsPlayer(_Player)
+THEN
+Proc_ShakeCameraForTime(_Player,1500);
+TimerLaunch("DC_FTJI_TimeDragonAppear", 2000);
+
+IF
+TimerFinished("DC_FTJI_TimeDragonAppear")
+THEN
+PlayAnimation(CHARACTERGUID_DC_FTJI_TimeLostDragon_f9c71fbd-ac4b-402d-a5f1-7fb1ccd58f40, "Fly_01");
+PlaySound(CHARACTERGUID_DC_FTJI_TimeLostDragon_f9c71fbd-ac4b-402d-a5f1-7fb1ccd58f40, "Creatures_Dragon_ABC_Shriekers_Help");
+TimerLaunch("DC_FTJI_TimeDragonDisAppear", 4500);
+
+
+IF
+TimerFinished("DC_FTJI_TimeDragonDisAppear")
+THEN
+SetOnStage(CHARACTERGUID_DC_FTJI_TimeLostDragon_f9c71fbd-ac4b-402d-a5f1-7fb1ccd58f40, 0);
+
+//END_REGION
+
+//REGION Mysterious Object B
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_S_DC_DomeIsle_MysteriousObject2_5ebe44ff-2ec2-48fb-9389-70fd3dc5e3e2)
+THEN
+Proc_StartDialog(0, "FTJI_DomeIsle_ObjectB", ITEMGUID_S_DC_DomeIsle_MysteriousObject2_5ebe44ff-2ec2-48fb-9389-70fd3dc5e3e2, _Player);
+
+IF
+DialogStarted("FTJI_DomeIsle_ObjectB", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+ItemIsInInventory(ITEMGUID_DC_LOOT_Skull_DragonHead_001_6184e9b0-251e-442f-a7e0-c48cd750884d, 1)
+THEN
+PartySetFlag(_Player, "FTJI_DomeIsle_ObjectB_HasItem");
+
+IF
+DialogEnded("FTJI_DomeIsle_ObjectB", _ID)
+AND
+GlobalGetFlag("FTJI_DomeIsle_ObjectB_Activated", 1)
+AND
+DB_IsPlayer(_Player)
+THEN
+ItemSetCanInteract(ITEMGUID_S_DC_DomeIsle_MysteriousObject2_5ebe44ff-2ec2-48fb-9389-70fd3dc5e3e2, 0);
+ItemToInventory(ITEMGUID_DC_LOOT_Skull_DragonHead_001_6184e9b0-251e-442f-a7e0-c48cd750884d, ITEMGUID_S_DC_DomeIsle_MysteriousObject2_5ebe44ff-2ec2-48fb-9389-70fd3dc5e3e2,1);
+SetOnStage(ITEMGUID_S_DC_FTJI_DragonSkullA_02e3fbbf-12b1-41b8-9f46-4cca702078a6, 1);
+PlayEffect(ITEMGUID_S_DC_FTJI_DragonSkullA_02e3fbbf-12b1-41b8-9f46-4cca702078a6, "RS3_FX_GP_ScriptedEvent_Teleport_GenericSmoke_01");
+GlobalSetFlag("FTJI_Dome_ObjectB_Unsolved");
+Proc_FTJI_DomeIsle_SkullPuzzleCheck();
+//END_REGION
+
+//REGION
+PROC
+Proc_DC_FTJI_DomeIsle_BrazierCheck()
+AND
+DB_IsPlayer(_Player)
+AND
+DB_DomeIsle_BrazierDialogs((STRING)_Dialog, _FlameLoc, _Brazier)
+AND
+DB_DC_DomeIsle_FlameApplications(_Fire, _Flag)
+AND
+ObjectGetFlag(ITEMGUID_S_DC_FTJI_DomeIsle_BrazierA_ae0e1723-d06e-4349-bbef-309059232b0e, "DomeIsle_GreenFire", 1)
+AND
+ObjectGetFlag(ITEMGUID_S_DC_FTJI_DomeIsle_BrazierB_e2fcdba4-3cfb-47cd-aa54-4288d41b970b, "DomeIsle_RedFire", 1)
+AND
+ObjectGetFlag(ITEMGUID_S_DC_FTJI_DomeIsle_BrazierC_efb0ccf8-4a5f-404d-8b79-d0c0d1266288, "DomeIsle_BlueFire", 1)
+THEN
+ItemSetCanInteract(ITEMGUID_S_DC_DomeIsle_Lamp_d3300bc6-446b-4d15-b04c-38317923dd76, 0);
+PlayEffect(ITEMGUID_DC_Rock_Eroded_Slate_BigD_Moss_001_92e40ece-dba7-4af8-bdbb-3fe8b47d851f, "RS3_FX_GP_ScriptedEvent_Mordus_VoidTransform_Overlay_01");
+PlayEffect(ITEMGUID_DC_Rock_Eroded_Slate_BigD_Moss_000_e6fd4240-0faf-428a-9e69-ba6ce7286ac1, "RS3_FX_GP_ScriptedEvent_Mordus_VoidTransform_Overlay_01");
+TimerLaunch("DC_DomeIsle_BraziersSolved", 2000);
+
+IF
+TimerFinished("DC_DomeIsle_BraziersSolved")
+THEN
+ItemDestroy(ITEMGUID_S_DC_DomeIsle_Blocker_Treasure_9642b215-6bb7-49c5-9c11-79e5a9b7424b);
+SetOnStage(ITEMGUID_S_DC_DomeIsle_Blocker_Treasure_9642b215-6bb7-49c5-9c11-79e5a9b7424b, 0);
+SetOnStage(ITEMGUID_DC_Rock_Eroded_Slate_BigD_Moss_001_92e40ece-dba7-4af8-bdbb-3fe8b47d851f, 0);
+SetOnStage(ITEMGUID_DC_Rock_Eroded_Slate_BigD_Moss_000_e6fd4240-0faf-428a-9e69-ba6ce7286ac1, 0);
+
+
+
+
+PROC
+Proc_FTJI_DomeIsle_SkullPuzzleCheck()
+AND
+GlobalGetFlag("FTJI_Dome_ObjectA_Unsolved", 1)
+AND
+GlobalGetFlag("FTJI_Dome_ObjectB_Unsolved", 1)
+THEN
+Proc_FTJI_DomeIsle_SkullPuzzleCheckPassed();
+
+//END_REGION
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_S_Map_beafa2e6-11cc-4d6f-bfad-35501d8f8356)
+AND
+DB_DC_DomeIsle_ResearchTeam(_SeekerResearcher)
+THEN
+Proc_StartDialog(0, "FTJI_AD_DomeIsle_Map", ITEMGUID_S_Map_beafa2e6-11cc-4d6f-bfad-35501d8f8356);
+
+
+//REGION Flying Dragon Shadow
+
+
+PROC
+Proc_FTJI_DomeIsle_SkullPuzzleCheckPassed()
+AND
+DB_IsPlayer(_Player)
+AND
+DC_QRY_DebugLog("Puzzle Check Passed!")
+THEN
+GlobalSetFlag("DomeIsle_DragonEvent");
+ProcForceStopDialog(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8);
+SetVarFixedString(CHARACTERGUID_S_DC_DomeIsle_Elvira_6f3e752e-407d-4261-b0f2-f8f912538621,"currentState","State_LookingAtDragon");
+//CameraActivate(_Player, "DC_DomeIsle_Dragon", 3.0, 1, 1, 1);
+StartCameraSpline(SPLINEGUID_DC_DomeIsle_Dragon_09e70f54-10e8-41c2-a94d-03995ddc357b,_Player,0.5,1,0,0);
+PlayEffect(CHARACTERGUID_S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c, "RS3_FX_GP_ScriptedEvent_Mordus_VoidTransform_Overlay_01");
+CharacterAppear(CHARACTERGUID_S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c, 1, "DC_DomeIsle_DragonAppear");
+
+IF
+StoryEvent(_, "DC_DomeIsle_DragonAppear")
+THEN
+//PlayAnimation(CHARACTERGUID_S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c, "skill_prepare_water_01_loop");
+TimerLaunch("DC_DomeIsle_JakeShooting", 555);
+Proc_DC_DomeIsle_DragonTimer1();
+
+PROC
+Proc_DC_DomeIsle_DragonTimer1()
+THEN
+TimerLaunch("DC_DomeIsle_DragonEvent5", 13500);
+
+
+IF
+TimerFinished("DC_DomeIsle_DragonEvent4")
+THEN
+//PlayAnimation(CHARACTERGUID_S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c, "fly_01");
+TimerLaunch("DC_DomeIsle_DragonEvent5", 3500);
+
+IF
+TimerFinished("DC_DomeIsle_DragonEvent5")
+AND
+DC_QRY_DebugLog("DragonEvent5 timer finished")
+THEN
+GlobalClearFlag("DomeIsle_DragonEvent");
+DisplayText(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, "Are you lads alright?");
+SetVarFixedString(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8,"currentState","State_Default");
+GlobalSetFlag("DC_DomeIsle_DragonEnd");
+//SetVarFixedString(CHARACTERGUID_S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c,"currentState","");
+PlayAnimation(CHARACTERGUID_S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c, "fly_01");
+ProcObjectTimer(CHARACTERGUID_S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c, "FlyOut", 2000);
+
+PROC
+ProcObjectTimerFinished(CHARACTERGUID_S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c, "FlyOut")
+THEN
+SetOnStage(CHARACTERGUID_S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c, 0);
+
+//REGION JAKE SHOOTING
+
+IF
+TimerFinished("DC_DomeIsle_JakeShooting")
+AND
+GetPosition(TRIGGERGUID_S_DC_DomeIsle_Jake_ShootTargetA_2522e11d-4080-4850-b0d4-9c4e59f478bb, _X, _Y, _Z)
+AND
+GlobalGetFlag("DomeIsle_DragonEvent", 1)
+THEN
+SetVarFixedString(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8,"currentState","");
+CharacterUseSkillAtPosition(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, "Projectile_FireArrow", _X, _Y, _Z, 1, 1);
+TimerLaunch("DC_DomeIsle_JakeShooting2", 3700);
+DisplayText(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, "Don't worry, ladies! I'll bring this beast out of the sky!");
+
+IF
+TimerFinished("DC_DomeIsle_JakeShooting2")
+AND
+GetPosition(TRIGGERGUID_S_DC_DomeIsle_Jake_ShootTargetB_1de1c8e2-be0a-4236-82aa-f8be970c66ee, _X, _Y, _Z)
+AND
+Random(3000, _RND)
+AND
+GlobalGetFlag("DomeIsle_DragonEvent", 1)
+THEN
+CharacterUseSkillAtPosition(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, "Projectile_FreezingArrow", _X, _Y, _Z, 1, 1);
+TimerLaunch("DC_DomeIsle_JakeShooting3", 2688);
+DisplayText(CHARACTERGUID_S_DC_FTJ_Zika_0787498c-0869-4f05-82d4-6c883d5ea3ea, "No! Stop! Don't fire at it!");
+
+IF
+TimerFinished("DC_DomeIsle_JakeShooting3")
+AND
+GetPosition(TRIGGERGUID_S_DC_DomeIsle_Jake_ShootTargetC_87ed0601-457a-4899-bbce-bf4b72824494, _X, _Y, _Z)
+AND
+GlobalGetFlag("DomeIsle_DragonEvent", 1)
+THEN
+CharacterUseSkillAtPosition(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, "Projectile_FreezingArrow", _X, _Y, _Z, 1, 1);
+TimerLaunch("DC_DomeIsle_JakeShooting", 2311);
+
+//END_REGION
+
+
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "DC_Isles"

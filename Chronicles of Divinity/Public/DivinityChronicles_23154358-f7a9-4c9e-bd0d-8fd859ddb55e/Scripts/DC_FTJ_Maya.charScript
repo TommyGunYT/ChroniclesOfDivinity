@@ -1,0 +1,76 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	EXTERN ITEM:%Wander1 = null
+	INT:%CanDoAD = 1
+	EXTERN FLOAT:%ADDelayTime = 15.0
+	EXTERN ITEM:%BrandonsChairPoint = S_DC_MayaLookAtABrandonPoint_32e9b33e-3648-4abb-9abc-a8ee66b9d0d6
+	EXTERN ITEM:%BrandonsChair = S_DC_BrandonChair_da3fe3f1-1570-4fd9-b839-760a2ea8fc78
+	EXTERN ITEM:%ToyBoxPoint = S_DC_MayaLookAtAToyBoxPoint_b05052f9-cce6-4297-acbe-79d9c4987008
+	EXTERN ITEM:%MayasDoll = S_DC_MayasDoll_1c8e6e4d-7604-4c08-9e3a-01dbc3b0a0de
+	
+
+BEHAVIOUR
+REACTION State_Default, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"WanderPoint1","SpeakOfBrandon","SayAD","Crying")
+	SetPriority(%currentAction, 1200)
+
+REACTION WanderPoint1, 0
+USAGE PEACE
+ACTIONS
+	CharacterWander(TRIGGER:S_DC_Maya_WanderPoly_3ac04495-66ff-4783-aea7-a6e41dc19f47,2.0)
+	Sleep(2.0)
+	CharacterWander(TRIGGER:S_DC_Maya_WanderPoly_3ac04495-66ff-4783-aea7-a6e41dc19f47,1.0)
+	Set(%CanDoAD,1)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+
+REACTION SayAD, 0
+USAGE PEACE
+ACTIONS
+	IF "c1"
+	IsEqual(%CanDoAD,1)
+	THEN
+	DialogStart(_,"DC_AD_Maya",__Me)
+	Set(%CanDoAD,0)
+	StartTimer("PreventADFromPlaying",%ADDelayTime,0)
+	Sleep(2.5)
+	SetPriority(%currentAction, 0)
+	ELSE
+	SetPriority(%currentAction, 0)
+	ENDIF
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION Crying, 0
+USAGE PEACE
+ACTIONS
+	CharacterMoveTo(%ToyBoxPoint,0,0,0,1,2)
+	CharacterLookAt(%MayasDoll,0,0)
+	CharacterPlayAnimation("Custom_Crying")
+	Sleep(5.5)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+
+
+REACTION SpeakOfBrandon, 0
+USAGE PEACE
+ACTIONS
+	CharacterMoveTo(%BrandonsChairPoint,0,0,0,1,2)
+	CharacterLookAt(%BrandonsChair,0,0)
+	DialogStart(_,"DC_AD_Maya2",__Me)
+	Sleep(2.2)
+	Set(%CanDoAD,0)
+	StartTimer("PreventADFromPlaying",%ADDelayTime,0)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)

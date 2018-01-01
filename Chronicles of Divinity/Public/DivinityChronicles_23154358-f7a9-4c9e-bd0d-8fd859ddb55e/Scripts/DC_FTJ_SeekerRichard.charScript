@@ -1,0 +1,128 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	EXTERN TRIGGER:%LookAtObjectA = S_DC_FTJI_DomeIsle_FlameA_849be8e4-38aa-4728-9d85-9a7474eb29a2
+	EXTERN TRIGGER:%LookAtObjectB = S_DC_FTJI_DomeIsle_FlameB_cd087bf1-cd95-422d-8161-bbcfae751ea9
+	EXTERN TRIGGER:%LookAtObjectC = S_DC_FTJI_DomeIsle_FlameC_0b106788-f8d7-4714-a141-88bae65fecb3
+	EXTERN ITEM:%LookAtObjectD = S_DC_DomeIsle_Lamp_d3300bc6-446b-4d15-b04c-38317923dd76
+	EXTERN ITEM:%ObjectA = S_DC_FX_Fire_Blue_000_4c55c62a-5881-4396-98b8-d03c6f65d012
+	EXTERN ITEM:%ObjectB = S_DC_FX_Fire_Green_000_46ec4dfa-7d7a-4738-b120-08dad2949e5f
+	EXTERN ITEM:%ObjectC = S_DC_FX_Fire_Red_000_7a20a3f4-7cf8-4cef-8adb-5f68de610b72
+	EXTERN ITEM:%ObjectD = S_DC_DomeIsle_Lamp_d3300bc6-446b-4d15-b04c-38317923dd76
+	EXTERN TRIGGER:%PointA = S_DC_DomeIsle_Richard_PointA_698b5657-2a2f-4cc8-bff5-dbddfa17a0a4
+	EXTERN TRIGGER:%PointB = S_DC_DomeIsle_Richard_PointB_46dfb440-0200-4c01-8a8f-72b0ebb0ca96
+	EXTERN TRIGGER:%PointC = S_DC_DomeIsle_Richard_PointC_b916478e-8aba-481a-8968-aa0f1b878c25
+	EXTERN TRIGGER:%PointD = S_DC_DomeIsle_Richard_PointD_eb33d91d-6163-43f9-b2e0-a6eff36ff4e5
+	EXTERN ITEM:%Chair = S_DC_DomeIsle_BarrelChair_183600fe-b07e-4ed9-9fea-02a87c0f6cfe
+	INT: %resetTimeout = 0
+	FLOAT:%RandSleep = 1
+
+
+
+BEHAVIOUR
+REACTION State_Default, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"InspectingFireA","InspectingFireB","InspectingFireC","InspectingLamp","Resting")
+	SetPriority(%currentAction, 1200)
+
+REACTION InspectingFireA,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+	FIXEDSTRING:_ElviraLookAt
+CHECK "!c1"
+	HasGlobalFlag("FTJI_Dome_ObjectA_Unsolved")
+ACTIONS
+	CharacterMoveTo(%PointA,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectA,0,0)
+	GetRandom(_animation,"Think_01","Think_02","use_craft","Fidget_Low_01","Look_Down_Short_01","Bored_01")
+	DialogStart(_,"FTJI_AD_Zika_Objects",__Me)
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+	
+REACTION InspectingFireB,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+CHECK "!c1"
+	HasGlobalFlag("FTJI_Dome_ObjectB_Unsolved")
+ACTIONS
+	CharacterMoveTo(%PointB,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectB,0,0)
+	GetRandom(_animation,"Warm_Hands_01","Think_02","use_craft","Fidget_Low_01","Look_Down_Short_01","Bored_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,4)
+	Sleep(%RandSleep)
+	DialogStart(_,"",__Me)
+	CharacterPlayAnimation("use_inspect")
+	GetRandomBetween(%RandSleep,2,7)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+
+	
+REACTION InspectingFireC,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%PointC,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectC,0,0)
+	GetRandom(_animation,"Think_01","Tired_01","Warm_Hands_01","Fidget_Low_01","Look_Down_Short_01","Bored_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	CharacterPlayAnimation("use_inspect")
+	GetRandomBetween(%RandSleep,6,15)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION InspectingLamp,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%PointD,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectD,0,0)
+	GetRandom(_animation,"Think_01","Think_02","Write_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	CharacterPlayAnimation("use_inspect")
+	GetRandomBetween(%RandSleep,6,15)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION Resting,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%Chair,0,0,0,1,2)
+	CharacterUseItem(%Chair)
+	GetRandom(_animation,"Sit_Read_01","Sit_Sigh_01","Sit_Tired_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,10,24)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+
+	

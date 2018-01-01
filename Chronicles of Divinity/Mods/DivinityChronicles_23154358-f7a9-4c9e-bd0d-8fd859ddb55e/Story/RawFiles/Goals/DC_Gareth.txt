@@ -1,0 +1,30 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister1_324e8aca-3b0b-430e-b8bb-2f6e9edac3fe, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister2_f278b94b-78ac-4cd7-9d8a-1c61e673ead3, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister3_34996c94-6294-45e7-9659-f6fce2a95ea5, 0);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister4_96f35d8a-d38a-4fc1-9b23-bdf4349a16ec, 0);
+KBSECTION
+IF
+CharacterUsedItem(_Player, ITEMGUID_PUZ_Lever_Floor_A_000_3371f3c1-a318-47f6-a7c1-9ea8f8431d10)
+THEN
+SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister1_324e8aca-3b0b-430e-b8bb-2f6e9edac3fe, 1);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister2_f278b94b-78ac-4cd7-9d8a-1c61e673ead3, 1);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister3_34996c94-6294-45e7-9659-f6fce2a95ea5, 1);
+SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister4_96f35d8a-d38a-4fc1-9b23-bdf4349a16ec, 1);
+GlobalSetFlag("DC_GarethBackToCornered");
+
+//IF
+//CharacterUsedItem(_Player, ITEMGUID_PUZ_Lever_Floor_E_001_f8bb9015-4e2a-4a1b-9729-43ae5a070946)
+//THEN
+//ProcDefineReflectionDialog("DC_ReflectionTest2",_Player);
+//NOT DB_ReflectionDialog_Finished("DC_RD_Test");
+//ProcDefineReflectionDialog("DC_RD_Test",_Player);
+//ProcStartReflectionDialog(_Player,"DC_RD_Test");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "FortJoy"

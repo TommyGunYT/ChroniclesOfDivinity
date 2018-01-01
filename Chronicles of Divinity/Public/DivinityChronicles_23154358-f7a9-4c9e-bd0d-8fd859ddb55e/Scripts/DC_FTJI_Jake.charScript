@@ -1,0 +1,99 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	EXTERN TRIGGER:%LookAtObjectA = S_DC_DomeIsle_Jake_LookatA_94de651c-99be-4798-8862-882171d9eafd
+	EXTERN TRIGGER:%LookAtObjectB = S_DC_DomeIsle_Jake_LookatB_80d95d7f-4490-4111-849f-772a74905240
+	EXTERN TRIGGER:%LookAtObjectC = S_DC_DomeIsle_Jake_LookatC_50d539d9-48ab-4d03-b9e7-e97cc7f2df29
+	EXTERN TRIGGER:%PointA = S_DC_DomeIsle_Jake_PointA_2833c9e8-0c99-434f-b3e7-3a06a150ce39
+	EXTERN TRIGGER:%PointB = S_DC_DomeIsle_Jake_PointB_37c32f90-4745-4023-b4ec-b4b8bfa6052a
+	EXTERN TRIGGER:%PointC = S_DC_DomeIsle_Jake_PointC_4815d3b7-9bbd-4f85-a587-01c51d0a01a9
+	EXTERN TRIGGER:%PointLadder = S_DC_DomeIsle_Jake_Ladder_291f26b9-519c-4ad3-8285-7258796993c4
+	EXTERN ITEM:%Ladder = S_DC_DomeIsle_Ladder_d0283501-8861-45ea-b798-667fd9013e0a
+	INT:%CanGoToWatchtower = 1
+	INT: %resetTimeout = 0
+	FLOAT:%RandSleep = 1
+
+
+BEHAVIOUR
+REACTION State_Default, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"EntranceGate","Bridge","ScoutingTower","Wander")
+	SetPriority(%currentAction, 1200)
+	
+REACTION EntranceGate, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%PointA,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectA,0,0)
+	GetRandom(_animation,"idle2","idle3","use_drink","Attention_01","Bored_02","Bored_01","Listen_01")
+	CharacterPlayAnimation(_animation)
+	Sleep(15.5)
+	Set(%CanGoToWatchtower,1)
+	SetPriority(%currentAction, 0)
+
+REACTION Bridge, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%PointB,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectB,0,0)
+	GetRandom(_animation,"idle2","idle3","use_drink","Attention_01","Bored_02","Bored_01","Listen_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,10,20)
+	Sleep(%RandSleep)
+	Set(%CanGoToWatchtower,1)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION ScoutingTower, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+IF "c1"
+	IsEqual(%CanGoToWatchtower,1)
+THEN
+	CharacterMoveTo(%PointLadder,0,0,0,1,2)
+	CharacterUseItem(%Ladder)
+	CharacterMoveTo(%PointC,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectC,0,0)
+	GetRandom(_animation,"idle2","idle3","use_drink","Attention_01","Bored_02","Bored_01","Listen_01")
+	DialogStart(_,"FTJI_AD_Jake",__Me)
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,10,20)
+	Sleep(%RandSleep)
+	Set(%CanGoToWatchtower,0)
+	CharacterUseItem(%Ladder)
+	SetPriority(%currentAction, 0)
+ELSE
+	SetPriority(%currentAction, 0)
+	ENDIF
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION Wander, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterWander(TRIGGER:S_DC_FTJI_Jake_WanderPoly_bba00f3b-2a72-4a6d-ab75-b2f35decc738,8.0)
+	Sleep(2.0)
+	GetRandom(_animation,"idle2","idle3","use_drink","Attention_01","Bored_02","Bored_01","Listen_01")
+	CharacterPlayAnimation(_animation)
+	Sleep(3.0)
+	GetRandom(_animation,"idle2","idle3","use_drink","Attention_01","Bored_02","Bored_01","Listen_01")
+	CharacterPlayAnimation(_animation)
+	Sleep(2.0)
+	CharacterWander(TRIGGER:S_DC_FTJI_Jake_WanderPoly_bba00f3b-2a72-4a6d-ab75-b2f35decc738,4.0)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)

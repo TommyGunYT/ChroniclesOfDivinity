@@ -1,0 +1,66 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_DC_RD("DC_RD_Test", "GlobalFlagTest");
+KBSECTION
+IF
+GlobalFlagSet(_GlobalFlagDB)
+AND
+DB_DC_RD(_ReflectionDialog, _GlobalFlagDB)
+THEN
+DB_NOOP(1);
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_PUZ_Lever_Floor_E_001_f8bb9015-4e2a-4a1b-9729-43ae5a070946)
+AND
+DB_IsPlayer(_OtherPlayer)
+AND
+DB_Dialogs(_Player,_Dialog)
+AND
+DB_Dialogs(_OtherPlayer,_Dialog1)
+AND
+CharacterIsInPartyWith(_Player, _OtherPlayer, 1)
+THEN
+DB_DC_StoredDialogs(_Player, _Dialog);
+DB_DC_StoredDialogs(_OtherPlayer, _Dialog);
+NOT DB_Dialogs(_Player, _Dialog);
+NOT DB_Dialogs(_OtherPlayer, _Dialog1);
+ApplyStatus(_Player,"REFLECTION",-1.0);
+ApplyStatus(_OtherPlayer,"REFLECTION",-1.0);
+ProcRemoveAllDialogEntriesForSpeaker(_Player);
+ProcRemoveAllDialogEntriesForSpeaker(_OtherPlayer);
+DisplayText(_Player, "Someone else in the party is nearby!");
+DB_Dialogs(_Player, "DC_RD_Test");
+DB_Dialogs(_OtherPlayer, "DC_RD_Test");
+SetHasDialog(_Player, 1);
+SetHasDialog(_OtherPlayer, 1);
+IF
+DialogEnded("DC_RD_Test", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+DB_IsPlayer(_OtherPlayer)
+AND
+DB_DC_StoredDialogs(_Player, _Dialog)
+AND
+DB_DC_StoredDialogs(_OtherPlayer, _Dialog1)
+AND
+CharacterIsInPartyWith(_Player, _OtherPlayer, 1)
+THEN
+NOT DB_Dialogs(_Player, "DC_RD_Test");
+NOT DB_Dialogs(_OtherPlayer, "DC_RD_Test");
+ProcRemoveAllDialogEntriesForSpeaker(_Player);
+ProcRemoveAllDialogEntriesForSpeaker(_OtherPlayer);
+DB_Dialogs(_Player, _Dialog);
+DB_Dialogs(_OtherPlayer, _Dialog1);
+RemoveStatus(_Player,"REFLECTION");
+RemoveStatus(_OtherPlayer,"REFLECTION");
+SetHasDialog(_Player, 1);
+SetHasDialog(_OtherPlayer, 1);
+NOT DB_DC_StoredDialogs(_Player, _Dialog);
+NOT DB_DC_StoredDialogs(_OtherPlayer, _Dialog);
+
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"

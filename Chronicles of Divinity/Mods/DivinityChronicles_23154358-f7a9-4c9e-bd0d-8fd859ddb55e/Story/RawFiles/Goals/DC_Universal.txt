@@ -13,14 +13,6 @@ DB_DCCompanionTemps(CHARACTERGUID_DC_NPC_Icara_001_ac205041-f93f-4e4d-babf-6db6b
 KBSECTION
 //REGION DEBUG TOOL
 IF
-CharacterLeveledUp(_Player)
-AND
-ItemTemplateIsInCharacterInventory(_Player,"DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657",0)
-THEN
-DisplayText(_Player,"Book Incoming!");
-ItemTemplateAddTo("DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657",_Player,1);
-
-IF
 CharacterUsedItemTemplate(_Player, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _)
 THEN
 Proc_StartDialog(0,"DC_DEBUG", _Player);
@@ -194,6 +186,17 @@ IF
 CharacterUsedItem(_Player, ITEMGUID_PUZ_Lever_Floor_E_000_639f9f7b-da9c-4865-aa42-4134314fc36d)
 THEN
 CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TP_FTJ_Isles_BeachMain_fda011da-df2c-4696-868b-a9fe5591df55, "");
+
+
+
+
+
+
+
+IF
+CharacterUsedItem(_Player, ITEMGUID_DC_TestStone_9d486b38-627c-4e8b-b9dd-7605b6a2fd13)
+THEN
+DisplayText(ITEMGUID_DC_TestStone_9d486b38-627c-4e8b-b9dd-7605b6a2fd13, "A smart man used to be where you stand. Now he lies here. RIP.");
 EXITSECTION
 
 ENDEXITSECTION

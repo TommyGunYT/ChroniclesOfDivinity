@@ -7,7 +7,7 @@ KBSECTION
 IF
 CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_FTJ_DanielLoot_a908762b-b527-44bf-b69a-617f65223050)
 AND
-UserGetFlag(_Player,"FTJ_Daniel_DiaryHasMet",0)
+DB_IsPlayer(_Player)
 AND
 PartyGetFlag(_Player,"LiedToDaniel",1)
 THEN
@@ -17,7 +17,7 @@ UserSetFlag(_Player,"FTJ_Daniel_DiaryHasMet");
 IF
 CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_FTJ_DanielLoot_a908762b-b527-44bf-b69a-617f65223050)
 AND
-UserGetFlag(_Player,"FTJ_Daniel_DiaryHasNotMet",0)
+DB_IsPlayer(_Player)
 AND
 PartyGetFlag(_Player,"LiedToDaniel",0)
 THEN

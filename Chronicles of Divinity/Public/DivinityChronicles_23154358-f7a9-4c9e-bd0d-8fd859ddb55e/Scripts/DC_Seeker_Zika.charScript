@@ -1,0 +1,126 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	EXTERN TRIGGER:%LookAtObjectA = S_DC_DomeIsle_Zika_LookAt_ObjA_ed69db7e-e451-45af-9f94-c66943d6dd37
+	EXTERN ITEM:%LookAtObjectB = S_DC_DomeIsle_MysteriousObject2_5ebe44ff-2ec2-48fb-9389-70fd3dc5e3e2
+	EXTERN ITEM:%LookAtObjectC = S_FTJI_DomeIsle_GlowShroom_c71c68a1-dc67-46ff-9f91-08ae2be82ac7
+	EXTERN ITEM:%Object = S_DC_DomeIsle_MysteriousObject1_b2ed625e-2d5e-4dc0-a1f3-ee4cde7f8071
+	EXTERN ITEM:%Object2 = S_DC_DomeIsle_MysteriousObject2_5ebe44ff-2ec2-48fb-9389-70fd3dc5e3e2
+	EXTERN ITEM:%Object3 = S_FTJI_DomeIsle_GlowShroom_c71c68a1-dc67-46ff-9f91-08ae2be82ac7
+	EXTERN TRIGGER:%ZikaPoint1 = S_DC_DomeIsle_Zika_ObjectA_111bec5c-9000-4e1e-adda-86b5ae084581
+	EXTERN TRIGGER:%ZikaPoint2 = S_DC_DomeIsle_Zika_ObjectB_a5857686-e4b6-4647-a6b6-0a3b9d0b0683
+	EXTERN TRIGGER:%ZikaPoint3 = S_DC_DomeIsle_Zika_ObjectShroom_aaec0c8c-5bed-4a01-a9bd-6b1c8fe16725
+	INT: %resetTimeout = 0
+	FLOAT:%RandSleep = 1
+
+
+
+BEHAVIOUR
+REACTION State_Default, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"InspectingObjectA","InspectingObjectA2","InspectingObjectB","InspectingObjectB2","InspectingObjectShroom")
+	SetPriority(%currentAction, 1200)
+
+REACTION InspectingObjectA,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+	FIXEDSTRING:_ElviraLookAt
+CHECK "!c1"
+	HasGlobalFlag("FTJI_Dome_ObjectA_Unsolved")
+ACTIONS
+	CharacterMoveTo(%ZikaPoint1,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectA,0,0)
+	GetRandom(_animation,"Think_01","Think_02","use_craft","use_activate","Look_Down_Short_01","Use_02")
+	DialogStart(_,"FTJI_AD_Zika_Objects",__Me)
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION InspectingObjectA2,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+	FIXEDSTRING:_ElviraLookAt
+CHECK "!c1"
+	HasGlobalFlag("FTJI_Dome_ObjectA_Unsolved")
+ACTIONS
+	CharacterMoveTo(%ZikaPoint1,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectA,0,0)
+	GetRandom(_animation,"Use_01","Think_02","use_craft","use_activate","Look_Down_Short_01")
+	DialogStart(_,"FTJI_AD_Zika_Objects",__Me)
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION InspectingObjectB,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+CHECK "!c1"
+	HasGlobalFlag("FTJI_Dome_ObjectB_Unsolved")
+ACTIONS
+	CharacterMoveTo(%ZikaPoint2,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectB,0,0)
+	GetRandom(_animation,"Think_01","Think_02","use_craft","use_activate","Look_Down_Short_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,4)
+	Sleep(%RandSleep)
+	DialogStart(_,"FTJI_AD_Zika_Objects",__Me)
+	CharacterPlayAnimation("use_inspect")
+	GetRandomBetween(%RandSleep,2,7)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 2)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION InspectingObjectB2,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+CHECK "!c1"
+	HasGlobalFlag("FTJI_Dome_ObjectB_Unsolved")
+ACTIONS
+	CharacterMoveTo(%ZikaPoint2,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectB,0,0)
+	GetRandomBetween(%RandSleep,2,4)
+	GetRandom(_animation,"Think_01","Think_02","use_craft","use_activate","Look_Down_Short_01","use_inspect")
+	Sleep(%RandSleep)
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,6)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 2)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION InspectingObjectShroom,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%ZikaPoint3,0,0,0,1,2)
+	CharacterLookAt(%LookAtObjectC,0,0)
+	GetRandom(_animation,"Think_01","Kneel_01","Kneel_02")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	CharacterPlayAnimation("use_inspect")
+	GetRandomBetween(%RandSleep,6,15)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 4)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	

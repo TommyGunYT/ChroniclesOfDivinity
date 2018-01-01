@@ -8,6 +8,7 @@ DB_Dialogs(CHARACTERGUID_DC_BrandonKMiddell_OnBeach_52af7d79-a56e-4a18-a7af-72d6
 DB_Dialogs(CHARACTERGUID_DC_Maya_dcb9edbe-3470-428b-8684-785e5648a04d,"DC_Maya");
 DB_Dialogs(CHARACTERGUID_DC_FTJ_Dima_1f927f25-9625-472e-8ba0-8a065130b4d9,"DC_Dima");
 
+TimerLaunch("FTJ_DC_INIT", 4000);
 DB_BrandonPosters(ITEMGUID_BOOK_poster_C_001_7ee87860-daf2-47a3-aaf0-fe346e396deb);
 DB_BrandonPosters(ITEMGUID_BOOK_poster_C_002_c25f4c4a-4c35-4403-b58f-a0b1556daa8c);
 DB_BrandonPosters(ITEMGUID_BOOK_poster_C_003_67782721-e7ab-450b-a3fb-6fa1b3de77f9);
@@ -270,6 +271,22 @@ ItemDestroy(ITEMGUID_DC_Poster_Brandon_6637a4da-a0b9-4857-88f2-d4bca543f2e3);
 ItemDestroy((ITEMGUID)_BrandonPosters);
 GlobalClearFlag("FatherAndDaughterStarted");
 //END_REGION
+
+//REGION MAYA AT BEACH
+
+IF
+TimerFinished("FTJ_DC_INIT")
+THEN
+CharacterSetAnimationOverride(CHARACTERGUID_DC_Maya_dcb9edbe-3470-428b-8684-785e5648a04d, "Crying");
+//END_REGION
+
+
+IF
+RegionStarted(_)
+AND
+DB_IsPlayer(_Player)
+THEN
+CameraActivate(_Player,"DC_FTJ_StartCam",0.0,0,0,0);
 EXITSECTION
 
 ENDEXITSECTION

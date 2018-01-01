@@ -1,0 +1,122 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	CHARACTER:%Zika = S_DC_FTJ_Zika_0787498c-0869-4f05-82d4-6c883d5ea3ea
+	CHARACTER:%Dragon = S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c
+	INT:%CanGoToZika = 1
+	INT:%CanUseChest = 1
+	EXTERN TRIGGER:%LookAtMaps = S_DC_DomeIsle_Elvira_Desk_Lookat_0dfdae57-821e-456a-9836-47e5df4c4362
+	EXTERN TRIGGER:%LookAtChest = S_DC_DomeIsle_Elvira_Chest_Lookat_64ea5785-2337-4b80-b740-0eea71bc72ff
+	EXTERN ITEM:%Object = S_Map_beafa2e6-11cc-4d6f-bfad-35501d8f8356
+	EXTERN ITEM:%Object2 = S_HoveringRune_0afc2859-38f0-44e5-ab05-9111bd7accb4
+	EXTERN ITEM:%Object3 = S_Container_4b0354ea-8303-4288-82ac-05075afb5788
+	EXTERN ITEM:%Object4 = S_ElvirasChest_3e1cf72b-1b46-43ac-8905-c16ed4858b76
+	EXTERN TRIGGER:%ElviraPoint1 = S_DC_DomeIsle_Elvira_Desk_cdb552fb-f3d1-4ef1-b19b-d22466be3436
+	EXTERN TRIGGER:%ElviraPoint2 = S_DC_DomeIsle_Elvira_Chest_cf22b963-abd7-433b-82fd-83d33a6aac2f
+	EXTERN TRIGGER:%ElviraPointDragon = S_DomeIsle_Zika_DragonPoin_ec8b4a85-cbf7-4195-b93a-6e95ddd4f78f
+	EXTERN TRIGGER:%ElviraPointDragon2 = S_DomeIsle_Zika_DragonPoint_2_2375ca72-fa0c-43cb-b85f-2b67b657d054
+	INT: %resetTimeout = 0
+	FLOAT:%RandSleep = 1
+
+
+BEHAVIOUR
+REACTION State_Default, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"AtDesk_InspectingObjects","GettingTools","OfferingZikaTools")
+	SetPriority(%currentAction, 1200)
+
+REACTION AtDesk_InspectingObjects,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+	FIXEDSTRING:_ElviraLookAt
+ACTIONS
+	CharacterMoveTo(%ElviraPoint1,0,0,0,1,2)
+	CharacterLookAt(%LookAtMaps,0,0)
+	GetRandom(_animation,"Think_01","Think_02","use_craft")
+	DialogStart(_,"FTJI_AD_ElviraAtDesk",__Me)
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+	Set(%CanUseChest,1)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION GettingTools,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	IF "c1"
+	IsEqual(%CanUseChest,1)
+	THEN
+	CharacterMoveTo(%ElviraPoint2,0,0,0,1,2)
+	CharacterLookAt(%LookAtChest,0,0)
+	CharacterPlayAnimation("use_loot")
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	CharacterPlayAnimation("use_inspect")
+	GetRandomBetween(%RandSleep,2,4)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 2)
+	Set(%CanGoToZika,1)
+	Set(%CanUseChest,0)
+ELSE
+	SetPriority(%currentAction, 0)
+	ENDIF
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION OfferingZikaTools,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	IF "c1"
+	IsEqual(%CanGoToZika,1)
+	THEN
+	CharacterMoveTo(%Zika,0,0,0,1,2)
+	CharacterLookAt(%Zika,0,0)
+	GetRandom(_animation,"Think_01","Think_02")
+	DialogStart(_,"FTJI_AD_ElviraZika",__Me,%Zika)
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	CharacterPlayAnimation("use_inspect")
+	GetRandomBetween(%RandSleep,2,4)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 4)
+	Set(%CanGoToZika,0)
+	Set(%CanUseChest,1)
+ELSE
+	SetPriority(%currentAction, 0)
+	ENDIF
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+	
+	
+	
+REACTION State_LookingAtDragon, 1
+USAGE PEACE
+VARS
+	FIXEDSTRING:_RunTo
+ACTIONS
+	CharacterMoveTo(%ElviraPointDragon,1,0,0,1,2)
+	CharacterLookAt(%Dragon,0,0)
+	DialogStart(_,"FTJI_AD_ElviraSeesDragon",__Me)
+	CharacterPlayAnimation("Cower_03_Loop")
+	GetRandomBetween(%RandSleep,4,7)
+	DialogStart(_,"FTJI_AD_ElviraSeesDragon",__Me)
+	Sleep(%RandSleep)
+	GetRandomBetween(%RandSleep,3,7)
+	CharacterStopAnimation()
+	CharacterSetAnimationOverride(__Me, "")
+	

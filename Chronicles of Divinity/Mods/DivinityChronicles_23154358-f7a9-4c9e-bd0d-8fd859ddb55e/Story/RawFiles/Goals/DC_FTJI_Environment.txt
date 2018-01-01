@@ -142,6 +142,13 @@ AND
 PlayLoopEffect(CHARACTERGUID_DC_NPC_Icara_001_ac205041-f93f-4e4d-babf-6db6bd588e15, "RS3_FX_Skills_Air_Lightning_Overlay_Loop_01", "", _Icarandle)
 THEN
 DB_NOOP(1);
+
+PROC
+Proc_FTJI_FX_INIT()
+AND
+PlayLoopEffect(CHARACTERGUID_DC_FTJI_TimeLostDragon_f9c71fbd-ac4b-402d-a5f1-7fb1ccd58f40, "RS3_FX_Skills_Air_Lightning_Overlay_Loop_01", "", _TimeLostDragonFX)
+THEN
+DB_NOOP(1);
 EXITSECTION
 
 ENDEXITSECTION

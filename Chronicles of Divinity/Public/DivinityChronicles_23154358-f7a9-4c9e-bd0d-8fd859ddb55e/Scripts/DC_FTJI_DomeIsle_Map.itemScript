@@ -1,0 +1,19 @@
+INIT
+ITEM:__Me
+
+EXTERN INT:%OnUse = 1
+EXTERN STRING:%AD = "FTJI_AD_DomeIsle_Map"
+INT:%FunctionOn = 1
+
+
+EVENTS
+EVENT OnUse
+VARS
+	CHARACTER:_Char
+ON
+	OnUseItem(_Char,__Me)
+ACTIONS
+	DialogStart(_,%WarningDialog,__Me)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
