@@ -8,6 +8,14 @@ Proc_FTJI_FX_INIT();
 //DB_Dialogs(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182,"FTJI_StrandedSquirrel");
 //DB_Dialogs(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73,"FTJI_StrandedSquirrel");
 KBSECTION
+IF
+CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_LevelTemplateActivate_Isles_e9cf6967-2489-424e-9492-1d396d1c417c)
+AND
+DB_IsPlayer(_Player)
+THEN
+ActivatePersistentLevelTemplate(b3b190eb-a87b-44e9-b3ac-b114935dafcb);
+
+
 //REGION CHOP TREE BRIDGE
 IF
 ItemDestroying(ITEMGUID_DC_NAT_TreePine_Big_Standing_057a5562-f78f-4aa6-abaa-409f1574c2fb)
@@ -152,4 +160,4 @@ DB_NOOP(1);
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "DC_Isles"
+ParentTargetEdge "FortJoy"

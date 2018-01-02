@@ -23,7 +23,6 @@ IF
 CharacterUsedItem(_Player, ITEMGUID_DC_Sandbox_Lever_cf25673d-0e86-40ff-83fb-34bd0315862a)
 THEN
 Proc_StartDialog(0, "AutomatedTest", CHARACTERGUID_Elves_Female_Malady_000_eb470b59-fe2e-4940-9ef9-25aa76090803, CHARACTERGUID_GLO_Saheila_PostFTJ_000_3528ffe0-da5f-4357-86e8-7f7545015377);
-
 EXITSECTION
 
 ENDEXITSECTION

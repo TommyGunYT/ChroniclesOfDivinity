@@ -85,7 +85,8 @@ PROC_DC_UpdateLevel();
 IF
 CharacterUsedItemTemplate(_Character, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _Item)
 THEN
-Proc_StartDialog(0, "DC_DebugBook", _Item, _Character);
+Proc_StartDialog(0, "DC_DebugSetup", _Item, _Character);
+ObjectSetFlag(_Character,"DEBUG_GiveBook");
 //END_REGION
 
 IF

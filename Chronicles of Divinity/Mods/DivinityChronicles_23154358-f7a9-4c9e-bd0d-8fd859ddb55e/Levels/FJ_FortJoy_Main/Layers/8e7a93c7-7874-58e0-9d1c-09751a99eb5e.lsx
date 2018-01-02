@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1514842375" />
+    <version major="3" minor="1" revision="5" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="8e7a93c7-7874-58e0-9d1c-09751a99eb5e" type="31" />
+            <attribute id="Name" value="Sailing Cameras" type="23" />
+        </node>
+    </region>
+</save>

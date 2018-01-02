@@ -11,14 +11,15 @@ INITSECTION
 //END_REGION
 DB_DCCompanionTemps(CHARACTERGUID_DC_NPC_Icara_001_ac205041-f93f-4e4d-babf-6db6bd588e15);
 KBSECTION
+IF
+RegionStarted("FJ_FortJoy_Main")
+THEN
+ActivatePersistentLevelTemplate(LEVELTEMPLATEGUID_DC_FortJoy_Isles_b3b190eb-a87b-44e9-b3ac-b114935dafcb);
+
+
 //REGION DEBUG TOOL
 IF
-CharacterUsedItemTemplate(_Player, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _)
-THEN
-Proc_StartDialog(0,"DC_DEBUG", _Player);
-
-IF
-CharacterUsedItemTemplate(_Player, "DC_BOOK_TutorialShip_TimeTravel_baec138a-3f8d-4252-8c22-a3c70f31a464", _)
+CharacterUsedItemTemplate(_Player, "DC_BOOK_TutorialShip_TimeTravel_baec138a-3f8d-4252-8c22-a3c70f31a464", _Item)
 THEN
 DisplayText(_Player,"Running Teleporter Dialogue!");
 PlaySound(_Player,"SE_Lohse_song_full_performance");
@@ -190,13 +191,22 @@ CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TP_FTJ_Isles_BeachMain_fda011da
 
 
 
-
+IF
+DialogEnded("GEN_Debug_Item", _ID)
+AND
+DB_IsPlayer(_Character)
+AND
+ItemTemplateIsInCharacterInventory(_Character, "DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", 0)
+THEN
+ItemTemplateAddTo("DC_Debug_Book_b7e7be57-2940-4260-885f-af92912b1657", _Character, 1);
 
 
 IF
-CharacterUsedItem(_Player, ITEMGUID_DC_TestStone_9d486b38-627c-4e8b-b9dd-7605b6a2fd13)
+CharacterUsedItem(_Player, ITEMGUID_PUZ_Lever_Floor_D_000_e1202aee-e67c-4077-8602-8845c9ee8f69)
+AND
+GetPosition(_Player, _X, _Y, _Z)
 THEN
-DisplayText(ITEMGUID_DC_TestStone_9d486b38-627c-4e8b-b9dd-7605b6a2fd13, "A smart man used to be where you stand. Now he lies here. RIP.");
+ItemMoveToPosition(TRIGGERGUID_SpectatorCameraTrigger_004_f966d54c-451e-474c-8892-5e5ffc4336b5, _X, _Y, _Z, 50.00, 0.00, "");
 EXITSECTION
 
 ENDEXITSECTION

@@ -21,7 +21,6 @@ DB_ShovelArea(TRIGGERGUID_S_FTJI_DigSpotBOX_PirateCaveEntrance_a9c1816f-8958-4e8
 DB_ShovelRewardItemAppear("FTJIDigspot_PirateEntrance", ITEMGUID_DC_PirateIsle_InvisibleHelper_db87371a-75c4-4717-9aaf-35fc99bad77f, TRIGGERGUID_S_FTJI_DigSpotBOX_PirateCaveEntrance_a9c1816f-8958-4e8a-adee-10c7dd46acc6);
 
 KBSECTION
-
 //REGION Pirate Isle Underground Entrance
 
 IF
@@ -36,4 +35,4 @@ PlaySound(ITEMGUID_05m_HouseFarm_A_Hatch_A_Item_000_DC_FJI_ExplorationIsle_02_Pi
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "DC_Isles"
+ParentTargetEdge "FortJoy"

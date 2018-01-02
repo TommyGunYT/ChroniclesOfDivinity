@@ -222,4 +222,4 @@ GlobalSetFlag("FTJIBeachLadder");
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "DC_Isles"
+ParentTargetEdge "FortJoy"

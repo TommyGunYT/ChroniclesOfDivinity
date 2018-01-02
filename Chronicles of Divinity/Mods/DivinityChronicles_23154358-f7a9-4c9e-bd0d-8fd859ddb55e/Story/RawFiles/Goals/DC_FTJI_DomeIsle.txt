@@ -416,4 +416,4 @@ TimerLaunch("DC_DomeIsle_JakeShooting", 2311);
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "DC_Isles"
+ParentTargetEdge "FortJoy"

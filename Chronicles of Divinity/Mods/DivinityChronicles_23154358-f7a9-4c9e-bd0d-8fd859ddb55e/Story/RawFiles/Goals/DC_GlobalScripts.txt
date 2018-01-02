@@ -4,9 +4,6 @@ INITSECTION
 //DB_Dialogs(CHARACTERGUID_DC_Basement_Rat_8368340b-fd16-4f10-895f-48e4d62c9f6f,"DC_Rat_Test");
 
 KBSECTION
-
-
-
 // DEBUG TOOL
 
 //IF
@@ -28,4 +25,4 @@ KBSECTION
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "DC_Isles"
+ParentTargetEdge "__Start"

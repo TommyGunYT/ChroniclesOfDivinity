@@ -156,4 +156,4 @@ SetFaction(CHARACTERGUID_DC_PirateCrab_Leonardo_eb58b5ac-bbdd-4563-ac25-9d1c8bce
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "DC_Isles"
+ParentTargetEdge "FortJoy"

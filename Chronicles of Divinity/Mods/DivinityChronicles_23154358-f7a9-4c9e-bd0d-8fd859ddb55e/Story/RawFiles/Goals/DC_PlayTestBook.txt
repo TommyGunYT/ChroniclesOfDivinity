@@ -1,0 +1,32 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+DialogEnded("DC_DebugSetup", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+DialogGetInvolvedPlayer(_ID, 1, _Speaker)
+AND
+ObjectGetFlag(_Speaker, "DC_Debug_TPToFTJStart", 1)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TestingArea_FTJ_Start_cc6880b1-da9c-41db-9b51-5ec691f234e6, "");
+ObjectClearFlag(_Speaker, "DC_Debug_TPToFTJStart");
+
+IF
+DialogEnded("DC_DebugSetup", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+DialogGetInvolvedPlayer(_ID, 1, _Speaker)
+AND
+ObjectGetFlag(_Speaker, "DC_Debug_TPToFTJShrineIsle", 1)
+THEN
+CharacterTeleportPartiesToTrigger(TRIGGERGUID_DC_TestingArea_ShrineIsle_dd00f9f2-ac30-45c7-996e-b84f062f24d2, "");
+ObjectClearFlag(_Speaker, "DC_Debug_TPToFTJShrineIsle");
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "__Start"
