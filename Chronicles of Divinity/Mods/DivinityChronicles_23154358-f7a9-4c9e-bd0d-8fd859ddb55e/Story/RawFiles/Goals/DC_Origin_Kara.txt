@@ -1,0 +1,274 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+SetOnStage(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, 0);
+KBSECTION
+//REGION BEACH INTRO ENCOUNTER
+
+IF
+RegionStarted("FJ_FortJoy_Main")
+AND
+DB_IsPlayer(_Player)
+AND
+_Player != CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd
+AND
+NOT DB_IsPlayer(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, 0)
+THEN
+TeleportTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_Kara_StartPoint_9f4326f0-68c4-4aab-84de-0f412c8dd979);
+SetCanFight(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0);
+SetVarFixedString(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "currentState", "");
+GlobalSetFlag("DC_FTJ_INIT_KaraUnconscious");
+SetHasDialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 1);
+NOT DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Origin_Kara_TUT");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd);
+DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_FTJ_Intro");
+ApplyStatus(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"KNOCKED_DOWN",-1.0);
+
+IF
+CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_FTJ_VoidlingsBeach_Kara_3309340f-be23-4354-a469-1d851554b416)
+AND
+DB_IsPlayer(_Player)
+AND
+_Player != CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd
+AND
+NOT DB_IsPlayer(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, 0)
+AND
+CharacterIsControlled(_Player, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0, 0)
+THEN
+Proc_StartDialog(0, "Kara_FTJ_IntroBattle", CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player);
+
+IF
+DialogEnded("Kara_FTJ_IntroBattle", _ID)
+AND
+DialogGetInvolvedPlayer(_ID, 1, _Speaker)
+AND
+ObjectGetFlag(_Speaker, "DC_FTJ_KaraIntro_FightOff", 1)
+THEN
+SetCanFight(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 1);
+SetCanFight(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0, 1);
+SetCanFight(CHARACTERGUID_S_FTJ_BeachVw_002_1832a661-0e21-421f-acaa-a7e66e813b14, 1);
+
+
+IF
+DialogEnded("Kara_FTJ_IntroBattle", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+DialogGetInvolvedPlayer(_ID, 1, _Speaker)
+AND
+ObjectGetFlag(_Speaker, "DC_FTJ_KaraIntro_RushToAid", 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0, 0)
+THEN
+ProcCharacterMoveTo(_Player, CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 1, "DC_FTJ_RushToKaraAid");
+
+IF
+StoryEvent(_, "DC_FTJ_RushToKaraAid")
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0, 0)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, 0)
+THEN
+PlayAnimation(_Player, "use_loot");
+RemoveStatus(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "KNOCKED_DOWN");
+PlayAnimation(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "knockdown_getup");
+TimerLaunch("DC_FTJ_KaraGetUp", 2000);
+
+IF
+TimerFinished("DC_FTJ_KaraGetUp")
+AND
+DB_IsPlayer(_Player)
+THEN
+Proc_StartDialog(0, "Kara_FTJ_IntroBattle", CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player);
+
+IF
+DialogEnded("Kara_FTJ_IntroBattle", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+DialogGetInvolvedPlayer(_ID, 1, _Speaker)
+AND
+ObjectGetFlag(_Speaker, "DC_FTJ_KaraIntro_Aided", 1)
+THEN
+SetCanFight(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 1);
+SetCanFight(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0, 1);
+SetCanFight(CHARACTERGUID_S_FTJ_BeachVw_002_1832a661-0e21-421f-acaa-a7e66e813b14, 1);
+
+
+IF
+CombatEnded(_ID)
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0, 1)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, 0)
+AND
+PartyGetFlag(_Player, "DC_FTJ_KaraIntro_Aided", 0)
+AND
+PartyGetFlag(_Player, "DC_FTJ_KaraIntro_FightOff", 1)
+AND
+ObjectIsInTrigger(_Player, TRIGGERGUID_S_DC_Beach_KaraCheck_9ff5dbe5-311f-4a74-9d4e-fb222765d763, 1)
+THEN
+DisplayText(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "Hnng...");
+SetHasDialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 1);
+NOT DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_FTJ_Intro");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd);
+DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_FTJ_UnconsciousIntro");
+SetVarFixedString(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "currentState", "FTJ_Beach_Idle");
+
+IF
+CombatEnded(_ID)
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsDead(CHARACTERGUID_S_FTJ_BeachVw_001_08348b3a-bded-4811-92ce-f127aa4310e0, 1)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, 0)
+AND
+PartyGetFlag(_Player, "DC_FTJ_KaraIntro_Aided", 1)
+AND
+PartyGetFlag(_Player, "DC_FTJ_KaraIntro_FightOff", 0)
+AND
+ObjectIsInTrigger(_Player, TRIGGERGUID_S_DC_Beach_KaraCheck_9ff5dbe5-311f-4a74-9d4e-fb222765d763, 1)
+THEN
+SetHasDialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 1);
+NOT DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_FTJ_Intro");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd);
+DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Kara_FTJ_ConsciousIntro");
+SetVarFixedString(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "currentState", "FTJ_Beach_Idle");
+
+IF
+GlobalFlagSet("DC_FTJ_Kara_ConsciousAfterBattle")
+THEN
+RemoveStatus(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "KNOCKED_DOWN");
+PlayAnimation(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "knockdown_getup");
+GlobalClearFlag("DC_FTJ_Kara_ConsciousAfterBattle");
+
+IF
+GlobalFlagSet("DC_FTJ_KaraTimeVision")
+THEN
+CharacterAppear(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, 1, "DC_FTJ_Intro_IcaraAppear");
+PlayEffect(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, "RS3_FX_GP_ScriptedEvent_Mordus_VoidTransform_Overlay_01");
+ProcCharacterMoveTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_S_DC_FTJ_KaraPoint1_12bd9ef5-6017-4b13-91b8-32b6d65a0142, 1, "DC_FTJ_Intro_KaraTakesCover");
+
+IF
+StoryEvent(_, "DC_FTJ_Intro_KaraTakesCover")
+THEN
+DisplayText(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "... What do you want?!");
+ProcFaceCharacter(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f);
+PlayAnimation(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "Cower_02");
+
+
+IF
+StoryEvent(_, "DC_FTJ_Intro_IcaraAppear")
+AND
+PlayLoopEffect(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, "RS3_FX_Skills_Air_Lightning_Overlay_Loop_01", "", _IcaraFX)
+THEN
+GlobalClearFlag("DC_FTJ_KaraTimeVision");
+ProcCharacterMoveTo(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, TRIGGERGUID_DC_FTJ_Intro_IcaraPoint1_2ff03f7a-35df-4a95-8f5e-863010280911, 0, "DC_FTJ_Intro_IcaraToKara");
+
+IF
+StoryEvent(_, "DC_FTJ_Intro_IcaraToKara")
+AND
+DB_IsPlayer(_Player)
+THEN
+ProcForceStopDialog(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd);
+ProcForceStopDialog(_Player);
+Proc_StartDialog(0, "Kara_FTJ_IcaraIntro", CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player);
+
+IF
+GlobalFlagSet("DC_FTJ_Intro_StepInBetweenKaraAndIcara")
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsControlled(_Player, 1)
+THEN
+ProcCharacterMoveTo(_Player, TRIGGERGUID_DC_FTJ_Intro_StepInPoint_bc3af5f8-93b1-4233-b481-cf0b497164ae, 1, "DC_FTJ_Intro_SteppedIn");
+
+IF
+StoryEvent(_, "DC_FTJ_Intro_SteppedIn")
+AND
+DB_IsPlayer(_Player)
+THEN
+ProcFaceCharacter(_Player, CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f);
+
+IF
+GlobalFlagSet("DC_FTJ_Intro_IcaraCastsPlayerAside")
+AND
+DB_IsPlayer(_Player)
+AND
+GetPosition((CHARACTERGUID)_Player, _X, _Y, _Z)
+THEN
+StartCameraSpline(SPLINEGUID_DC_IcaraCastsPlayer_FTJ_4f951dcc-4054-40c3-be90-29882288d8f4, _Player, 0.0, 1, 1, 0);
+CharacterUseSkillAtPosition(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, "Projectile_QuestLightningThrow", _X, _Y, _Z, 1, 1);
+TimerLaunch("DC_FTJ_Intro_IcaraCastsPlayer", 1600);
+
+IF
+TimerFinished("DC_FTJ_Intro_IcaraCastsPlayer")
+AND
+DB_IsPlayer(_Player)
+THEN
+PlayEffect(_Player, "RS3_FX_Skills_Void_SwapGround_Impact_Root_01");
+TeleportTo(_Player, TRIGGERGUID_DC_FTJ_Intro_PlayerCastPoint_16a4aa17-8c85-4862-80b2-5744d1399537);
+Proc_DC_FTJIntroBarrelBreaking();
+
+PROC
+Proc_DC_FTJIntroBarrelBreaking()
+AND
+DB_IsPlayer(_Player)
+AND
+ItemIsDestroyed(ITEMGUID_CONT_Barrel_A_030_91429fec-1cf4-4159-8da7-97222bef552b, 0)
+THEN
+PlayEffect(_Player, "RS3_FX_Skills_Air_FreeFall_Reappear_01");
+ItemDestroy(ITEMGUID_CONT_Barrel_A_030_91429fec-1cf4-4159-8da7-97222bef552b);
+ApplyStatus(_Player, "KNOCKED_DOWN", 5.0, 1);
+CharacterSetAnimationOverride(_Player,"knockdown_loop");
+GlobalClearFlag("DC_FTJ_Intro_StepInBetweenKaraAndIcara");
+
+IF
+GlobalFlagSet("DC_FTJ_Intro_IcaraStepsCloser")
+THEN
+ProcCharacterMoveTo(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0, "");
+GlobalClearFlag("DC_FTJ_Intro_IcaraStepsCloser");
+GlobalClearFlag("DC_FTJ_Intro_IcaraCastsPlayerAside");
+
+IF
+DialogEnded("Kara_FTJ_IcaraIntro", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+DialogGetInvolvedPlayer(_ID, 1, _Speaker)
+AND
+ObjectGetFlag(_Speaker, "DC_FTJ_Intro_End", 1)
+AND
+GetPosition(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _X, _Y, _Z)
+THEN
+CharacterUseSkillAtPosition(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, "Target_EnemyShockingTouch", _X, _Y, _Z, 1, 1);
+CharacterSetAnimationOverride(_Player,"");
+TimerLaunch("DC_FTJIntro_IcaraFriesKara", 2000);
+
+IF
+TimerFinished("DC_FTJIntro_IcaraFriesKara")
+THEN
+PlayEffect(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, "RS3_FX_GP_ScriptedEvent_Illusion_Death_01");
+PlayEffect(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, "RS3_FX_Skills_Void_Netherswap_Disappear_Root_01");
+TimerLaunch("DC_FTJIntro_IcaraDisappear", 2000);
+
+IF
+TimerFinished("DC_FTJIntro_IcaraDisappear")
+THEN
+SetOnStage(CHARACTERGUID_S_DC_FTJ_MysteriousFigurine_68a42287-021f-4198-be3d-cfed3a7a675f, 0);
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "FortJoy"

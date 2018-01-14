@@ -1,0 +1,50 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	CHARACTER:%Magister_Sebastian = S_DC_ShrineIsle_Magister_Sebastian_502eaccf-e07e-408f-906a-596352798b84
+	CHARACTER:%Magister_Nirea = S_DC_ShrineIsle_Magister_Nirea_55278078-3548-4a43-b87e-a589f161f5e4
+	CHARACTER:%Magister_Teran = S_DC_ShrineIsle_Magister_Teran_c920d199-5d6f-49b1-8c83-a1759ee4a8b8
+	CHARACTER:%Magister_Sven = S_DC_ShrineIsle_Magister_Sven_94d86474-9932-4a03-ab18-a0c6fee88329
+	CHARACTER:%Magister_Srelah = S_DC_ShrineIsle_Magister_Srelah_88a52964-665c-4c96-8f50-8df055ce8cb8
+	CHARACTER:%Magister_Haakon = S_DC_ShrineIsle_Magister_Haakon_375c0364-2578-4f26-b349-24629d4fedfc
+	EXTERN TRIGGER:%LookAtMaps = S_DC_DomeIsle_Elvira_Desk_Lookat_0dfdae57-821e-456a-9836-47e5df4c4362
+	EXTERN TRIGGER:%LookAtChest = S_DC_DomeIsle_Elvira_Chest_Lookat_64ea5785-2337-4b80-b740-0eea71bc72ff
+	EXTERN ITEM:%Object = S_Map_beafa2e6-11cc-4d6f-bfad-35501d8f8356
+	EXTERN ITEM:%Object2 = S_HoveringRune_0afc2859-38f0-44e5-ab05-9111bd7accb4
+	EXTERN ITEM:%Object3 = S_Container_4b0354ea-8303-4288-82ac-05075afb5788
+	EXTERN ITEM:%Object4 = S_ElvirasChest_3e1cf72b-1b46-43ac-8905-c16ed4858b76
+	EXTERN TRIGGER:%ElviraPoint1 = S_DC_DomeIsle_Elvira_Desk_cdb552fb-f3d1-4ef1-b19b-d22466be3436
+	EXTERN TRIGGER:%ElviraPoint2 = S_DC_DomeIsle_Elvira_Chest_cf22b963-abd7-433b-82fd-83d33a6aac2f
+	EXTERN TRIGGER:%ElviraPointDragon = S_DomeIsle_Zika_DragonPoin_ec8b4a85-cbf7-4195-b93a-6e95ddd4f78f
+	EXTERN TRIGGER:%ElviraPointDragon2 = S_DomeIsle_Zika_DragonPoint_2_2375ca72-fa0c-43cb-b85f-2b67b657d054
+	INT: %resetTimeout = 0
+	FLOAT:%RandSleep = 1
+	
+	
+	
+BEHAVIOUR
+REACTION State_BattleAtShrineIsle, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"Fight1")
+	SetPriority(%currentAction, 1200)
+
+REACTION Fight1,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+	FIXEDSTRING:_Magister
+ACTIONS
+	GetRandom(_Magister,%Magister_Sebastian,%Magister_Nirea,%Magister_Teran,%Magister_Sven,%Magister_Srelah,%Magister_Haakon)
+	CharacterLookAt(_Magister,0,0)
+	CharacterAttack(
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+	Set(%CanUseChest,1)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)

@@ -1,0 +1,50 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+
+KBSECTION
+IF
+CharacterUsedItem(_Player, ITEMGUID_PUZ_Lever_Floor_A_000_0dc304ce-a3d1-4c82-9a11-f35f37e3cc3b)
+THEN
+Proc_OriToFTJ();
+
+PROC
+Proc_OriToFTJ()
+THEN
+TeleportTo(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54, TRIGGERGUID_S_DC_Stage2_Ori_b2a0b4c7-cb31-4fb8-8c09-989b2b82a487);
+SetVarFixedString(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54,"currentState","State_Default_FTJ_Stage1");
+DB_Dialogs(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54,"DC_OriIsle_Ori");
+
+IF
+ObjectFlagSet("OriRelationUp10", _, _)
+AND
+DB_IsPlayer(_Player)
+THEN
+CharacterAddAttitudeTowardsPlayer(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54, _Player, 10);
+ObjectClearFlag(_Player, "OriRelationUp10");
+
+IF
+DialogEnded("DC_OriIsle_Ori", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+DialogGetInvolvedPlayer(_ID, 1, _Speaker)
+AND
+ObjectGetFlag(_Speaker, "DC_OriIsle_OriFlyAway", 1)
+THEN
+SetVarFixedString(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54,"currentState","FlyToDomeIsle");
+SetHasDialog(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54, 0);
+
+IF
+CharacterEnteredTrigger(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54, TRIGGERGUID_DC_GarethAndJake_AD_DC_FortJoy_000_cae280b0-cb70-4bc8-b89d-db4efa864557)
+THEN
+SetHasDialog(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54, 1);
+NOT DB_Dialogs(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54,"DC_OriIsle_Ori");
+PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54);
+DB_Dialogs(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54,"DC_OriPlayerTest");
+SetVarFixedString(CHARACTERGUID_S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54,"currentState","OriAtDomeIsle");
+SetVarInteger(CHARACTERGUID_S_DC_DomeIsle_Elvira_6f3e752e-407d-4261-b0f2-f8f912538621,"CanTalkToOri",1);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "FortJoy"

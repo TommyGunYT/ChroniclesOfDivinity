@@ -1,0 +1,17 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+DB_DC_CamOverrides(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, "DC_ShowCam_SecretPathEntrance");
+DB_DC_CamOverrides(ITEMGUID_DC_Entrance_SecretPath_Inside_c783ece3-d43b-445d-bc1b-f864a46bdf5f, "DC_ShowCam_SecretPathEntranceOutside");
+DB_DC_CamOverrides(ITEMGUID_DC_CabinCave_ExitToBeach_debb4166-ec3b-8440-2cfc-b8d96372b3c5, "DC_ShowCam_CabinCave_Outside");
+KBSECTION
+IF
+CharacterUsedItem(_Player, _Item)
+AND
+DB_DC_CamOverrides(_Item, _Camera)
+THEN
+CameraActivate(_Player, _Camera,0.0,0,0,0);
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "FortJoy"

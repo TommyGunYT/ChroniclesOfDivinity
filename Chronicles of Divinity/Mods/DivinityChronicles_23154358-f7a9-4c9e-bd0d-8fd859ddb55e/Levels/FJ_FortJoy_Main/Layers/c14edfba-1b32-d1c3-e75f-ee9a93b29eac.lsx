@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1515442379" />
+    <version major="3" minor="1" revision="5" build="0" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="c14edfba-1b32-d1c3-e75f-ee9a93b29eac" type="31" />
+            <attribute id="Name" value="Player OffBoat Landing" type="23" />
+        </node>
+    </region>
+</save>

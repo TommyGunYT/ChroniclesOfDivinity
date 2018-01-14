@@ -1,0 +1,16 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	INT: %resetTimeout = 0
+	INT:%Bound = 1
+	FLOAT:%RandSleep = 1
+	EXTERN FIXEDSTRING:%Animation = "Sleep"
+	
+
+EVENTS
+EVENT FTJ_ShrineIsle_Init
+ON
+	OnInit()
+ACTIONS
+	CharacterSetAnimationOverride(__Me,%Animation)

@@ -17,13 +17,7 @@ SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister3_34996c94-6294-45e7-9659-f6fce2
 SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister4_96f35d8a-d38a-4fc1-9b23-bdf4349a16ec, 1);
 GlobalSetFlag("DC_GarethBackToCornered");
 
-//IF
-//CharacterUsedItem(_Player, ITEMGUID_PUZ_Lever_Floor_E_001_f8bb9015-4e2a-4a1b-9729-43ae5a070946)
-//THEN
-//ProcDefineReflectionDialog("DC_ReflectionTest2",_Player);
-//NOT DB_ReflectionDialog_Finished("DC_RD_Test");
-//ProcDefineReflectionDialog("DC_RD_Test",_Player);
-//ProcStartReflectionDialog(_Player,"DC_RD_Test");
+
 EXITSECTION
 
 ENDEXITSECTION

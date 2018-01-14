@@ -1,0 +1,111 @@
+Version 1
+SubGoalCombiner SGC_AND
+INITSECTION
+ApplyStatus(CHARACTERGUID_S_DC_ShrineIsle_Seeker_Juli-Yeh_5c72972b-5c8d-4048-8450-f1a07ec3bf78,"QUEST_TIEDUP",-1.0,1);
+CharacterSetHitpointsPercentage(CHARACTERGUID_S_DC_ShrineIsle_Seeker_Juli-Yeh_5c72972b-5c8d-4048-8450-f1a07ec3bf78, 7);
+
+DB_DC_FTJ_ShrineIsle_Magister(CHARACTERGUID_S_DC_ShrineIsle_Magister_Haakon_375c0364-2578-4f26-b349-24629d4fedfc);
+DB_DC_FTJ_ShrineIsle_Magister(CHARACTERGUID_S_DC_ShrineIsle_Magister_Katarina_57657887-a119-4d8c-ae06-ea40e8086529);
+DB_DC_FTJ_ShrineIsle_Magister(CHARACTERGUID_S_DC_ShrineIsle_Magister_Nirea_55278078-3548-4a43-b87e-a589f161f5e4);
+DB_DC_FTJ_ShrineIsle_Magister(CHARACTERGUID_S_DC_ShrineIsle_Magister_Sebastian_502eaccf-e07e-408f-906a-596352798b84);
+DB_DC_FTJ_ShrineIsle_Magister(CHARACTERGUID_S_DC_ShrineIsle_Magister_Srelah_88a52964-665c-4c96-8f50-8df055ce8cb8);
+DB_DC_FTJ_ShrineIsle_Magister(CHARACTERGUID_S_DC_ShrineIsle_Magister_Sven_94d86474-9932-4a03-ab18-a0c6fee88329);
+DB_DC_FTJ_ShrineIsle_Magister(CHARACTERGUID_S_DC_ShrineIsle_Magister_Teran_c920d199-5d6f-49b1-8c83-a1759ee4a8b8);
+
+
+SetOnStage(CHARACTERGUID_DC_FTJI_Wolf_Mom_647a2110-9af7-8570-5db1-f170a0d83410, 0);
+SetOnStage(CHARACTERGUID_DC_FTJI_Wolf_OldSibling_e76fe6e1-a216-8530-4d65-0e9416fd38bb, 0);
+KBSECTION
+//REGION SHRINEISLE BEACH
+
+IF
+CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_FTJ_ShrineIsle_ExecutionEvent_3145339a-0196-4eb6-82e2-f6b28dbb46b6)
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsControlled(_Player, 1)
+THEN
+Proc_StartDialog(0, "DC_FTJI_ShrineIsle_BeachBattle", CHARACTERGUID_S_DC_ShrineIsle_Magister_Teran_c920d199-5d6f-49b1-8c83-a1759ee4a8b8, CHARACTERGUID_S_DC_ShrineIsle_Seeker_Juli-Yeh_5c72972b-5c8d-4048-8450-f1a07ec3bf78, _Player);
+
+IF
+DialogEnded("DC_FTJI_ShrineIsle_BeachBattle", _ID)
+AND
+DB_IsPlayer(_Player)
+AND
+DialogGetInvolvedPlayer(_ID, 1, _Speaker)
+AND
+ObjectGetFlag(_Speaker, "DC_FTJI_ShrineIsle_BeachBattle", 1)
+AND
+GetPosition(CHARACTERGUID_S_DC_ShrineIsle_Seeker_Juli-Yeh_5c72972b-5c8d-4048-8450-f1a07ec3bf78, _X, _Y, _Z)
+THEN
+CharacterUseSkillAtPosition(CHARACTERGUID_S_DC_ShrineIsle_Magister_Teran_c920d199-5d6f-49b1-8c83-a1759ee4a8b8,"Projectile_Quest_HannagLightningbolt", _X, _Y, _Z, 1, 1);
+TimerLaunch("DC_FTJI_ShrineIsle_BeachBattle", 3000);
+
+IF
+TimerFinished("DC_FTJI_ShrineIsle_BeachBattle")
+AND
+DB_IsPlayer(_Player)
+AND
+DB_DC_FTJ_ShrineIsle_Magister(_Magisters)
+THEN
+CharacterDie(CHARACTERGUID_S_DC_ShrineIsle_Seeker_Juli-Yeh_5c72972b-5c8d-4048-8450-f1a07ec3bf78, 1, "ELECTROCUTED");
+SetFaction(_Magisters, "Evil NPC");
+DisplayText(CHARACTERGUID_S_DC_ShrineIsle_Seeker_Vera_603dd93a-5f7b-4e36-945d-e7f3e00dca4d, "Nooo!");
+//END_REGION
+
+//REGION SHRINEISLE WOLVES
+
+
+IF
+CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_FTJI_ShrineIsle_WolfStartEvent_74dced24-4102-4d95-a32d-43fa1c643938)
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsControlled(_Player, 1)
+AND
+CharacterIsInCombat(CHARACTERGUID_DC_FTJI_Wolf_Mom_647a2110-9af7-8570-5db1-f170a0d83410, 0)
+AND
+CharacterIsDead(CHARACTERGUID_S_DC_FTJI_Wolf_YoungSibling_b5e7c277-f5bd-8c76-2cbe-c5574a2fdfda, 0)
+THEN
+DisplayText(CHARACTERGUID_S_DC_FTJI_Wolf_YoungSibling_b5e7c277-f5bd-8c76-2cbe-c5574a2fdfda, "*Howls a loud call.*");
+PlaySound(CHARACTERGUID_S_DC_FTJI_Wolf_YoungSibling_b5e7c277-f5bd-8c76-2cbe-c5574a2fdfda, "Skill_Origins_SoulWolf_WolfHowl");
+TimerLaunch("FTJI_WolvesSpawn", 2000);
+
+IF
+TimerFinished("FTJI_WolvesSpawn")
+THEN
+CharacterAppear(CHARACTERGUID_DC_FTJI_Wolf_Mom_647a2110-9af7-8570-5db1-f170a0d83410, 1, "FTJI_WolfMomSpawn");
+CharacterAppear(CHARACTERGUID_DC_FTJI_Wolf_OldSibling_e76fe6e1-a216-8530-4d65-0e9416fd38bb, 1, "FTJI_WolfSiblingSpawn");
+
+IF
+StoryEvent(_, "FTJI_WolfMomSpawn")
+AND
+GetRandomPositionInTrigger(TRIGGERGUID_DC_FTJ_WolvesDenSpawn_b7fe028d-d3cc-4b60-a129-d3cf39f2ec02, _X, _Y, _Z)
+THEN
+CharacterMoveToPosition(CHARACTERGUID_DC_FTJI_Wolf_Mom_647a2110-9af7-8570-5db1-f170a0d83410, _X, _Y, _Z, 1, "FTJI_WolfMomArrived");
+
+IF
+StoryEvent(_, "FTJI_WolfSiblingSpawn")
+AND
+GetRandomPositionInTrigger(TRIGGERGUID_DC_FTJ_WolvesDenSpawn_b7fe028d-d3cc-4b60-a129-d3cf39f2ec02, _X, _Y, _Z)
+THEN
+CharacterMoveToPosition(CHARACTERGUID_DC_FTJI_Wolf_OldSibling_e76fe6e1-a216-8530-4d65-0e9416fd38bb, _X, _Y, _Z, 1, "FTJI_WolfSiblingArrived");
+
+IF
+StoryEvent(_, "FTJI_WolfMomArrived")
+THEN
+SetFaction(CHARACTERGUID_DC_FTJI_Wolf_Mom_647a2110-9af7-8570-5db1-f170a0d83410, "Evil NPC");
+SetFaction(CHARACTERGUID_S_DC_FTJI_Wolf_YoungSibling_b5e7c277-f5bd-8c76-2cbe-c5574a2fdfda, "Evil NPC");
+SetCanFight(CHARACTERGUID_DC_FTJI_Wolf_Mom_647a2110-9af7-8570-5db1-f170a0d83410, 1);
+IF
+StoryEvent(_, "FTJI_WolfSiblingArrived")
+THEN
+SetFaction(CHARACTERGUID_DC_FTJI_Wolf_OldSibling_e76fe6e1-a216-8530-4d65-0e9416fd38bb, "Evil NPC");
+SetFaction(CHARACTERGUID_S_DC_FTJI_Wolf_Dad_287386e1-f603-83ba-3c19-564575b0dcf4, "Evil NPC");
+SetCanFight(CHARACTERGUID_DC_FTJI_Wolf_OldSibling_e76fe6e1-a216-8530-4d65-0e9416fd38bb, 1);
+
+//END_REGION
+EXITSECTION
+
+ENDEXITSECTION
+ParentTargetEdge "FortJoy"

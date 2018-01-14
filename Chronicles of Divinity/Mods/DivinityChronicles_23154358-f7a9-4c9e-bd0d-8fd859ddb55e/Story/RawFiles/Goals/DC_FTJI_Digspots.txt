@@ -15,7 +15,9 @@ DB_ShovelRewardItemAppear("FTJIDigspot3", ITEMGUID_CONT_Humans_Citz_Chest_Used_A
 
 
 DB_ShovelArea(TRIGGERGUID_S_FTJII_DigspotBOX_004_924bd159-2dbc-4321-bbb3-cbc959ba6da3,"FTJIDigspot",ITEMGUID_S_FTJII_Digspot_004_c0c3b2f0-2f20-4dd2-a8fa-76eb00a67634);
-DB_ShovelArea(TRIGGERGUID_S_FTJII_DigspotBOX_005_1d4883c3-aee2-4e53-8129-596c8cb5d30a,"FTJIDigspot",ITEMGUID_S_FTJII_Digspot_005_d822c6ee-b914-4951-83a8-a315de296c19);
+
+DB_ShovelArea(TRIGGERGUID_S_FTJII_DigspotBOX_005_1d4883c3-aee2-4e53-8129-596c8cb5d30a,"FTJI_PirateIsle_",ITEMGUID_S_FTJII_Digspot_005_d822c6ee-b914-4951-83a8-a315de296c19);
+DB_ShovelRewardItemAppear("FTJIDigspot_PirateEntrance", ITEMGUID_DC_PirateIsle_InvisibleHelper_db87371a-75c4-4717-9aaf-35fc99bad77f, TRIGGERGUID_S_FTJI_DigSpotBOX_PirateCaveEntrance_a9c1816f-8958-4e8a-adee-10c7dd46acc6);
 
 DB_ShovelArea(TRIGGERGUID_S_FTJI_DigSpotBOX_PirateCaveEntrance_a9c1816f-8958-4e8a-adee-10c7dd46acc6,"FTJIDigspot_PirateEntrance",ITEMGUID_S_FTJI_DigSpot_PirateCaveEntrance_265bd64c-3537-464b-bf3d-6924decb43a4);
 DB_ShovelRewardItemAppear("FTJIDigspot_PirateEntrance", ITEMGUID_DC_PirateIsle_InvisibleHelper_db87371a-75c4-4717-9aaf-35fc99bad77f, TRIGGERGUID_S_FTJI_DigSpotBOX_PirateCaveEntrance_a9c1816f-8958-4e8a-adee-10c7dd46acc6);

@@ -1,0 +1,53 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	CHARACTER:%JuliYeh = S_DC_ShrineIsle_Seeker_Juli-Yeh_5c72972b-5c8d-4048-8450-f1a07ec3bf78
+	CHARACTER:%Bordas = S_DC_ShrineIsle_Seeker_Bordas_f85ea855-b818-4425-9902-efd3c7796bd2
+	EXTERN TRIGGER:%SneakPoint = S_DC_FTJI_VeraSneakPoint_70179a29-940a-4f92-9dca-c2a9a1ed3cac
+	EXTERN TRIGGER:%SneakPoint2 = S_DC_FTJI_VeraSneakPoint2_ef8e05e6-42db-41a6-a6b9-30d2c5e0131f
+	INT: %resetTimeout = 0
+	FLOAT:%RandSleep = 1
+
+
+
+
+BEHAVIOUR
+REACTION State_Default, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"Sneak","Sneak2")
+	SetPriority(%currentAction, 1200)
+
+REACTION Sneak,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%SneakPoint,0,0,0,1,2)
+	CharacterLookAt(%JuliYeh,0,0)
+	DialogStart(_,"FTJI_AD_ShrineIsle_VeraBordas",__Me,%Bordas)
+	CharacterPlayAnimation("Kneel_01_Loop")
+	GetRandomBetween(%RandSleep,9,25)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION Sneak2,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%SneakPoint2,0,0,0,1,2)
+	CharacterLookAt(%JuliYeh,0,0)
+	DialogStart(_,"FTJI_AD_ShrineIsle_VeraBordas",__Me,%Bordas)
+	GetRandom(_animation,"Kneel_02","Attentive_01","Think_02")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,5,15)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)

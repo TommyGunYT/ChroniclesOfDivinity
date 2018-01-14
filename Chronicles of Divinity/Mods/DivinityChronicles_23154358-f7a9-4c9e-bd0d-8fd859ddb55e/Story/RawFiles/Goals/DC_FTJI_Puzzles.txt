@@ -3,6 +3,8 @@ SubGoalCombiner SGC_AND
 INITSECTION
 ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, 0);
 ItemSetCanInteract(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6, 0);
+ItemSetCanInteract(ITEMGUID_DC_Entrance_SecretPath_Inside_c783ece3-d43b-445d-bc1b-f864a46bdf5f, 0);
+ItemSetCanInteract(ITEMGUID_S_DC_AltarPathDoorInside_001f5faf-f259-40e6-bbe8-a301531f7d79, 0);
 ItemSetCanInteract(ITEMGUID_DC_BeachTop_SecretLadder_8c513253-cca1-4561-9606-f7e897daf57c, 0);
 CharacterFreeze(CHARACTERGUID_DC_FTJI_GuardStatue_000_ac31e8d5-a826-4c07-a39f-e8173842c90e);
 CharacterFreeze(CHARACTERGUID_DC_FTJI_GuardStatue_001_dff07aa9-5c91-4b51-afa7-a8c145f08c16);
@@ -29,6 +31,7 @@ IF
 CharacterUsedItem(_Player, ITEMGUID_DC_SecretAltarEntrance_SunkBoat_341e2852-b7ad-40e9-9cc1-d1666e142e33)
 THEN
 DisplayText(_Player, "Someone else must have found this before us... No bodies though.");
+ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_SunkBoat_341e2852-b7ad-40e9-9cc1-d1666e142e33, 0);
 
 IF
 CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_SecretAltarDoor_PerceptionCheck_9202c7e5-5769-4e2d-8913-8150a95f1efa)
@@ -103,7 +106,9 @@ GlobalGetFlag("SecretAltarEntranceUnlocked",0)
 THEN
 GlobalClearFlag("SecretAltarPlateA");
 ItemCloseAndLock(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6,"SUPERHARDKEYGLWITHTHAT");
+ItemCloseAndLock(ITEMGUID_S_DC_AltarPathDoorInside_001f5faf-f259-40e6-bbe8-a301531f7d79,"SUPERHARDKEYGLWITHTHAT");
 ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, 0);
+ItemSetCanInteract(ITEMGUID_DC_Entrance_SecretPath_Inside_c783ece3-d43b-445d-bc1b-f864a46bdf5f, 0);
 
 IF
 CharacterItemEvent(_, ITEMGUID_S_DC_AltarPressurePlate_B_f0584303-f72d-46b6-81fb-73a81704e6df, "S_DC_FTJI_AltarPlateOn")
@@ -122,7 +127,9 @@ GlobalGetFlag("SecretAltarEntranceUnlocked",0)
 THEN
 GlobalClearFlag("SecretAltarPlateB");
 ItemCloseAndLock(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6,"SUPERHARDKEYGLWITHTHAT");
+ItemCloseAndLock(ITEMGUID_S_DC_AltarPathDoorInside_001f5faf-f259-40e6-bbe8-a301531f7d79,"SUPERHARDKEYGLWITHTHAT");
 ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, 0);
+ItemSetCanInteract(ITEMGUID_DC_Entrance_SecretPath_Inside_c783ece3-d43b-445d-bc1b-f864a46bdf5f, 0);
 
 IF
 CharacterItemEvent(_, ITEMGUID_S_DC_AltarPressurePlate_C_31305832-c732-49a9-89a7-3f8be794a30e, "S_DC_FTJI_AltarPlateOn")
@@ -141,7 +148,9 @@ GlobalGetFlag("SecretAltarEntranceUnlocked",0)
 THEN
 GlobalClearFlag("SecretAltarPlateC");
 ItemCloseAndLock(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6,"SUPERHARDKEYGLWITHTHAT");
+ItemCloseAndLock(ITEMGUID_S_DC_AltarPathDoorInside_001f5faf-f259-40e6-bbe8-a301531f7d79,"SUPERHARDKEYGLWITHTHAT");
 ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, 0);
+ItemSetCanInteract(ITEMGUID_DC_Entrance_SecretPath_Inside_c783ece3-d43b-445d-bc1b-f864a46bdf5f, 0);
 
 IF
 TimerFinished("DC_SecretAltarDoorPlates")
@@ -153,7 +162,9 @@ AND
 GlobalGetFlag("SecretAltarPlateC",1)
 THEN
 ItemUnlockAndOpen(ITEMGUID_S_DC_SecretAltarEntrance_Door_55b1837e-e1e8-4288-9aa9-521b56df52d6);
+ItemUnlockAndOpen(ITEMGUID_S_DC_AltarPathDoorInside_001f5faf-f259-40e6-bbe8-a301531f7d79);
 ItemSetCanInteract(ITEMGUID_DC_SecretAltarEntrance_ad2bbb87-3dc9-4d6f-831c-0369587c5d37, 1);
+ItemSetCanInteract(ITEMGUID_DC_Entrance_SecretPath_Inside_c783ece3-d43b-445d-bc1b-f864a46bdf5f, 1);
 TimerLaunch("KeyTimer10049",100);
 
 IF

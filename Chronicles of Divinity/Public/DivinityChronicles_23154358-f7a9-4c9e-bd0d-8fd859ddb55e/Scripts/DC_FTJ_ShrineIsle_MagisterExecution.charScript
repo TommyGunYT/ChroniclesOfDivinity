@@ -1,0 +1,33 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	CHARACTER:%JuliYeh = S_DC_ShrineIsle_Seeker_Juli-Yeh_5c72972b-5c8d-4048-8450-f1a07ec3bf78
+	INT: %resetTimeout = 0
+	FLOAT:%RandSleep = 1
+
+
+
+
+BEHAVIOUR
+REACTION State_Default, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"Observe")
+	SetPriority(%currentAction, 1200)
+
+	
+REACTION Observe,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterLookAt(%JuliYeh,0,0)
+	GetRandom(_animation,"Cheer_01","Cheer_02","Cheer_03","Clap_01","Clap_03","Laugh_01","Look_Left_Long_01","Look_Up_Short_01","Stand_Drink_01_Loop","Think_01","Think_02")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,10,27)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)

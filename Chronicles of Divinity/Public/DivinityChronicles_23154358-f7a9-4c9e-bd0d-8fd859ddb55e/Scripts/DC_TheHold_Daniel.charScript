@@ -1,0 +1,76 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	CHARACTER:%Siwan = S_TUT_Humans_Female_Magister_Priest_000_9d17cf06-6fad-49a8-82de-54518a9bf5df
+	EXTERN ITEM:%Ladder = S_DC_DomeIsle_Ladder_d0283501-8861-45ea-b798-667fd9013e0a
+	INT:%CanGoToWatchtower = 1
+	INT: %resetTimeout = 0
+	FLOAT:%RandSleep = 1
+	
+BEHAVIOUR
+REACTION State_Default, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"Guard1","Guard2")
+	SetPriority(%currentAction, 1200)
+	
+	
+	
+	
+	
+REACTION Guard1, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	GetRandom(_animation,"idle2","idle3","use_drink","Attention_01","Yawn_01","Bored_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,5,15)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+	
+REACTION Guard2, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	GetRandom(_animation,"idle2","Think_02","idle3","Stand_Read_01","Look_Down_Short_01","Bored_02","Look_Right_Short_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,5,15)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+	
+	
+	
+REACTION State_WithSiwan, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"Talking1","Talking2")
+	SetPriority(%currentAction, 1200)
+	
+REACTION Talking2, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%Siwan,0,0,0,1,2)
+	CharacterLookAt(%Siwan,0,0)
+	DialogStart(_,"TUT_AD_DanielSiwan",__Me,%Siwan)
+	GetRandom(_animation,"Suprise_01","Think_02","Pray_01","Look_Down_Short_01","Shrug_01","Look_Right_Short_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,3,7)
+	Sleep(%RandSleep)
+	
+REACTION Talking1, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%Siwan,0,0,0,1,2)
+	CharacterLookAt(%Siwan,0,0)
+	DialogStart(_,"TUT_AD_DanielSiwan",__Me,%Siwan)
+	GetRandom(_animation,"Look_Down_Short_01","emotion_angry","Look_Right_Short_01","emotion_sad")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,3,7)
+	Sleep(%RandSleep)

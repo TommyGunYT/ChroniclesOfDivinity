@@ -1,7 +1,7 @@
 {
    "save" : {
       "header" : {
-         "time" : 1514414934,
+         "time" : 1515698891,
          "version" : "2.0.8.2"
       },
       "regions" : {
@@ -113,7 +113,7 @@
                         "speaker" : {"type" : 4, "value" : 0},
                         "stub" : {"type" : 19, "value" : 0},
                         "transitionmode" : {"type" : 1, "value" : 1},
-                        "waittime" : {"type" : 6, "value" : 8.0}
+                        "waittime" : {"type" : 6, "value" : 5.0}
                      },
                      {
                         "GameData" : [
@@ -211,7 +211,7 @@
                         "speaker" : {"type" : 4, "value" : 0},
                         "stub" : {"type" : 19, "value" : 0},
                         "transitionmode" : {"type" : 1, "value" : 1},
-                        "waittime" : {"type" : 6, "value" : 6.0}
+                        "waittime" : {"type" : 6, "value" : 5.0}
                      },
                      {
                         "GameData" : [
@@ -315,7 +315,7 @@
                         "speaker" : {"type" : 4, "value" : 1},
                         "stub" : {"type" : 19, "value" : 0},
                         "transitionmode" : {"type" : 1, "value" : 1},
-                        "waittime" : {"type" : 6, "value" : 7.0}
+                        "waittime" : {"type" : 6, "value" : 6.0}
                      },
                      {
                         "GameData" : [
@@ -413,7 +413,7 @@
                         "speaker" : {"type" : 4, "value" : 0},
                         "stub" : {"type" : 19, "value" : 0},
                         "transitionmode" : {"type" : 1, "value" : 1},
-                        "waittime" : {"type" : 6, "value" : 8.0}
+                        "waittime" : {"type" : 6, "value" : 6.0}
                      },
                      {
                         "GameData" : [
@@ -503,7 +503,7 @@
                         "speaker" : {"type" : 4, "value" : 1},
                         "stub" : {"type" : 19, "value" : 0},
                         "transitionmode" : {"type" : 1, "value" : 1},
-                        "waittime" : {"type" : 6, "value" : 7.0}
+                        "waittime" : {"type" : 6, "value" : 6.0}
                      },
                      {
                         "GameData" : [
@@ -607,7 +607,7 @@
                         "speaker" : {"type" : 4, "value" : 1},
                         "stub" : {"type" : 19, "value" : 0},
                         "transitionmode" : {"type" : 1, "value" : 1},
-                        "waittime" : {"type" : 6, "value" : 8.0}
+                        "waittime" : {"type" : 6, "value" : 7.0}
                      }
                   ]
                }
@@ -621,7 +621,7 @@
                      },
                      {
                         "index" : {"type" : 22, "value" : "1"},
-                        "list" : {"type" : 23, "value" : "8715ca37-077f-44a2-b23c-97fa60a849a1"}
+                        "list" : {"type" : 23, "value" : "d4066e27-d647-4a72-b920-a71e32e27958"}
                      }
                   ]
                }

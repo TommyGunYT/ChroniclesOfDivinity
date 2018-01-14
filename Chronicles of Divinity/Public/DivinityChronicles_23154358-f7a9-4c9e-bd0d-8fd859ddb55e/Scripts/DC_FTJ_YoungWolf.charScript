@@ -1,0 +1,77 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	CHARACTER:%Boar = S_DC_ShrineIsle_DeadBoar_cdad798b-a603-430a-b9e4-20851a28daab
+	EXTERN TRIGGER:%Wander = S_DC_FTJ_ShrineIsle_WolfWander_54787796-777f-4339-9b4e-bcb057e70b66
+	EXTERN ITEM:%Ladder = S_DC_DomeIsle_Ladder_d0283501-8861-45ea-b798-667fd9013e0a
+	EXTERN FIXEDSTRING:%Animation = "Sleep"
+	INT: %resetTimeout = 0
+	FLOAT:%RandSleep = 1
+	FLOAT:%RandWander = 1
+
+
+BEHAVIOUR
+REACTION State_Default, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"Wander","EatBoar","LayDownSleep")
+	SetPriority(%currentAction, 1200)
+	
+REACTION Wander, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterWander(%Wander,7.0)
+	GetRandomBetween(%RandSleep,4,9)
+	Sleep(%RandSleep)
+	GetRandom(_animation,"idle1","idle2","idle3")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,4,10)
+	Sleep(%RandSleep)
+	CharacterWander(%Wander,4.0)
+	Sleep(2.0)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+	
+REACTION EatBoar, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterWander(%Wander,3.0)
+	GetRandomBetween(%RandSleep,4,9)
+	Sleep(%RandSleep)
+	CharacterMoveTo(%Boar,0,0,0,1,2)
+	CharacterLookAt(%Boar,0,0)
+	CharacterPlayAnimation("use_eat")
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	CharacterPlayAnimation("use_eat")
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	CharacterWander(%Wander,4.0)
+	Sleep(2.0)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+	
+	
+REACTION LayDownSleep, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterSetAnimationOverride(__Me,%Animation)
+	GetRandomBetween(%RandSleep,21,35)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)

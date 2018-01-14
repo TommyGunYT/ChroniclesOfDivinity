@@ -11,62 +11,6 @@ INITSECTION
 //END_REGION
 DB_DCCompanionTemps(CHARACTERGUID_DC_NPC_Icara_001_ac205041-f93f-4e4d-babf-6db6bd588e15);
 KBSECTION
-IF
-RegionStarted("FJ_FortJoy_Main")
-THEN
-ActivatePersistentLevelTemplate(LEVELTEMPLATEGUID_DC_FortJoy_Isles_b3b190eb-a87b-44e9-b3ac-b114935dafcb);
-
-
-//REGION DEBUG TOOL
-IF
-CharacterUsedItemTemplate(_Player, "DC_BOOK_TutorialShip_TimeTravel_baec138a-3f8d-4252-8c22-a3c70f31a464", _Item)
-THEN
-DisplayText(_Player,"Running Teleporter Dialogue!");
-PlaySound(_Player,"SE_Lohse_song_full_performance");
-Proc_StartDialog(0,"Icara_Teleport",CHARACTERGUID_DC_Icara_Teleporter_ea4b5b68-d341-4518-b802-08e18900236c,_Player);
-//END_REGION
-
-//REGION DEBUG RECRUITMENT
-IF
-GlobalFlagSet("DC_RecruitFullTempParty")
-THEN
-Proc_DebugRecruitParty();
-
-PROC
-Proc_DebugRecruitParty()
-AND
-DB_IsPlayer(_Player)
-AND
-GetPosition(_Player, _X, _Y, _Z)
-AND
-CharacterCreateAtPosition(_X, _Y, _Z, "CHARACTERGUID_GLO_Saheila_PostFTJ_10b71425-00b2-4668-b1df-227d254c7ae2", 0, _TempDebugCompanion)
-AND
-CharacterCreateAtPosition(_X, _Y, _Z, "CHARACTERGUID_Elves_Female_Malady_cbc79f47-50a1-4837-9d09-fcbd7b75a919", 0, _TempDebugCompanion)
-AND
-CharacterCreateAtPosition(_X, _Y, _Z, "CHARACTERGUID_Animals_Dog_B_b6a6c50d-ca6a-456f-ad81-9a72b081e4b5", 0, _TempDebugCompanion)
-AND
-CharacterGetReservedUserID((CHARACTERGUID)_Player, _User)
-THEN
-DB_TempDebugCompanion(_TempDebugCompanion);
-TimerLaunch("RecruitTempCharsDC", 500);
-
-IF
-TimerFinished("RecruitTempCharsDC")
-AND
-DB_IsPlayer(_Player)
-AND
-DB_TempDebugCompanion(_TempDebugCompanion)
-AND
-CharacterGetReservedUserID((CHARACTERGUID)_Player, _User)
-THEN
-ProcRemoveAllDialogEntriesForSpeaker((CHARACTERGUID)_TempDebugCompanion);
-CharacterMakePlayer((CHARACTERGUID)_TempDebugCompanion, _Player);
-DB_IsPlayer((CHARACTERGUID)_TempDebugCompanion);
-CharacterAssignToUser(_User, (CHARACTERGUID)_TempDebugCompanion);
-CharacterAddToParty((CHARACTERGUID)_TempDebugCompanion, _Player);
-GlobalClearFlag("DC_RecruitFullTempParty");
-//END_REGION
-
 //REGION Source Points Override
 IF
 CharacterUsedItemTemplate((CHARACTERGUID)_Player, "DC_CON_Potion_Source_a5fdf6a5-a170-4598-9652-850977dc362d", (ITEMGUID)_Item)

@@ -1,0 +1,20 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1515170857" />
+    <version major="3" minor="1" revision="5" build="0" />
+    <region id="Markers">
+        <node id="root">
+            <children>
+                <node id="Marker">
+                    <attribute id="DisplayText" value="Lost Isle Waypoint" handle="ls::TranslatedStringRepository::s_HandleUnknown" type="28" />
+                    <attribute id="MarkerBroadcast" value="Party" type="22" />
+                    <attribute id="MarkerID" value="WAYP_FTJ_LostIsle" type="22" />
+                    <attribute id="MarkerIcon" value="LocationMarker" type="22" />
+                    <attribute id="MarkerLevel" value="FJ_FortJoy_Main" type="22" />
+                    <attribute id="MarkerTargetObjectType" value="Item" type="22" />
+                    <attribute id="MarkerTargetObjectUUID" value="S_DC_ShrineIsle_Waypoint 91327fd0-849c-8f36-57cb-67b276eb897e" type="22" />
+                </node>
+            </children>
+        </node>
+    </region>
+</save>

@@ -1,0 +1,130 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	CHARACTER:%Ori = S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54
+	EXTERN TRIGGER:%FTJ_Beach_Wander = S_DC_Beach_KaraCheck_9ff5dbe5-311f-4a74-9d4e-fb222765d763
+	EXTERN ITEM:%TUTChair = S_DC_KaraChair_8b4e2af6-72c8-4183-9b57-10a19d057989
+	EXTERN ITEM:%TUTPoster = S_DC_Poster_Kara_f409e1b1-5bc0-40d6-93b9-14a32fc57a0b
+	EXTERN ITEM:%TUTPlank = S_DCCrackPlank3_16e96ade-755b-42f5-aeb8-3aa549830042
+	INT: %resetTimeout = 0
+	INT:%TUT_CanCheckPlanks = 1
+	INT:%FTJ_CanGetUp = 1
+	FLOAT:%RandSleep = 1
+	EXTERN FIXEDSTRING:%FTJBeachAnimation = "knockdown_loop"
+	
+BEHAVIOUR
+REACTION State_TUT_A, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"Sit","CheckPoster", "TalkWithOri")
+	SetPriority(%currentAction, 1200)
+	
+
+	
+	
+	
+REACTION Sit, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%TUTChair,0,0,0,1,2)
+	CharacterLookAt(%TUTChair,0,0)
+	CharacterUseItem(%TUTChair)
+	GetRandom(_animation,"Sit_Read_01","Sit_Tired_01","Sit_Write_01_Loop","Sit_Bored_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,6,15)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+	
+REACTION CheckPoster, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%TUTPoster,0,0,0,1,2)
+	CharacterLookAt(%TUTPoster,0,0)
+	GetRandom(_animation,"use_craft","Think_02","idle3","Stand_Read_01","use_move","Bored_02","Look_Right_Short_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,6,14)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+	
+REACTION TalkWithOri, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%Ori,0,0,0,1,2)
+	CharacterLookAt(%Ori,0,0)
+	DialogStart(_,"TUT_AD_KaraOri",__Me,%Ori)
+	GetRandomBetween(%RandSleep,2,5)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+	
+	
+	
+REACTION State_TUT_CrackRoom, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"TUT_Inspecting","TUT_Inspecting2")
+	SetPriority(%currentAction, 1200)
+	
+REACTION TUT_Inspecting, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	IF "c1"
+	IsEqual(%TUT_CanCheckPlanks,1)
+	THEN
+	CharacterMoveTo(%TUTPlank,0,0,0,1,2)
+	CharacterLookAt(%TUTPlank,0,0)
+	CharacterUseItem(%TUTPlank)
+	CharacterPlayAnimation("Suprise_01")
+	GetRandomBetween(%RandSleep,3,7)
+	Sleep(%RandSleep)
+	Set(%TUT_CanCheckPlanks,0)
+ELSE
+	SetPriority(%currentAction, 0)
+	ENDIF
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+REACTION TUT_Inspecting2, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	IF "c1"
+	IsEqual(%TUT_CanCheckPlanks,0)
+	THEN
+	CharacterMoveTo(%TUTPlank,0,0,0,1,2)
+	CharacterLookAt(%TUTPlank,0,0)
+	GetRandom(_animation,"Look_Down_Short_01","Stand_Read_01","Look_Right_Short_01","emotion_sad","use_craft","use_move")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,3,7)
+	Sleep(%RandSleep)
+	ELSE
+	SetPriority(%currentAction, 0)
+	ENDIF
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+	
+REACTION FTJ_Beach_Idle, 0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	GetRandomBetween(%RandSleep,2,6)
+	CharacterWander(%FTJ_Beach_Wander,%RandSleep)
+	GetRandom(_animation,"use_craft","Think_02","idle3","Stand_Read_01","use_move","Bored_02","Look_Right_Short_01")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,6,14)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+	

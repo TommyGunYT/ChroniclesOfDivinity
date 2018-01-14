@@ -3,19 +3,12 @@ SubGoalCombiner SGC_AND
 INITSECTION
 SetOnStage(ITEMGUID_DC_FTJI_TreeBridge_Fallen_dc128f39-4c80-400b-afaa-9d46d8ac996a,0);
 SetOnStage(ITEMGUID_DC_FTJI_TreeBridge_Stump_930431fc-f9c1-4305-8e03-27aefec94c6e,0);
+SetOnStage(ITEMGUID_DC_CON_LargeNut_000_ecdaace0-194b-4151-82eb-dd650442c58f,0);
 
 Proc_FTJI_FX_INIT();
 //DB_Dialogs(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182,"FTJI_StrandedSquirrel");
 //DB_Dialogs(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73,"FTJI_StrandedSquirrel");
 KBSECTION
-IF
-CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_LevelTemplateActivate_Isles_e9cf6967-2489-424e-9492-1d396d1c417c)
-AND
-DB_IsPlayer(_Player)
-THEN
-ActivatePersistentLevelTemplate(b3b190eb-a87b-44e9-b3ac-b114935dafcb);
-
-
 //REGION CHOP TREE BRIDGE
 IF
 ItemDestroying(ITEMGUID_DC_NAT_TreePine_Big_Standing_057a5562-f78f-4aa6-abaa-409f1574c2fb)
@@ -96,17 +89,6 @@ TeleportTo(_Player,TRIGGERGUID_DC_TP_ShrineIsle_WaveDancer_MiddleDeck_Up_217d567
 //END_REGION
 
 //REGION STRANDED SQUIRREL
-
-//IF
-//DialogStarted("FTJI_StrandedSquirrel", _ID)
-//AND
-//DB_IsPlayer(_Player)
-//THEN
-//DialogAddCharacter(_ID, CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182);
-//DialogAddCharacter(_ID, CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73);
-//DialogAddCharacter(_ID, _Player);
-
-
 IF
 CharacterEnteredTrigger(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182, TRIGGERGUID_DC_StrandedSquirrelsArea_20ca2f52-b0fe-4c15-874c-ccb47c876c4f)
 AND
@@ -114,10 +96,18 @@ DB_IsPlayer(_Player)
 THEN
 PartySetFlag(_Player, "SavedStrandedSquirrel");
 GlobalSetFlag("SavedStrandedSquirrel");
-ProcCharacterMoveToAndTalk(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182, _Player,"FTJI_StrandedSquirrel",0,"",0,10.0);
+ProcCharacterMoveToAndTalk(CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182, _Player,"FTJI_StrandedSquirrel_Saved",0,"",0,10.0);
+
 
 IF
-DialogEnded("FTJI_StrandedSquirrel", _ID)
+DialogEnded("DC_FTJI_StrandedSquirrelsIntro", _ID)
+AND
+DB_IsPlayer(_Player)
+THEN
+Proc_StartDialog(0, "FTJI_StrandedSquirrel", CHARACTERGUID_DC_FTJI_StrandedSquirrel_1_e2cd4d5e-4c97-4336-b262-193ed5dd8182, CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73, _Player);
+
+IF
+DialogEnded("FTJI_StrandedSquirrel_Saved", _ID)
 AND
 DB_IsPlayer(_Player)
 AND
@@ -141,15 +131,9 @@ GetPosition(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109
 THEN
 PlayEffectAtPosition("RS3_FX_GP_ScriptedEvent_Digging_DirtThrown_01", _X, _Y, _Z);
 SetOnStage(CHARACTERGUID_DC_FTJI_StrandedSquirrel_2_03566cdf-a4cb-43f7-93d9-109a5dfc0e73, 0);
+ItemCreateAtTrigger(TRIGGERGUID_DC_SquirrelHole_DC_FortJoy_000_116036c2-d492-450f-94eb-f9cb2a431028, "ITEMGUID_DC_CON_LargeNut_98454b28-edd7-4aa9-a7eb-7dffa4cf9aa6");
 
 //END_REGION
-
-PROC
-Proc_FTJI_FX_INIT()
-AND
-PlayLoopEffect(CHARACTERGUID_DC_NPC_Icara_001_ac205041-f93f-4e4d-babf-6db6bd588e15, "RS3_FX_Skills_Air_Lightning_Overlay_Loop_01", "", _Icarandle)
-THEN
-DB_NOOP(1);
 
 PROC
 Proc_FTJI_FX_INIT()
@@ -157,6 +141,17 @@ AND
 PlayLoopEffect(CHARACTERGUID_DC_FTJI_TimeLostDragon_f9c71fbd-ac4b-402d-a5f1-7fb1ccd58f40, "RS3_FX_Skills_Air_Lightning_Overlay_Loop_01", "", _TimeLostDragonFX)
 THEN
 DB_NOOP(1);
+
+
+//REGION SECRET PATH
+
+IF
+ItemEnteredTrigger(ITEMGUID_S_DC_CrumblingBarrel_SecretPath_06023c11-4cd7-47a9-807f-6a7e8ce7cd0b, TRIGGERGUID_DC_SecretPath_Gen_83c25776-ea2e-4c0e-8e35-3ce703a297dc, _Player)
+THEN
+ItemDestroy(ITEMGUID_S_DC_CrumblingBarrel_SecretPath_06023c11-4cd7-47a9-807f-6a7e8ce7cd0b);
+
+
+//END_REGION
 EXITSECTION
 
 ENDEXITSECTION

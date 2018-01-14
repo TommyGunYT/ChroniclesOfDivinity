@@ -9,7 +9,7 @@ CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_FTJ_DanielLoot_a908762b-b527-44bf
 AND
 DB_IsPlayer(_Player)
 AND
-PartyGetFlag(_Player,"LiedToDaniel",1)
+GlobalGetFlag("LiedToDaniel", 1)
 THEN
 ItemTemplateAddTo("ITEMGUID_S_DC_FTJ_DanielDiary_671f9c6c-badc-425f-8087-293c959e2120",CHARACTERGUID_S_FTJ_DrownedPrisoner_d8fa04b9-135a-4e25-9087-773dc3cadb72,1);
 UserSetFlag(_Player,"FTJ_Daniel_DiaryHasMet");
@@ -19,9 +19,9 @@ CharacterEnteredTrigger(_Player,TRIGGERGUID_DC_FTJ_DanielLoot_a908762b-b527-44bf
 AND
 DB_IsPlayer(_Player)
 AND
-PartyGetFlag(_Player,"LiedToDaniel",0)
+GlobalGetFlag("LiedToDaniel", 0)
 THEN
-ItemTemplateAddTo("ITEMGUID_S_DC_FTJ_DanielDiary_NotLiedTo_bc780bfc-360f-437e-a0c3-e8e8f75d8bfa",CHARACTERGUID_S_FTJ_DrownedPrisoner_d8fa04b9-135a-4e25-9087-773dc3cadb72,1);
+ItemTemplateAddTo("ITEMGUID_S_DC_FTJ_DanielDiary_NotLiedTo_bc780bfc-360f-437e-a0c3-e8e8f75d8bfa", CHARACTERGUID_S_FTJ_DrownedPrisoner_d8fa04b9-135a-4e25-9087-773dc3cadb72,1);
 UserSetFlag(_Player,"FTJ_Daniel_DiaryHasNotMet");
 
 

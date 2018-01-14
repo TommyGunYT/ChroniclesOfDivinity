@@ -2,7 +2,9 @@ Version 1
 SubGoalCombiner SGC_AND
 INITSECTION
 //SetOnStage(Boat on Fort Joy with Brandon),1)
-SetOnStage(ITEMGUID_S_DC_DockedBoat_ShrineIsle_ad6fedf6-02a2-4213-9a31-e8e092124b22,1); //Launch: Make 0
+SetOnStage(ITEMGUID_S_DC_DockedBoat_FortJoyCamp_67a4fc55-fef1-4b57-97a5-60b58d1d1a55, 1);
+SetOnStage(ITEMGUID_S_DC_DockedBoat_OriIsle_e202512b-74f1-4fc4-b665-1b60795a154c, 0);
+SetOnStage(ITEMGUID_S_DC_DockedBoat_ShrineIsle_ad6fedf6-02a2-4213-9a31-e8e092124b22,0); //Launch: Make 0
 SetOnStage(ITEMGUID_S_DC_DockedBoat_DragonIsle_e9416210-4efe-4313-8940-0c3abbba0850,0);
 SetOnStage(ITEMGUID_S_DC_DockedBoat_PirateIsle_3fc96c8d-9936-4900-a7db-1c68084928df,0);
 SetOnStage(ITEMGUID_S_DC_DockedBoat_SeekerIsle_549bb25e-c9fc-4b5f-be64-a39dc38c2c44,0);
@@ -14,6 +16,8 @@ SetOnStage(ITEMGUID_S_DC_DockedBoat_HandsomeIsle_921ecddd-00cc-42e4-9ba0-f4135c4
 
 
 //DOCKING AGENCY - (Boarding Area | Docked Ship | PlayerShip Start location | Player Dock Landing | Landing Cam | Boat Start Cam)
+DB_DCBoatAgency(TRIGGERGUID_DC_BoardingArea_FortJoyCamp_feccbf80-6457-47f2-b69d-4d2f7399eff4, ITEMGUID_S_DC_DockedBoat_FortJoyCamp_67a4fc55-fef1-4b57-97a5-60b58d1d1a55, TRIGGERGUID_DC_Sailing_BoatStart_FortJoyCamp_7c2df2db-4448-4456-8033-d3ab3b1a9c6d, TRIGGERGUID_DC_Sailing_DockLanding_FortJoyCamp_eff9053d-5cf0-4cf9-9068-ebd413788ae0, "DC_Cam_Landing_FortJoyCamp", "DC_SailingCam_FortJoyCamp");
+DB_DCBoatAgency(TRIGGERGUID_DC_BoardingArea_OriIsle_39380f17-bd6d-438e-921b-7069c0251fff, ITEMGUID_S_DC_DockedBoat_OriIsle_e202512b-74f1-4fc4-b665-1b60795a154c, TRIGGERGUID_DC_Sailing_BoatStart_OriIsle_79de6d8b-c907-4bbb-9d3c-9d5916aa4b01, TRIGGERGUID_DC_Sailing_DockLanding_OriIsle_9e2486a8-1909-4d68-a00c-9e2d6c50e902, "DC_Cam_Landing_OriIsle", "DC_SailingCam_OriIsle");
 DB_DCBoatAgency(TRIGGERGUID_DC_BoardingArea_DragonIsle_0deed532-2a9d-41ff-b747-fe5c337ca244, ITEMGUID_S_DC_DockedBoat_DragonIsle_e9416210-4efe-4313-8940-0c3abbba0850, TRIGGERGUID_DC_Sailing_BoatStart_DragonIsle_a85aba01-5d60-41c6-89c6-9130717cd14c, TRIGGERGUID_DC_Sailing_DockLanding_DragonIsle_a4890d16-f1eb-4ebd-955d-1712f7936e75, "DC_Cam_Landing_DragonIsle", "DC_BoatStartCam_DragonIsle");
 DB_DCBoatAgency(TRIGGERGUID_DC_BoardingArea_ShrineIsle_6a6fb5d7-ea94-4902-b533-18c609f3df0e, ITEMGUID_S_DC_DockedBoat_ShrineIsle_ad6fedf6-02a2-4213-9a31-e8e092124b22, TRIGGERGUID_DC_Sailing_BoatStart_ShrineIsle_6ebab504-09b5-43ab-8b27-4c813c023cf0, TRIGGERGUID_DC_Sailing_DockLanding_ShrineIsle_735a5a17-8b0e-4c2d-9dbc-d9d3100be6e2, "DC_Cam_Landing_ShrineIsle", "DC_BoatStartCam_ShrineIsle");
 DB_DCBoatAgency(TRIGGERGUID_DC_BoardingArea_PirateIsle_0aa046e2-8561-40f1-b339-a6e36d34e720, ITEMGUID_S_DC_DockedBoat_PirateIsle_3fc96c8d-9936-4900-a7db-1c68084928df, TRIGGERGUID_DC_Sailing_BoatStart_PirateIsle_92cd44d5-035f-4793-bb0c-91de2cee227a, TRIGGERGUID_DC_Sailing_DockLanding_PirateIsle_124f25bb-24ba-42fa-960a-98289419d5a7, "DC_Cam_Landing_PirateIsle", "DC_BoatStartCam_PirateIsle");
@@ -28,6 +32,8 @@ DB_DCBoatAgency(TRIGGERGUID_DC_BoardingArea_HandsomeIsle_112cb661-0f86-4378-be22
 DB_DCPlayerBoat(CHARACTERGUID_S_GLO_DC_PlayerBoat_273d0117-709d-4ac1-aa86-9110aca0e63f);
 
 //DOCKING AREAS (SPELL)
+DB_DCDockingSpell(TRIGGERGUID_DC_Sailing_SpellHandler_FortJoyCamp_95e572b6-be61-43ec-b785-ebe5c678efc2);
+DB_DCDockingSpell(TRIGGERGUID_DC_Sailing_SpellHandler_OriIsle_60f3d627-d32d-420b-9cdd-8335cb64a6c4);
 DB_DCDockingSpell(TRIGGERGUID_DC_Sailing_SpellHandler_DragonIsle_2cc0f9c1-44aa-4f97-94ce-75a82984dfe3);
 DB_DCDockingSpell(TRIGGERGUID_DC_Sailing_SpellHandler_ShrineIsle_ee764a1d-097d-41ff-ace8-377121b8ef5e);
 DB_DCDockingSpell(TRIGGERGUID_DC_Sailing_SpellHandler_PirateIsle_702dd867-49f3-4a71-a132-da8c0a5fe77f);
@@ -70,6 +76,7 @@ GlobalSetFlag("PlayerIsBoat");
 DB_ShipOwner((CHARACTERGUID)_Player);
 DB_IsPlayer((CHARACTERGUID)_PlayerShip);
 CharacterAddSkill((CHARACTERGUID)_PlayerShip, "Shout_GoToLowerDeck");
+Proc_DC_CollectPartiesToLowerDecks();
 
 
 //REGION DOCKING SPELL
@@ -116,11 +123,10 @@ CharacterRemoveSkill((CHARACTERGUID)_PlayerShip,"Shout_GoToLowerDeck");
 CharacterRemoveFromParty(_Ship);
 SetOnStage(_Ship,0);
 CameraActivate(_Player,_LandCam,0.0,0,0,0);
-NOT DB_ShipOwner((CHARACTERGUID)_Player);
 NOT DB_IsPlayer((CHARACTERGUID)_PlayerShip);
 GlobalSetFlag("DC_ShowDockedBoats");
 GlobalClearFlag("PlayerIsBoat");
-
+Proc_DC_ReturnLDPlayersToDock();
 
 //END_REGION
 
@@ -154,10 +160,9 @@ SetCameraDistanceOverride(20.0);
 CharacterRemoveFromParty(_Ship);
 CameraActivate(_Player,"DC_Cam_Landing_LowerDeck",0.0,0,0,0);
 DB_ShipLocation(_ShipX,_ShipY,_ShipZ);
-NOT DB_ShipOwner((CHARACTERGUID)_Player);
 NOT DB_IsPlayer((CHARACTERGUID)_PlayerShip);
 GlobalClearFlag("PlayerIsBoat");
-
+PROC_DC_ReCollectPartiesInLowerDeck();
 
 //Stairs to go back up to top deck
 IF
@@ -188,7 +193,7 @@ DB_ShipOwner((CHARACTERGUID)_Player);
 DB_IsPlayer((CHARACTERGUID)_PlayerShip);
 NOT DB_ShipLocation(_ShipX,_ShipY,_ShipZ);
 GlobalSetFlag("PlayerIsBoat");
-
+Proc_DC_CollectPartiesToLowerDecksLD();
 //END_REGION
 
 IF
@@ -204,6 +209,8 @@ DisplayText(_Player, "I shouldn't disturb the captain.");
 IF
 GlobalFlagSet("PlayerIsBoat")
 THEN
+SetOnStage(ITEMGUID_S_DC_DockedBoat_FortJoyCamp_67a4fc55-fef1-4b57-97a5-60b58d1d1a55, 0);
+SetOnStage(ITEMGUID_S_DC_DockedBoat_OriIsle_e202512b-74f1-4fc4-b665-1b60795a154c, 0);
 SetOnStage(ITEMGUID_S_DC_DockedBoat_ShrineIsle_ad6fedf6-02a2-4213-9a31-e8e092124b22, 0);
 SetOnStage(ITEMGUID_S_DC_DockedBoat_DragonIsle_e9416210-4efe-4313-8940-0c3abbba0850, 0);
 SetOnStage(ITEMGUID_S_DC_DockedBoat_PirateIsle_3fc96c8d-9936-4900-a7db-1c68084928df, 0);
@@ -218,6 +225,8 @@ SetOnStage(ITEMGUID_S_DC_DockedBoat_DomeIsle_B_d39ebe61-745d-434f-a122-368e76e1f
 IF
 GlobalFlagSet("DC_ShowDockedBoats")
 THEN
+SetOnStage(ITEMGUID_S_DC_DockedBoat_FortJoyCamp_67a4fc55-fef1-4b57-97a5-60b58d1d1a55, 1);
+SetOnStage(ITEMGUID_S_DC_DockedBoat_OriIsle_e202512b-74f1-4fc4-b665-1b60795a154c, 1);
 SetOnStage(ITEMGUID_S_DC_DockedBoat_ShrineIsle_ad6fedf6-02a2-4213-9a31-e8e092124b22, 1);
 SetOnStage(ITEMGUID_S_DC_DockedBoat_DragonIsle_e9416210-4efe-4313-8940-0c3abbba0850, 1);
 SetOnStage(ITEMGUID_S_DC_DockedBoat_PirateIsle_3fc96c8d-9936-4900-a7db-1c68084928df, 1);
@@ -229,7 +238,102 @@ SetOnStage(ITEMGUID_S_DC_DockedBoat_DomeIsle_A_849147e6-b7aa-456c-9904-e4e263a1e
 SetOnStage(ITEMGUID_S_DC_DockedBoat_DomeIsle_B_d39ebe61-745d-434f-a122-368e76e1fa00, 1);
 GlobalClearFlag("DC_ShowDockedBoats");
 //END_REGION
+
+PROC
+Proc_DC_CollectPartiesToLowerDecks()
+AND
+DB_IsPlayer(_NonShipPlayer)
+AND
+DB_IsPlayer((CHARACTERGUID)_PlayerShip)
+AND
+_NonShipPlayer != _PlayerShip
+AND
+DB_DCBoatAgency(_DockLoc, _DockShip, _PlayerShipStart, _LandingStart, _LandCam, _BoatStartCam)
+AND
+ObjectIsInTrigger(_NonShipPlayer, (TRIGGERGUID)_DockLoc, 1)
+AND
+CharacterIsInPartyWith(_NonShipPlayer, _PlayerShip, 1)
+AND
+CharacterGetReservedUserID((CHARACTERGUID)_PlayerShip, _UserID)
+THEN
+DB_DC_FTJ_CharactersInDockForLowerDeck(_NonShipPlayer, _UserID);
+Proc_DC_SendPartiesToLowerDecks();
+
+PROC
+Proc_DC_SendPartiesToLowerDecks()
+AND
+DB_DC_FTJ_CharactersInDockForLowerDeck(_NonShipPlayer, _UserID)
+THEN
+TeleportTo((CHARACTERGUID)_NonShipPlayer, TRIGGERGUID_DC_TP_PlayerBoat_LowerDeck_ab21c5b5-c251-4415-935b-8bc31e3c6679);
+CharacterRemoveFromParty((CHARACTERGUID)_NonShipPlayer);
+
+
+
+
+PROC
+Proc_DC_CollectPartiesToLowerDecksLD()
+AND
+DB_IsPlayer(_NonShipPlayer)
+AND
+DB_IsPlayer((CHARACTERGUID)_PlayerShip)
+AND
+_NonShipPlayer != _PlayerShip
+AND
+DB_DCBoatAgency(_DockLoc, _DockShip, _PlayerShipStart, _LandingStart, _LandCam, _BoatStartCam)
+AND
+ObjectIsInTrigger(_NonShipPlayer, TRIGGERGUID_DC_PlayerShipLowerDecks_6c03e0e3-5d00-46be-8a48-fa4154ac7ce0, 1)
+AND
+CharacterIsInPartyWith(_NonShipPlayer, _PlayerShip, 1)
+AND
+CharacterGetReservedUserID((CHARACTERGUID)_PlayerShip, _UserID)
+THEN
+DB_DC_FTJ_CharactersInDockForLowerDeck(_NonShipPlayer, _UserID);
+Proc_DC_SendPartiesToLowerDecksLD();
+
+PROC
+Proc_DC_SendPartiesToLowerDecksLD()
+AND
+DB_DC_FTJ_CharactersInDockForLowerDeck(_NonShipPlayer, _UserID)
+THEN
+TeleportTo((CHARACTERGUID)_NonShipPlayer, TRIGGERGUID_DC_TP_PlayerBoat_LowerDeck_ab21c5b5-c251-4415-935b-8bc31e3c6679);
+CharacterRemoveFromParty((CHARACTERGUID)_NonShipPlayer);
+
+
+
+
+
+
+
+PROC
+PROC_DC_ReCollectPartiesInLowerDeck()
+AND
+DB_ShipOwner((CHARACTERGUID)_Player)
+AND
+DB_DC_FTJ_CharactersInDockForLowerDeck(_NonShipPlayer, _UserID)
+THEN
+CharacterAddToParty((CHARACTERGUID)_NonShipPlayer, _Player);
+CharacterAssignToUser(_UserID, (CHARACTERGUID)_NonShipPlayer);
+NOT DB_ShipOwner((CHARACTERGUID)_Player);
+NOT DB_DC_FTJ_CharactersInDockForLowerDeck(_NonShipPlayer, _UserID);
+
+
+PROC
+Proc_DC_ReturnLDPlayersToDock()
+AND
+DB_ShipOwner((CHARACTERGUID)_Player)
+AND
+DB_DCBoatAgency(_DockLoc, _DockShip, _PlayerShipStart, _LandingStart, _LandCam, _BoatStartCam)
+AND
+ObjectIsInTrigger(_Player, (TRIGGERGUID)_DockLoc, 1)
+AND
+DB_DC_FTJ_CharactersInDockForLowerDeck(_NonShipPlayer, _UserID)
+THEN
+TeleportTo((CHARACTERGUID)_NonShipPlayer, _LandingStart);
+CharacterAddToParty((CHARACTERGUID)_NonShipPlayer, _Player);
+CharacterAssignToUser(_UserID, (CHARACTERGUID)_NonShipPlayer);
+NOT DB_ShipOwner((CHARACTERGUID)_Player);
+NOT DB_DC_FTJ_CharactersInDockForLowerDeck(_NonShipPlayer, _UserID);
 EXITSECTION
 
 ENDEXITSECTION
-ParentTargetEdge "__Start"
+ParentTargetEdge "FortJoy"

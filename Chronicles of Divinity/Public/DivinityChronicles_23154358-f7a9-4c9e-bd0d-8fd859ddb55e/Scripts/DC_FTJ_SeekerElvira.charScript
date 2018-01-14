@@ -4,8 +4,10 @@ INIT
 	CHARACTER:__Me
 	CHARACTER:%Zika = S_DC_FTJ_Zika_0787498c-0869-4f05-82d4-6c883d5ea3ea
 	CHARACTER:%Dragon = S_DomeIsle_Dragon_bb77dbdc-f1af-4c39-a48a-a77a583bc74c
+	CHARACTER:%Ori = S_DC_Ori_19c5538b-40fd-4f92-b4b2-4b105be55f54
 	INT:%CanGoToZika = 1
 	INT:%CanUseChest = 1
+	INT:%CanTalkToOri = 0
 	EXTERN TRIGGER:%LookAtMaps = S_DC_DomeIsle_Elvira_Desk_Lookat_0dfdae57-821e-456a-9836-47e5df4c4362
 	EXTERN TRIGGER:%LookAtChest = S_DC_DomeIsle_Elvira_Chest_Lookat_64ea5785-2337-4b80-b740-0eea71bc72ff
 	EXTERN ITEM:%Object = S_Map_beafa2e6-11cc-4d6f-bfad-35501d8f8356
@@ -24,7 +26,7 @@ BEHAVIOUR
 REACTION State_Default, 1
 USAGE PEACE
 ACTIONS
-	GetRandom(%currentAction,"AtDesk_InspectingObjects","GettingTools","OfferingZikaTools")
+	GetRandom(%currentAction,"AtDesk_InspectingObjects","GettingTools","OfferingZikaTools","TalkToOri")
 	SetPriority(%currentAction, 1200)
 
 REACTION AtDesk_InspectingObjects,0
@@ -101,7 +103,28 @@ INTERRUPT
 ACTIONS
 	SetPriority(%currentAction, 0)
 	
-	
+REACTION TalkToOri,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	IF "c1"
+	IsEqual(%CanTalkToOri,1)
+	THEN
+	CharacterMoveTo(%Ori,0,0,0,1,2)
+	CharacterLookAt(%Ori,0,4)
+	GetRandom(_animation,"Kneel_01","Kneel_02","Think_01","Fidget_Use_02")
+	DialogStart(_,"DC_AD_ElviraOri",__Me,%Ori)
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,3,8)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction,0)
+ELSE
+	SetPriority(%currentAction,0)
+	ENDIF
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
 	
 	
 REACTION State_LookingAtDragon, 1

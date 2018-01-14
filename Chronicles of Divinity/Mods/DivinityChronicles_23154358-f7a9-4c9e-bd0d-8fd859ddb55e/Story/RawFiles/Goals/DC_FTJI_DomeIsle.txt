@@ -140,19 +140,21 @@ IF
 CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_GarethAndJake_AD_cae280b0-cb70-4bc8-b89d-db4efa864557)
 AND
 DB_IsPlayer(_Player)
+AND
+CharacterIsControlled(_Player, 1)
 THEN
-Proc_StartDialog(0, "FTJI_AD_GarethAndJake", CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, CHARACTERGUID_S_DC_FTJI_Gareth_8715ca37-077f-44a2-b23c-97fa60a849a1);
+Proc_StartDialog(0, "FTJI_AD_GarethAndJake", CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, CHARACTERGUID_S_DC_FTJ_Gareth_d4066e27-d647-4a72-b920-a71e32e27958);
 
 IF
 AutomatedDialogEnded("FTJI_AD_GarethAndJake", _ID)
 THEN
-ProcCharacterMoveTo(CHARACTERGUID_S_DC_FTJI_Gareth_8715ca37-077f-44a2-b23c-97fa60a849a1, TRIGGERGUID_DC_FTJIGarethToBoat_ac550890-f463-48e8-8871-599aa5e01483, 0, "DC_FTJI_GarethToBoat");
+ProcCharacterMoveTo(CHARACTERGUID_S_DC_FTJ_Gareth_d4066e27-d647-4a72-b920-a71e32e27958, TRIGGERGUID_DC_FTJIGarethToBoat_ac550890-f463-48e8-8871-599aa5e01483, 0, "DC_FTJI_GarethToBoat");
 SetVarFixedString(CHARACTERGUID_S_DC_FTJI_SeekerJake_0505bf7e-2426-4edb-924e-554e27fa73a8, "currentState", "State_Default");
 
 IF
 StoryEvent(_, "DC_FTJI_GarethToBoat")
 THEN
-SetOnStage(CHARACTERGUID_S_DC_FTJI_Gareth_8715ca37-077f-44a2-b23c-97fa60a849a1, 0);
+SetOnStage(CHARACTERGUID_S_DC_FTJ_Gareth_d4066e27-d647-4a72-b920-a71e32e27958, 0);
 SetOnStage(ITEMGUID_S_DC_GarethsBoat_d3e63cb7-2717-4118-bd8c-8640820b090f, 0);
 SetOnStage(CHARACTERGUID_S_FTJ_SW_Warrior_SeekerCaptain_1329f018-23e4-4717-9bc8-074b28d04c54, 1);
 SetOnStage(CHARACTERGUID_S_FTJ_CorneringMagister1_324e8aca-3b0b-430e-b8bb-2f6e9edac3fe, 1);

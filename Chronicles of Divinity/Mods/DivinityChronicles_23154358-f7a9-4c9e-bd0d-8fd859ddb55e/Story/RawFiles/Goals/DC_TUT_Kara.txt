@@ -3,6 +3,18 @@ SubGoalCombiner SGC_AND
 INITSECTION
 DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Origin_Kara_TUT");
 KBSECTION
+PROC
+Proc_TUT_StartGame()
+AND
+DB_IsPlayer(_Player)
+AND
+CharacterIsInPartyWith(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, 0)
+AND
+CharacterIsControlled(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0)
+THEN
+SetVarFixedString(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"currentState","State_TUT_A");
+
+
 //REGION STARTING FLOOR
 IF
 CharacterUsedItem(_Player, ITEMGUID_S_TUT_LowerDeck_DoorToStairs_000_b18d5ea1-ec4c-44f4-9a3b-5b851d1d9b8b)
@@ -28,6 +40,7 @@ AND
 GlobalGetFlag("TUT_KaraToCrackINIT", 0)
 THEN
 ProcCharacterMoveTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_CrackRoomDoorPoint_dfaa1e02-9f66-45a8-81d0-ef2e27307188, 1, "KaraToCrackDoor");
+SetVarFixedString(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"currentState","State_TUT_CrackRoom");
 
 IF
 StoryEvent(_, "KaraToCrackDoor")
@@ -48,6 +61,7 @@ AND
 ItemIsClosed(ITEMGUID_S_DC_DoorToCrack_62d12db8-b51f-44c0-a2a2-b487151f480e, 0)
 THEN
 ProcCharacterMoveTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_KaraByPlanks_455a6458-cb5f-4660-aff0-84fb55b740f2, 1, "KaraToCrackPlanks");
+SetVarFixedString(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"currentState","State_TUT_CrackRoom");
 
 IF
 ItemOpened(ITEMGUID_S_DC_DoorToCrack_62d12db8-b51f-44c0-a2a2-b487151f480e)
@@ -55,17 +69,6 @@ AND
 GlobalGetFlag("TUT_KaraToCrack", 1)
 THEN
 ProcCharacterMoveTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_KaraByPlanks_455a6458-cb5f-4660-aff0-84fb55b740f2, 1, "KaraToCrackPlanks");
-UnlockSecretRegion(TRIGGERGUID_DC_TUT_CrackRoom_5e307804-65cc-45ef-9f18-e8b1cca5c689);
-
-IF
-CharacterEnteredTrigger(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_CrackTrigger_35dfc19d-10b0-4cf8-aab9-f7b1ef2def3c)
-THEN
-UnlockSecretRegion(TRIGGERGUID_DC_TUT_CrackRoom_5e307804-65cc-45ef-9f18-e8b1cca5c689);
-
-IF
-CharacterEnteredTrigger(_Player, TRIGGERGUID_DC_CrackTrigger_35dfc19d-10b0-4cf8-aab9-f7b1ef2def3c)
-THEN
-UnlockSecretRegion(TRIGGERGUID_DC_TUT_CrackRoom_5e307804-65cc-45ef-9f18-e8b1cca5c689);
 
 IF
 StoryEvent(_, "KaraToCrackPlanks")
@@ -87,6 +90,7 @@ CharacterUsedItem(_Player, ITEMGUID_S_TUT_TopDeck_LadderToLowerDeck_d066a5dd-5ce
 THEN
 GlobalSetFlag("DC_TUTRescueStart");
 UnlockSecretRegion(TRIGGERGUID_DC_TUT_CrackRoom_5e307804-65cc-45ef-9f18-e8b1cca5c689);
+SetVarFixedString(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"currentState","");
 
 IF
 CombatStarted(_CombatID)
@@ -123,6 +127,43 @@ NOT DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,
 PROC_RemoveDialogFromCharacter(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd);
 DB_Dialogs(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd,"Origin_Kara_TUT_Rescue");
 ProcCharacterMoveToAndTalk(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, _Player, "Origin_Kara_TUT_Rescue", 0, "", 1, 15.0);
+GlobalClearFlag("DC_TUTRescueStart");
+
+IF
+CombatEnded(_CombatID)
+AND
+DB_IsPlayer(_Player)
+AND
+GlobalGetFlag("DC_TUTRescueStart", 1)
+AND
+CharacterIsControlled(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 1)
+AND
+CharacterIsDead(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0)
+AND
+GlobalGetFlag("TUT_FightDistortCreature", 0)
+AND
+GetPosition(TRIGGERGUID_DC_CrackRoomDoorPoint_dfaa1e02-9f66-45a8-81d0-ef2e27307188, _DX, _DY, _DZ)
+AND
+CharacterCreateAtPosition(_DX, _DY, _DZ, "CHARACTERGUID_DC_Distorted_Creature_485e275f-f435-42ab-a6c7-936cb36bd3ff", 1, _DCBossVoidling)
+AND
+PlayLoopEffect((CHARACTERGUID)_DCBossVoidling, "RS3_FX_GP_ScriptedEvent_IllusionOverlay_Platforms_01", "", _DistortTUTHandle)
+AND
+PlayLoopEffect((CHARACTERGUID)_DCBossVoidling, "RS3_FX_Char_Creatures_Head_Kraken_A_Feeler_Light_01", "", _DistortTUTHandle)
+AND
+PlayLoopEffect((CHARACTERGUID)_DCBossVoidling, "RS3_FX_GP_Status_Shocked_01", "", _DistortTUTHandle)
+THEN
+Proc_ShakeCameraForTime(_Player,3000);
+ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_Metal_A_001_f953662f-9154-4bf2-848e-23b0ef16aea6);
+ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_013_618d3285-2bd0-45df-a5fe-2482a89cd72c);
+ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_011_aaea47e7-6e1e-4be9-ae83-28d4300a8649);
+ItemDestroy(ITEMGUID_CONT_Humans_Citz_Crate_A_012_80355997-b1a0-4e36-95bf-4bf3398c1ad8);
+PlayEffect(_DCBossVoidling, "RS3_FX_GP_ScriptedEvent_Beast_HatAppear_01");
+GlobalClearFlag("DC_TUTRescueStart");
+SetFaction((GUIDSTRING)_DCBossVoidling, "Evil NPC");
+SetCanJoinCombat((GUIDSTRING)_DCBossVoidling, 1);
+EnterCombat((GUIDSTRING)_DCBossVoidling, _Player);
+DB_TUTBossVoidling(_DCBossVoidling);
+GlobalSetFlag("KaraSurvivedTUTRescue");
 GlobalClearFlag("DC_TUTRescueStart");
 
 IF
@@ -217,6 +258,7 @@ AND
 CharacterIsControlled(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, 0)
 THEN
 TeleportTo(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, TRIGGERGUID_DC_Kara_StartPoint_9f4326f0-68c4-4aab-84de-0f412c8dd979);
+SetVarFixedString(CHARACTERGUID_S_Player_Kara_bcf8286e-213c-438d-b622-b6e40add12dd, "currentState", "");
 //END_REGION
 EXITSECTION
 

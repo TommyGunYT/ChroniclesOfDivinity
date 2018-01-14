@@ -6,7 +6,7 @@ DB_DC_HighestLevel("HighestLevel", 1, 0, 1);
 DB_DC_ScalingFlag("MS_DecreaseMonsterDifficulty", -1);
 DB_DC_ScalingFlag("MS_IncreaseMonsterDifficulty", 1);
 DB_DC_ResetFlag("MS_ResetMonsterDifficulty");
-DB_DC_ToggleFlag("MS_ToggleMonsterDifficulty");
+DB_DC_ToggleFlag("DC_ScalingOn");
 DB_DC_GaveItem(0);
 // DC_ScalingTag
 
@@ -14,9 +14,9 @@ DB_ScalingAreaTriggers(TRIGGERGUID_DC_DBTestTrigger_d8ee2108-cd8d-4760-b9c6-c208
 DB_ScalingAreaTriggers(TRIGGERGUID_DC_ScalingRegion_FortJoyStartBeach_c14b8cdb-88ad-4519-beb5-61f1b6dd0678);
 DB_ScalingAreaTriggers(TRIGGERGUID_DC_ScalingRegion_FortJoySubAreas_dcd0900f-5896-44ca-af8d-e606db7e3894);
 DB_ScalingAreaTriggers(TRIGGERGUID_DC_ScalingRegion_Swamps_1923cefd-ef2d-4980-8178-404f1f970898);
+DB_ScalingAreaTriggers(TRIGGERGUID_DC_ScalingRegion_Isles_f4b68849-feed-4a8f-a384-feb7d201d173);
 
-
-GlobalSetFlag("MS_ToggleMonsterDifficulty");
+GlobalSetFlag("DC_ScalingOn");
 KBSECTION
 //REGION SETUP
 
@@ -60,7 +60,7 @@ DB_DC_ScalingEnabled(_IsEnabled)
 AND
 _IsEnabled == 2
 THEN
-GlobalSetFlag("MS_ToggleMonsterDifficulty");
+GlobalSetFlag("DC_ScalingOn");
 
 IF
 SavegameLoaded(_,_,_,_)
@@ -115,9 +115,9 @@ CharacterEnteredTrigger(_Player, _ScalingNPCCounterRegion)
 AND
 DB_IsPlayer(_Player)
 AND
-GlobalGetFlag("MS_ToggleMonsterDifficulty", 0)
+GlobalGetFlag("DC_ScalingOn", 0)
 THEN
-GlobalSetFlag("MS_ToggleMonsterDifficulty");
+GlobalSetFlag("DC_ScalingOn");
 
 IF
 CharacterEnteredTrigger(_DCNPC, _ScalingNPCCounterRegion)

@@ -1,4 +1,4 @@
-<?xml version="1.0" encoding="utf-8"?>
+﻿<?xml version="1.0" encoding="utf-8"?>
 <stats stat_object_definition_id="48e63fff-81e0-42bb-ac51-39f5904b97be">
   <stat_objects>
     <stat_object index="0" is_substat="false">
@@ -20,6 +20,32 @@
         <field name="AirResistance" type="IntegerStatObjectFieldDefinition" value="-10" />
         <field name="Duration" type="IntegerStatObjectFieldDefinition" value="2" />
         <field name="StatusIcon" type="StringStatObjectFieldDefinition" value="statIcons_Chill" />
+      </fields>
+    </stat_object>
+    <stat_object index="2" is_substat="false">
+      <fields>
+        <field name="Name" type="NameStatObjectFieldDefinition" value="CON_LargeNut" />
+        <field name="Using" type="BaseClassStatObjectFieldDefinition" value="_Food" />
+        <field name="Act part" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="ActPart" />
+        <field name="StackId" type="StringStatObjectFieldDefinition" value="Food" />
+        <field name="ComboCategory" type="StringStatObjectFieldDefinition" value="Food" />
+        <field name="Weight" type="IntegerStatObjectFieldDefinition" value="10" />
+        <field name="Value" type="IntegerStatObjectFieldDefinition" value="150" />
+        <field name="PoisonResistance" type="IntegerStatObjectFieldDefinition" value="5" />
+        <field name="VitalityPercentage" type="IntegerStatObjectFieldDefinition" value="25" />
+        <field name="ObjectCategory" type="StringStatObjectFieldDefinition" value="Food" />
+        <field name="MinAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="MaxAmount" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Priority" type="IntegerStatObjectFieldDefinition" value="3" />
+        <field name="MinLevel" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="Finesse" type="EnumerationStatObjectFieldDefinition" value="111" enumeration_type_name="Penalty PreciseQualifier" />
+        <field name="Vitality" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="VitalityBoost" type="IntegerStatObjectFieldDefinition" value="1" />
+        <field name="APRecovery" type="IntegerStatObjectFieldDefinition" value="0" />
+        <field name="InventoryTab" type="EnumerationStatObjectFieldDefinition" value="2" enumeration_type_name="InventoryTabs" />
+        <field name="IsConsumable" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="IsFood" type="EnumerationStatObjectFieldDefinition" value="1" enumeration_type_name="YesNo" />
+        <field name="RootTemplate" type="RootTemplateStatObjectFieldDefinition" value="98454b28-edd7-4aa9-a7eb-7dffa4cf9aa6" />
       </fields>
     </stat_object>
   </stat_objects>

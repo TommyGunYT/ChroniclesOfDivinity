@@ -1,0 +1,57 @@
+#INCLUDE State_Manager
+INIT
+	USING State_Manager
+	CHARACTER:__Me
+	EXTERN ITEM:%PosterKnife = S_DC_DimaKnife_4cea29bf-56e3-4d29-8357-a03bca808d8f
+	EXTERN ITEM:%Bag = S_DC_DimasBag_fcc91388-7e3f-445c-a220-6b242f748951
+	EXTERN TRIGGER:%PosterBoard = S_DC_SeekerCamp_Posterboard_601df063-5604-4929-b549-cc54ab6a8966
+	EXTERN TRIGGER:%BagPoint = S_DC_SeekerCamp_DimasBag_124e9e21-49de-4c64-b7f1-5003605d879c
+	INT: %resetTimeout = 0
+	FLOAT:%RandSleep = 1
+
+
+
+	
+BEHAVIOUR
+REACTION State_Default, 1
+USAGE PEACE
+ACTIONS
+	GetRandom(%currentAction,"WorkingWithPosters","CheckingBag")
+	SetPriority(%currentAction, 1200)
+
+REACTION WorkingWithPosters,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%PosterBoard,0,0,0,1,2)
+	CharacterLookAt(%PosterKnife,0,0)
+	GetRandom(_animation,"Think_01","Think_02","use_craft")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,3,9)
+	Sleep(%RandSleep)
+	GetRandom(_animation,"Write_01","Think_02","use_inspect")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,5,11)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
+	
+	
+REACTION CheckingBag,0
+USAGE PEACE
+VARS
+	FIXEDSTRING:_animation
+ACTIONS
+	CharacterMoveTo(%BagPoint,0,0,0,1,2)
+	CharacterLookAt(%Bag,0,0)
+	GetRandom(_animation,"Kneel_01","Kneel_02","use_loot")
+	CharacterPlayAnimation(_animation)
+	GetRandomBetween(%RandSleep,4,9)
+	Sleep(%RandSleep)
+	SetPriority(%currentAction, 0)
+INTERRUPT
+ACTIONS
+	SetPriority(%currentAction, 0)
