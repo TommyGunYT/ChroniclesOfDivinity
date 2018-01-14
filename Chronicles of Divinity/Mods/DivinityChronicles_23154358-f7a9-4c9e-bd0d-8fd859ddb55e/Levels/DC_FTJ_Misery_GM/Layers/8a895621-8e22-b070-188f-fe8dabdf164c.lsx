@@ -1,0 +1,11 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<save>
+    <header version="2" time="1508022022" />
+    <version major="3" minor="1" revision="3" build="5" />
+    <region id="MetaData">
+        <node id="root">
+            <attribute id="ID" value="8a895621-8e22-b070-188f-fe8dabdf164c" type="31" />
+            <attribute id="Name" value="Shadow Smooth Lighting" type="23" />
+        </node>
+    </region>
+</save>
